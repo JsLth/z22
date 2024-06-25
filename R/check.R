@@ -1,0 +1,18 @@
+check_string <- function(x, null = FALSE) {
+  if (null && is.null(x)) return()
+  check <- is.character(x)
+  if (!check) {
+    stop(sprintf("%s must be a character vector.", obj_name(x)))
+  }
+}
+
+
+check_class <- function(x, cls, null = FALSE) {
+  if (null && is.null(x)) return()
+  check <- inherits(x, cls)
+  if (!check) {
+    stop(sprintf("%s must inherit from class %s.", obj_name(x), cls))
+  }
+}
+
+
