@@ -41,7 +41,7 @@ z22_auth <- function(token = NULL,
                      username = NULL,
                      password = askpass::askpass) {
   if (.has_auth()) {
-    return()
+    keyring::key_delete("z22", username = username)
   }
 
   if (!is.null(token)) {
@@ -51,7 +51,7 @@ z22_auth <- function(token = NULL,
     check_string(username)
     check_class(password, "function")
     password <- password()
-    assign("username", username, envir = "z22_cache")
+    assign("username", username, envir = z22_cache)
     keyring::key_set_with_value("z22", username = username, password = password)
   } else {
     stop("Either a token or a username must be provided.")
@@ -156,7 +156,7 @@ check_auth <- function() {
   }
 
   language <- list(language = getOption("z22_language", "en"))
-  cred <- .get_auth()
+  cred <- lapply(.get_auth(), utils::URLencode)
   params <- drop_empty(drop_null(params))
   c(cred, language, params)
 }

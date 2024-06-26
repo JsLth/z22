@@ -7,6 +7,16 @@ check_string <- function(x, null = FALSE) {
 }
 
 
+check_integerish <- function(x, null = FALSE) {
+  if (null && is.null(x)) return()
+  x <- as.double(x)
+  check <- identical(x, round(x))
+  if (!check) {
+    stop(sprintf("%s must be a whole number.", obj_name(x)))
+  }
+}
+
+
 check_class <- function(x, cls, null = FALSE) {
   if (null && is.null(x)) return()
   check <- inherits(x, cls)

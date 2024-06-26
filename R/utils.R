@@ -11,3 +11,9 @@ drop_null <- function(x) {
 drop_empty <- function(x) {
   x[lengths(x) > 0]
 }
+
+
+match_arg <- function(arg, choices, several.ok = FALSE, null = TRUE) {
+  if (is.null(arg) && null) return()
+  match.arg(arg = arg, choices = choices, several.ok = several.ok)
+}
