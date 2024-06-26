@@ -23,7 +23,7 @@ request_zensus <- function(service,
   }
 
   if (getOption("z22_echo", FALSE)) {
-    cat(http_method, "Querying:", req$url, "\n")
+    cat(http_method, req$url, "\n")
   }
 
   req$url <- utils::URLencode(req$url)

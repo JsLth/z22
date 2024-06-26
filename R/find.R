@@ -3,7 +3,6 @@ z22_find <- function(term = NULL, category = NULL, pagelength = 100) {
   request_zensus(
     service = "find",
     method = "find",
-    params = params,
-    http_method = "POST"
+    params = params
   )
 }
