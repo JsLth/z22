@@ -23,6 +23,9 @@ z22_cache <- new.env(parent = emptyenv())
 #'
 #' @seealso \code{\link{z22_is_auth}}
 #'
+#' @note
+#' Authentication using username and password does not work currently.
+#'
 #' @examples
 #' \dontrun{
 #' # authenticate using a token
@@ -39,24 +42,37 @@ z22_cache <- new.env(parent = emptyenv())
 #' }
 z22_auth <- function(token = NULL,
                      username = NULL,
-                     password = askpass::askpass) {
-  if (.has_auth()) {
+                     password = askpass::askpass,
+                     overwrite = FALSE) {
+  if (.has_auth() && overwrite) {
     keyring::key_delete("z22", username = username)
+  } else if (!overwrite) {
+    msg <- paste(
+      "A z22 authentication already exists.",
+      "If you need to overwrite it, set `overwrite = TRUE`."
+    )
+    message(msg)
+    return(invisible())
   }
 
+  # if a token is passed, treat token as username and omit password
   if (!is.null(token)) {
     check_string(token)
-    assign("token", token, envir = z22_cache)
+    username <- token
+    password <- ""
+
+  # otherwise, ask for password
   } else if (!is.null(username)) {
     check_string(username)
     check_class(password, "function")
-    password <- password()
-    assign("username", username, envir = z22_cache)
-    keyring::key_set_with_value("z22", username = username, password = password)
+    password <- password() %||%
+      stop("Password prompt interrupted", call. = FALSE)
   } else {
     stop("Either a token or a username must be provided.")
   }
 
+  assign("username", username, envir = z22_cache)
+  keyring::key_set_with_value("z22", username = username, password = password)
   invisible()
 }
 
@@ -108,29 +124,37 @@ z22_is_auth <- function(error = FALSE) {
 }
 
 
-has_token <- function() {
-  exists("token", envir = z22_cache)
+get_username <- function() {
+  username <- keyring::key_list("z22")$username
+  if (length(username) > 1) {
+    msg <- paste(
+      "Multiple keyring entries found.",
+      "Please manually verify the service using `keyring::key_list`."
+    )
+    stop(msg)
+  }
+  username
 }
 
 
 has_credentials <- function() {
-  username <- get0("username", envir = z22_cache, ifnotfound = "")
-  keys <- keyring::key_list()
-  has_pw <- "z22" %in% keys[keys$username %in% username, ]
+  username <- get_username()
+  length(username) == 1
 }
 
 
 .has_auth <- function() {
-  has_token() || has_credentials()
+  has_credentials()
 }
 
 
 check_auth <- function() {
   if (!.has_auth()) {
-    stop(paste(
+    msg <- paste(
       "z22 is not authenticated.",
       "Please run z22_auth to login to the Zensus2022 database."
-    ))
+    )
+    stop(msg)
   }
 }
 
@@ -138,13 +162,9 @@ check_auth <- function() {
 .get_auth <- function() {
   check_auth()
 
-  if (has_token()) {
-    list(username = get("token", envir = z22_cache))
-  } else {
-    username <- get("username", envir = z22_cache)
-    password <- as.character(keyring::key_get("z22", username = username))
-    list(username = username, password = password)
-  }
+  username <- get_username()
+  password <- as.character(keyring::key_get("z22", username = username))
+  list(username = username, password = password)
 }
 
 
@@ -162,4 +182,4 @@ check_auth <- function() {
 }
 
 
-auth_errors <- c(de = "Ein Fehler ist aufgetreten", en = "An error occurred")
+auth_errors <- c(de = "Ein Fehler ist aufgetreten", en = "An error has occured")
