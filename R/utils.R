@@ -1,5 +1,13 @@
 "%|||%" <- function(x, y) if (is.null(x) || all(is.na(x))) y else x
 
+"%||%" <- function(x, y) {
+  if (is.null(x)) {
+    y
+  } else {
+    x
+  }
+}
+
 
 obj_name <- function(x, env = parent.frame()) {
   deparse(substitute(x, env))
@@ -18,6 +26,16 @@ drop_empty <- function(x) {
 
 match_arg <- function(arg, choices, several.ok = FALSE, null = TRUE) {
   if (is.null(arg) && null) return()
+
+  if (missing(choices)) {
+    parent <- sys.parent()
+    args <- formals(sys.function(parent))
+    choices <- eval(
+      args[[as.character(substitute(arg))]],
+      envir = sys.frame(parent)
+    )
+  }
+
   match.arg(arg = arg, choices = choices, several.ok = several.ok)
 }
 

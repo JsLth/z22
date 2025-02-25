@@ -26,3 +26,15 @@ check_class <- function(x, cls, null = FALSE) {
 }
 
 
+check_date <- function(x, null = FALSE) {
+  if (null && is.null(x)) return()
+  check <- inherits(x, "POSIXt")
+  if (!check) {
+    stop(sprintf(
+      "%s must be a date-time object, not %s",
+      obj_name(x),
+      class(x)
+    ))
+  }
+}
+

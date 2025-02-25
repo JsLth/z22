@@ -4,7 +4,12 @@
 \alias{z22_auth}
 \title{Authenticate}
 \usage{
-z22_auth(token = NULL, username = NULL, password = askpass::askpass)
+z22_auth(
+  token = NULL,
+  username = NULL,
+  password = askpass::askpass,
+  overwrite = FALSE
+)
 }
 \arguments{
 \item{token}{API token that can be retrieved from the
@@ -29,6 +34,9 @@ using credentials (i.e. username and password). If an API token is
 provided, it is stored inside an R environment for further use.
 If a username and a password function is provided, the password is
 created by executing the password function. It is then stored in a keyring.
+}
+\note{
+Authentication using username and password does not work currently.
 }
 \examples{
 \dontrun{
