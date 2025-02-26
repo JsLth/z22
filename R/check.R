@@ -38,3 +38,13 @@ check_date <- function(x, null = FALSE) {
   }
 }
 
+
+check_loadable <- function(pkg, purpose = NULL) {
+  cond <- loadable(pkg)
+  if (!cond) {
+    cli::cli_abort(c(
+      "Package {.pkg {pkg}} is required but not installed.",
+      "i" = if (!is.null(purpose)) "It is required to {purpose}."
+    ))
+  }
+}

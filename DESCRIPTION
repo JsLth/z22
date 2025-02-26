@@ -1,6 +1,6 @@
 Package: z22
 Type: Package
-Title: R Interface to the German Census 2022
+Title: Official Gridded Data from the German Census 2022
 Version: 0.1.0
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"))
@@ -10,7 +10,13 @@ Description: More about what it does (maybe more than one line)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Imports:
+    utils,
+    cli,
     httr2,
-    keyring
+    dplyr,
+    arrow
+Suggests: 
+    terra
+    sf
 RoxygenNote: 7.3.2

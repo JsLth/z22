@@ -26,7 +26,7 @@ z22_list_attributes <- function(dataset = NULL, feature = NULL, res = "100m") {
     index <- index[index$feature %in% feature, ]
   }
 
-  as_df(index)
+  dplyr::as_tibble(index)
 }
 
 

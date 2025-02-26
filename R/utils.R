@@ -44,11 +44,3 @@ loadable <- function(x) {
   requireNamespace(x, quietly = TRUE)
 }
 
-
-as_df <- function(x) {
-  if (loadable("tibble")) {
-    tibble::as_tibble(x)
-  } else {
-    as.data.frame(x)
-  }
-}
