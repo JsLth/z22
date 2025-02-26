@@ -7,7 +7,7 @@
 z22_grid(res, rasterize = FALSE, as_sf = FALSE)
 }
 \arguments{
-\item{res}{Resolution of the requested grid dataset. Can be \code{"100m"}
+\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
 or \code{"1km"}.}
 
 \item{rasterize}{If \code{TRUE} and the \code{terra} package is installed,

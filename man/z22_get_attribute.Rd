@@ -21,7 +21,7 @@ using \code{\link{z22_list_attributes}}. With the exception of
 \code{topic = "population"} (where only the topic can be specified), all
 arguments must be provided.}
 
-\item{res}{Resolution of the requested grid dataset. Can be \code{"100m"}
+\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
 or \code{"1km"}.}
 
 \item{all_cells}{If \code{TRUE}, joins the retrieved attribute with the

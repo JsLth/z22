@@ -19,7 +19,7 @@
 #' using \code{\link{z22_list_attributes}}. With the exception of
 #' \code{topic = "population"} (where only the topic can be specified), all
 #' arguments must be provided.
-#' @param res Resolution of the requested grid dataset. Can be \code{"100m"}
+#' @param res Resolution of the grid dataset. Can be \code{"100m"}
 #' or \code{"1km"}.
 #' @param all_cells If \code{TRUE}, joins the retrieved attribute with the
 #' complete grid from \code{\link{z22_grid}}. Otherwise, the attribute grid
@@ -123,7 +123,7 @@ z22data_get <- function(fid, res) {
 
     parq_file <- list.files(data_dir, pattern = fid)
   } else {
-    parq_file <- download_z22data(fid, res)
+    parq_file <- z22data_download(fid, res)
   }
 }
 
