@@ -77,6 +77,13 @@ z22_get_attribute <- function(topic,
 #' it to join with the incomplete attribute grids from \code{z22_get_attribute}
 #' to create a complete dataset.
 #'
+#' Note the object sizes of the output:
+#'
+#' \itemize{
+#'  \item{100 m: 36 million rows, 273 MB}
+#'  \item{1 km: 361 thousand rows, 2.7 MB}
+#' }
+#'
 #' @inherit z22_get_attribute
 #'
 #' @export
@@ -96,7 +103,7 @@ z22_grid <- function(res, rasterize = FALSE, as_sf = FALSE) {
 as_spatial_maybe <- function(x, rasterize, as_sf) {
   if (isTRUE(rasterize)) {
     check_loadable("terra", "rasterize the attribute grid")
-    terra::rast(x[c("x", "y", "value")], type = "xyz", crs = "EPSG:3035")
+    terra::rast(x[c("x", "y")], type = "xyz", crs = "EPSG:3035")
   } else if (isTRUE(as_sf)) {
     check_loadable("sf", "convert the attribute grid to an sf object")
     sf::st_as_sf(x, coords = c("x", "y"), crs = 3035)

@@ -26,7 +26,8 @@ z22_translate_cat(categories, lang = c("english", "german"))
 }
 \arguments{
 \item{features}{A character vector containing English or German feature
-names.}
+names. For \code{z22_translate_feat} and if \code{type} is \code{"desc"},
+can also be the description associated with a feature.}
 
 \item{lang}{Specifies the language of the output description. Can be
 either \code{"english"} (default) or \code{"german"}. Note that the
@@ -38,12 +39,17 @@ returns all category descriptions within the feature specified in the
 \code{feature} argument.}
 
 \item{parallel}{If \code{TRUE}, decodes categories in parallel, similar
-to how \code{pmax} and \code{pmin} work. If \code{TRUE}, \code{features}
+to how \code{\link{mapply}} works. If \code{TRUE}, \code{features}
 and \code{codes} must always have the same length and a dataframe with the
 same number of rows is returned. If \code{FALSE}, \code{features} can have
 a different length than \code{codes} and the output can be longer, depending
 on how many more codes there are than features. Defaults to \code{FALSE}.
 See examples.}
+
+\item{type}{Whether to translate the feature name or description.}
+
+\item{categories}{A character vector containing the English or German
+descriptions of category codes.}
 }
 \value{
 \code{z22_decode_feat} returns a character vector with the same
@@ -72,7 +78,7 @@ z22_decode_feat(c("ALTER_KURZ", "ALTER_10JG"))
 
 # You can use both german and english feature names.
 # English feature names are not official but might be better
-# for reproducibility.
+# for code readability.
 z22_decode_feat(c("age_short", "age_long"))
 
 # Get all categories for specific features
@@ -93,6 +99,6 @@ z22_decode_cat("foreigner_share", lang = "german")
 
 # The parallel argument allows you to extract a single category label for
 # each combination of feature and category code
-z22_decode_cat(c("build_heating", "build_heating"), c(1,2))
-z22_decode_cat(c("build_heating", "build_heating"), c(1,2), parallel = TRUE)
+z22_decode_cat(c("build_heating", "build_heating"), c(1, 2))
+z22_decode_cat(c("build_heating", "build_heating"), c(1, 2), parallel = TRUE)
 }

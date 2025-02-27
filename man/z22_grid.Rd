@@ -28,6 +28,13 @@ Unlike the attribute grids retrieved from \code{\link{z22_get_attribute}},
 the INSPIRE grid encompasses the entire area of Germany. You can thus use
 it to join with the incomplete attribute grids from \code{z22_get_attribute}
 to create a complete dataset.
+
+Note the object sizes of the output:
+
+\itemize{
+ \item{100 m: 36 million rows, 273 MB}
+ \item{1 km: 361 thousand rows, 2.7 MB}
+}
 }
 \examples{
 \donttest{# Get high-res grid

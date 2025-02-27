@@ -11,7 +11,8 @@
 #' }
 #'
 #' @param features A character vector containing English or German feature
-#' names.
+#' names. For \code{z22_translate_feat} and if \code{type} is \code{"desc"},
+#' can also be the description associated with a feature.
 #' @param codes A numeric vector containing category codes. If \code{NULL},
 #' returns all category descriptions within the feature specified in the
 #' \code{feature} argument.
@@ -20,7 +21,7 @@
 #' English descriptions are only ad-hoc translations based off the German
 #' originals.
 #' @param parallel If \code{TRUE}, decodes categories in parallel, similar
-#' to how \code{pmax} and \code{pmin} work. If \code{TRUE}, \code{features}
+#' to how \code{\link{mapply}} works. If \code{TRUE}, \code{features}
 #' and \code{codes} must always have the same length and a dataframe with the
 #' same number of rows is returned. If \code{FALSE}, \code{features} can have
 #' a different length than \code{codes} and the output can be longer, depending
@@ -43,7 +44,7 @@
 #'
 #' # You can use both german and english feature names.
 #' # English feature names are not official but might be better
-#' # for reproducibility.
+#' # for code readability.
 #' z22_decode_feat(c("age_short", "age_long"))
 #'
 #' # Get all categories for specific features
@@ -64,8 +65,8 @@
 #'
 #' # The parallel argument allows you to extract a single category label for
 #' # each combination of feature and category code
-#' z22_decode_cat(c("build_heating", "build_heating"), c(1,2))
-#' z22_decode_cat(c("build_heating", "build_heating"), c(1,2), parallel = TRUE)
+#' z22_decode_cat(c("build_heating", "build_heating"), c(1, 2))
+#' z22_decode_cat(c("build_heating", "build_heating"), c(1, 2), parallel = TRUE)
 z22_decode_feat <- function(features, lang = c("english", "german")) {
   lang <- match.arg(lang)
   all_feats <- get("features", envir = asNamespace("z22"))
@@ -128,12 +129,13 @@ z22_decode_cat <- function(features,
   names(dec) <- features
   dec <- dplyr::bind_rows(dec, .id = "feature")
   dec$feature[dec$feature %in% "NA"] <- NA
-  names(dec[lang]) <- "label"
+  names(dec)[3] <- "label"
   dec
 }
 
 
 #' @rdname z22_decode_feat
+#' @param type Whether to translate the feature name or description.
 #' @export
 z22_translate_feat <- function(features,
                                type = c("desc", "name"),
@@ -180,6 +182,8 @@ z22_translate_feat <- function(features,
 
 
 #' @rdname z22_decode_feat
+#' @param categories A character vector containing the English or German
+#' descriptions of category codes.
 #' @export
 z22_translate_cat <- function(categories, lang = c("english", "german")) {
   lang <- match.arg(lang)
