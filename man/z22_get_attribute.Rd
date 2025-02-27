@@ -8,7 +8,6 @@ z22_get_attribute(
   topic,
   feature,
   category,
-  res = c("100m", "1km"),
   all_cells = FALSE,
   rasterize = FALSE,
   as_sf = FALSE
@@ -21,9 +20,6 @@ using \code{\link{z22_list_attributes}}. With the exception of
 \code{topic = "population"} (where only the topic can be specified), all
 arguments must be provided.}
 
-\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
-or \code{"1km"}.}
-
 \item{all_cells}{If \code{TRUE}, joins the retrieved attribute with the
 complete grid from \code{\link{z22_grid}}. Otherwise, the attribute grid
 will contain only those grid cells with one or more recorded units. Defaults
@@ -35,6 +31,9 @@ converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 
 \item{as_sf}{If \code{TRUE} and the \code{sf} package is installed,
 converts the attribute coordinates to an \code{sf} tibble.}
+
+\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
+or \code{"1km"}.}
 }
 \value{
 A tibble, \code{\link[terra:rast]{SpatRaster}} or

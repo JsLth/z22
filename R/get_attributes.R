@@ -47,7 +47,6 @@
 z22_get_attribute <- function(topic,
                               feature,
                               category,
-                              res = c("100m", "1km"),
                               all_cells = FALSE,
                               rasterize = FALSE,
                               as_sf = FALSE) {
@@ -138,6 +137,9 @@ z22data_download <- function(fid,
     req, "jslth", "z22data", "raw", "refs", "heads",
     "main", paste0("data_", res), paste0(fid, ".parquet")
   )
+  if (getOption("z22.debug", FALSE)) {
+    cli::cli_inform("GET {req$url}")
+  }
   unclass(httr2::req_perform(req, path = path)$body)
 }
 

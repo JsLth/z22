@@ -44,3 +44,12 @@ loadable <- function(x) {
   requireNamespace(x, quietly = TRUE)
 }
 
+
+na_tbl <- function(names) {
+  tb <- do.call(
+    dplyr::tibble,
+    c(as.list(rep(NA, length(names))), .name_repair = "minimal")
+  )
+  names(tb) <- names
+  tb
+}

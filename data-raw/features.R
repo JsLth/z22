@@ -27,7 +27,17 @@ features <- tibble::tibble(
     "GEBTYPBAUWEISE",
     "GEBTYPGROESSE",
     "HEIZTYP",
-    "ZAHLWOHNGN_HHG"
+    "ZAHLWOHNGN_HHG",
+    "Einwohner",
+    "Frauen_A",
+    "Alter_D",
+    "unter18_A",
+    "ab65_A",
+    "Auslaender_A",
+    "HHGroesse_D",
+    "Leerstandsquote",
+    "Wohnfl_Bew_D",
+    "Wohnfl_Whg_D"
   ),
   feature_en = c(
     "total",
@@ -57,7 +67,17 @@ features <- tibble::tibble(
     "build_construction",
     "build_size",
     "build_heating",
-    "build_dwellings"
+    "build_dwellings",
+    "residents",
+    "women_share",
+    "avg_age",
+    "under_18_share",
+    "65_higher_share",
+    "foreigner_share",
+    "household_size",
+    "vacancy_rate",
+    "avg_space_resident",
+    "avg_space_dwelling"
   ),
   german = c(
     "Gesamtzahl der Einheiten in der Gitterzelle",
@@ -87,7 +107,17 @@ features <- tibble::tibble(
     "Gebäudetyp-Bauweise",
     "Gebäudetyp-Größe",
     "Heizungsart",
-    "Zahl der Wohnungen im Gebäude"
+    "Zahl der Wohnungen im Gebäude",
+    "Bevölkerung",
+    "Anteil der weiblichen Bevölkerung an der Gesamtbevölkerung",
+    "Durchschnittsalter der Bevölkerung",
+    "Anteil der Bevölkerung unter 18 Jahre an der Gesamtbevölkerung",
+    "Anteil der Bevölkerung ab 65 Jahre an der Gesamtbevölkerung",
+    "Anteil der Ausländer an der Gesamtbevölkerung",
+    "Durchschnittliche Haushaltsgröße",
+    "Anteil der leerstehenden Wohnungen an den Wohnungen",
+    "Durchschnittliche Wohnfläche je Bewohner",
+    "Durchschnittliche Wohnfläche je Wohnung"
   ),
   english = c(
     "Total number of units per cell",
@@ -117,7 +147,17 @@ features <- tibble::tibble(
     "Type of building - construction",
     "Type of building - size",
     "Heating type",
-    "Number of dwellings in the building"
+    "Number of dwellings in the building",
+    "Population",
+    "Share of the female population in the total population",
+    "Average age of the population",
+    "Proportion of the population under 18 years of age in the total population",
+    "Proportion of the population aged 65 and over in the total population",
+    "Proportion of foreigners in the total population",
+    "Average household size",
+    "Proportion of vacant dwellings in the housing stock",
+    "Average living space per resident",
+    "Average living space per dwelling"
   )
 )
 

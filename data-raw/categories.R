@@ -345,6 +345,126 @@ categories <- list(
       "1 Apartment", "2 Apartments", "3 - 6 Apartments",
       "7 - 12 Apartments", "13 and more Apartments"
     )
+  ),
+
+  Einwohner = tibble(
+    code = c(-1, 1, 2, 3, 4, 5, 6),
+    german = c(
+      "Unbewohnt oder geheim zu halten", "3 - 250", "250 - 500", "500 - 2 000",
+      "2 000 - 4 000", "4 000 - 8 000", "8 000 und mehr"
+    ),
+    english = c(
+      "Uninhabited or classified", "3 - 250", "250 - 500", "500 - 2,000",
+      "2,000 - 4,000", "4,000 - 8,000", "8,000 and more"
+    )
+  ),
+
+  Frauen_A = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Unbewohnt", "0 - 40", "40 - 47", "47 - 53",
+      "53 - 60", "60 und mehr"
+    ),
+    english = c(
+      "Classified", "Uninhabited", "0 - 40", "40 - 47", "47 - 53",
+      "53 - 60", "60 and more"
+    )
+  ),
+
+  Alter_D = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Unbewohnt", "0 - 40", "40 - 42", "42 - 44",
+      "44 - 47", "47 und mehr"
+    ),
+    english = c(
+      "Classified", "Uninhabited", "0 - 40", "40 - 42",
+      "42 - 44", "44 - 47", "47 and more"
+    )
+  ),
+
+  unter18_A = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Unbewohnt", "0", "0 - 15", "15 - 20",
+      "20 - 25", "25 und mehr"
+    ),
+    english = c(
+      "Classified", "Uninhabited", "0", "0 - 15", "15 - 20",
+      "20 - 25", "25 and more"
+    )
+  ),
+
+  ab65_A = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Unbewohnt", "0", "0 - 15", "15 - 20",
+      "20 - 25", "25 und mehr"
+    ),
+    english = c(
+      "Classified", "Uninhabited", "0", "0 - 15", "15 - 20",
+      "20 - 25", "25 and more"
+    )
+  ),
+
+  Auslaender_A = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Unbewohnt", "0", "0 - 4", "4 - 8",
+      "8 - 20", "20 und mehr"
+    ),
+    english = c(
+      "Classified", "Uninhabited", "0", "0 - 4", "4 - 8",
+      "8 - 20", "20 and more"
+    )
+  ),
+
+  HHGroesse_D = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Unbewohnt", "1 - 2", "2 - 2,5", "2,5 - 3",
+      "3 - 3,5", "3,5 und mehr"
+    ),
+    english = c(
+      "Classified", "Uninhabited", "1 - 2", "2 - 2.5", "2.5 - 3",
+      "3 - 3.5", "3.5 and more"
+    )
+  ),
+
+  Leerstandsquote = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Ohne Wohnraum", "0 - 1", "1 - 3",
+      "3 - 5", "5 - 10", "10 und mehr"
+    ),
+    english = c(
+      "Classified", "Without living space", "0 - 1", "1 - 3",
+      "3 - 5", "5 - 10", "10 and more"
+    )
+  ),
+
+  Wohnfl_Bew_D = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5),
+    german = c(
+      "Wert geheim zu halten", "Ohne Wohnraum", "0 - 30", "30 - 40",
+      "40 - 50", "50 - 60", "60 und mehr"
+    ),
+    english = c(
+      "Classified", "Without living space", "0 - 30",
+      "30 - 40", "40 - 50", "50 - 60", "60 and more"
+    )
+  ),
+
+  Wohnfl_Whg_D = tibble(
+    code = c(-9, -1, 1, 2, 3, 4, 5, 6),
+    german = c(
+      "Wert geheim zu halten", "Ohne Wohnraum", "0 - 60", "60 - 80",
+      "80 - 100", "100 - 120", "120 - 140", "140 und mehr"
+    ),
+    english = c(
+      "Classified", "Without living space", "0 - 60",
+      "60 - 80", "80 - 100", "100 - 120", "120 - 140", "140 and more"
+    )
   )
 )
 

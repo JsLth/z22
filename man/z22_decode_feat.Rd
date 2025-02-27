@@ -9,7 +9,12 @@
 \usage{
 z22_decode_feat(features, lang = c("english", "german"))
 
-z22_decode_cat(features, codes = NULL, lang = c("english", "german"))
+z22_decode_cat(
+  features,
+  codes = NULL,
+  lang = c("english", "german"),
+  parallel = FALSE
+)
 
 z22_translate_feat(
   features,
@@ -31,15 +36,24 @@ originals.}
 \item{codes}{A numeric vector containing category codes. If \code{NULL},
 returns all category descriptions within the feature specified in the
 \code{feature} argument.}
+
+\item{parallel}{If \code{TRUE}, decodes categories in parallel, similar
+to how \code{pmax} and \code{pmin} work. If \code{TRUE}, \code{features}
+and \code{codes} must always have the same length and a dataframe with the
+same number of rows is returned. If \code{FALSE}, \code{features} can have
+a different length than \code{codes} and the output can be longer, depending
+on how many more codes there are than features. Defaults to \code{FALSE}.
+See examples.}
 }
 \value{
-A character vector containing the English or German descriptions
+\code{z22_decode_feat} returns a character vector with the same
+length as \code{features} containing the English or German descriptions
 of the features or categories.
 
-\code{z22_decode_cat} always returns a named list where each element is
-named by its feature and contains the features matched category
-descriptions. For consistency, this is also the case if \code{features}
-only contains a single feature name.
+\code{z22_decode_cat} always returns a tibble with three columns
+\code{feature}, \code{code}, and \code{label} where the label contains the
+decoded description. If \code{parallel = TRUE}, the tibble contains the
+same number of rows as the length of the input.
 }
 \description{
 Helper functions to get the English or German descriptions associated with
@@ -73,4 +87,12 @@ z22_translate_feat(
 
 # Translate category labels
 z22_translate_cat("Eingetr. Lebenspartnerschaft")
+
+# The `lang` argument only changes the output. The input can be any language
+z22_decode_cat("foreigner_share", lang = "german")
+
+# The parallel argument allows you to extract a single category label for
+# each combination of feature and category code
+z22_decode_cat(c("build_heating", "build_heating"), c(1,2))
+z22_decode_cat(c("build_heating", "build_heating"), c(1,2), parallel = TRUE)
 }
