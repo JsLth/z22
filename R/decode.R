@@ -154,6 +154,11 @@ z22_translate_feat <- function(features,
   }
 
   names(cols) <- c("trg", "src")
+
+  if (all(features %in% all_feats[[cols$trg]])) {
+    return(features)
+  }
+
   trg_idx <- match(features, all_feats[[cols$src]])
 
   if (anyNA(trg_idx)) {

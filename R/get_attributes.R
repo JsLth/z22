@@ -50,8 +50,12 @@ z22_get_attribute <- function(topic,
                               all_cells = FALSE,
                               rasterize = FALSE,
                               as_sf = FALSE) {
+  gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
+  lang <- if (identical(gfeature, feature)) "german" else "english"
+  feature <- gfeature
+  check_attribute_100m(topic, feature, category, lang)
   fid <- build_fid(topic, feature, category)
-  parq_file <- z22data_get(fid, res)
+  parq_file <- z22data_get(fid, "100m")
   att <- arrow::read_parquet(parq_file)
 
   if (isTRUE(all_cells)) {
@@ -141,6 +145,22 @@ z22data_download <- function(fid,
     cli::cli_inform("GET {req$url}")
   }
   unclass(httr2::req_perform(req, path = path)$body)
+}
+
+
+check_attribute_100m <- function(topic, feature, category, lang) {
+  Map(topic, feature, category, f = function(t, f, c) {
+    atts <- z22_list_attributes(t, f, lang = lang)
+    if (!c %in% atts$category) {
+      cli::cli_abort(c(
+        paste(
+          "The combination of topic = {.val {topic}}, feature = {.val",
+          "{feature}} and category = {.val {category}} does not exist."
+        ),
+        "i" = "Check out `z22_list_attributes()`."
+      ))
+    }
+  })
 }
 
 
