@@ -10,7 +10,7 @@
 #' Ignored if \code{res} is \code{"1km"}.
 #' @param decode Whether to add descriptive labels for features and categories.
 #' @inheritParams z22_decode_feat
-#' @inheritParams z22_get_attribute
+#' @inheritParams z22_get_attribute_100m
 #'
 #' @returns If \code{res} is \code{"100m"}, returns a tibble containing the
 #' attributes topics, features, and categories. If \code{res} is \code{"1km"},

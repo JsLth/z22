@@ -30,10 +30,23 @@
 #' converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.
 #' @param as_sf If \code{TRUE} and the \code{sf} package is installed,
 #' converts the attribute coordinates to an \code{sf} tibble.
+#' @param update_cache By default, both functions cache attribute files for
+#' the remainder of the R session. They are downloaded to a temporary directory
+#' and - if the file to download already exists - are recovered from the cache.
+#' In other words, when rerunning the same request multiple times, the
+#' subsequent calls should be much faster. If \code{TRUE}, disables caching
+#' for this call and overwrites the currently cached attribute file (if any)
+#' with a fresh one. Defaults to \code{FALSE}, i.e. always cache.
 #'
 #' @returns A tibble, \code{\link[terra:rast]{SpatRaster}} or
 #' \code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
 #' and \code{as_sf} arguments.
+#'
+#' @details
+#' Half of the grids cell width is added to each coordinate in the
+#' dataset internally. According to the INSPIRE guidelines, coordinates
+#' always represent the South-west of the grid cells. Centroids represent
+#' the geographic location of grid cells better which is why they are used.
 #'
 #' @export
 #'
@@ -44,18 +57,19 @@
 #'
 #' # Get data about buildings using district heating
 #' z22_get_attribute("buildings", "HEIZTYP", 1)}
-z22_get_attribute <- function(topic,
-                              feature,
-                              category,
-                              all_cells = FALSE,
-                              rasterize = FALSE,
-                              as_sf = FALSE) {
+z22_get_attribute_100m <- function(topic,
+                                   feature,
+                                   category,
+                                   all_cells = FALSE,
+                                   rasterize = FALSE,
+                                   as_sf = FALSE,
+                                   update_cache = FALSE) {
   gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
   lang <- if (identical(gfeature, feature)) "german" else "english"
   feature <- gfeature
   check_attribute_100m(topic, feature, category, lang)
-  fid <- build_fid(topic, feature, category)
-  parq_file <- z22data_get(fid, "100m")
+  fid <- build_fid(topic, feature, category, "100m")
+  parq_file <- z22data_get(fid, "100m", overwrite = update_cache)
   att <- arrow::read_parquet(parq_file)
 
   if (isTRUE(all_cells)) {
@@ -64,9 +78,39 @@ z22_get_attribute <- function(topic,
     att$value[is.na(att$value)] <- 0
   }
 
+  # Exchange INSPIRE coordinates with geographic centroids
+  att$x <- att$x + 50
+  att$y <- att$y + 50
+
   as_spatial_maybe(att, rasterize = rasterize, as_sf = as_sf)
 }
 
+
+#' @rdname z22_get_attribute_100m
+#' @export
+z22_get_attribute_1km <- function(feature,
+                                  type = "ordinal",
+                                  all_cells = TRUE,
+                                  rasterize = FALSE,
+                                  as_sf = FALSE,
+                                  update_cache = FALSE) {
+  gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
+  lang <- if (identical(gfeature, feature)) "german" else "english"
+  feature <- gfeature
+
+  fid <- paste0(type, "_", feature)
+  parq_file <- z22data_get(fid, "1km", overwrite = update_cache)
+  att <- arrow::read_parquet(parq_file)
+
+  if (isFALSE(all_cells)) {
+    att <- att[att$value > -1, ]
+  }
+
+  att$x <- att$x + 500
+  att$y <- att$y + 500
+
+  as_spatial_maybe(att, rasterize = rasterize, as_sf = as_sf)
+}
 
 #' Get INSPIRE grid
 #' @description
@@ -84,7 +128,7 @@ z22_get_attribute <- function(topic,
 #'  \item{1 km: 361 thousand rows, 2.7 MB}
 #' }
 #'
-#' @inherit z22_get_attribute
+#' @inherit z22_get_attribute_100m
 #'
 #' @export
 #'
@@ -103,7 +147,7 @@ z22_grid <- function(res, rasterize = FALSE, as_sf = FALSE) {
 as_spatial_maybe <- function(x, rasterize, as_sf) {
   if (isTRUE(rasterize)) {
     check_loadable("terra", "rasterize the attribute grid")
-    terra::rast(x[c("x", "y")], type = "xyz", crs = "EPSG:3035")
+    terra::rast(x[c("x", "y", "value")], type = "xyz", crs = "EPSG:3035")
   } else if (isTRUE(as_sf)) {
     check_loadable("sf", "convert the attribute grid to an sf object")
     sf::st_as_sf(x, coords = c("x", "y"), crs = 3035)
@@ -113,7 +157,16 @@ as_spatial_maybe <- function(x, rasterize, as_sf) {
 }
 
 
-build_fid <- function(dataset, feature, category) {
+build_fid <- function(..., res) {
+  switch(
+    res,
+    "100m" = build_fid_100m(...),
+    "1km" = build_fid_1km(...)
+  )
+}
+
+
+build_fid_100m <- function(dataset, feature, category) {
   paste0(
     dataset,
     if (!missing(feature) && !is.null(feature)) paste0("_", feature),
@@ -122,7 +175,12 @@ build_fid <- function(dataset, feature, category) {
 }
 
 
-z22data_get <- function(fid, res) {
+build_fid_1km <- function(feature, type) {
+  paste0(type, "_", feature)
+}
+
+
+z22data_get <- function(fid, res, overwrite) {
   data_dir <- getOption("z22.data_repo")
 
   if (!is.null(data_dir) && dir.exists(data_dir)) {
@@ -133,7 +191,13 @@ z22data_get <- function(fid, res) {
 
     parq_file <- list.files(data_dir, pattern = fid)
   } else {
-    parq_file <- z22data_download(fid, res)
+    temp_path <- file.path(tempdir(), paste0(fid, ".parquet"))
+    parq_file <- z22data_download(
+      fid,
+      res,
+      path = temp_path,
+      overwrite = overwrite
+    )
   }
 }
 
@@ -142,7 +206,12 @@ z22data_download <- function(fid,
                              res,
                              user = "jslth",
                              repo = "z22data",
-                             path = tempfile(fileext = ".parquet")) {
+                             path = tempfile(fileext = ".parquet"),
+                             overwrite = FALSE) {
+  if (file.exists(path) && !overwrite) {
+    return(path)
+  }
+
   req <- httr2::request("https://github.com/")
   req <- httr2::req_url_path(
     req, "jslth", "z22data", "raw", "refs", "heads",

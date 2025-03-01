@@ -2,7 +2,8 @@
 
 export(z22_decode_cat)
 export(z22_decode_feat)
-export(z22_get_attribute)
+export(z22_get_attribute_100m)
+export(z22_get_attribute_1km)
 export(z22_grid)
 export(z22_inspire_extract)
 export(z22_inspire_generate)
