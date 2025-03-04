@@ -53,3 +53,8 @@ na_tbl <- function(names) {
   names(tb) <- names
   tb
 }
+
+
+download <- function(url, path = tempfile()) {
+  unclass(httr2::req_perform(httr2::request(url), path = path))
+}

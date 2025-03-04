@@ -3,22 +3,8 @@
 #' Retrieve the values and coordinates of gridded attributes from the Census
 #' 2022.
 #'
-#' An attribute is a thematic chunk divided by three aspects:
-#'
-#' \itemize{
-#'  \item{The general \strong{topic} of the attribute, e.g. demography or
-#'  families (\code{topic})}
-#'  \item{A single spatial characteristic or \strong{feature}, e.g. age or
-#'  household size (\code{feature})}
-#'  \item{The levels or \strong{categories} of each feature, e.g. single age
-#'  groups (\code{category})}
-#' }
-#'
-#' @param topic,feature,category The topic, feature and category of the
-#' request attribute. A list of available combinations can be retrieved
-#' using \code{\link{z22_list_attributes}}. With the exception of
-#' \code{topic = "population"} (where only the topic can be specified), all
-#' arguments must be provided.
+#' @param attribute The name of an attribute. A list of attributes can be
+#' retrieved using \code{\link{z22_list_attributes}}.
 #' @param res Resolution of the grid dataset. Can be \code{"100m"}
 #' or \code{"1km"}.
 #' @param all_cells If \code{TRUE}, joins the retrieved attribute with the
@@ -44,17 +30,46 @@
 #'
 #' # Get data about buildings using district heating
 #' z22_get_attribute("buildings", "HEIZTYP", 1)}
-z22_get_attribute <- function(topic,
-                              feature,
-                              category,
+z22_get_attribute <- function(attribute,
+                              categories = NULL,
+                              year = c("2011", "2022"),
+                              res = c("10km", "1km", "100m"),
                               all_cells = FALSE,
                               rasterize = FALSE,
                               as_sf = FALSE) {
+  res <- match.arg(res)
+  year <- match.arg(year)
+  year <- substr(year, 3, 4)
   gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
   lang <- if (identical(gfeature, feature)) "german" else "english"
   feature <- gfeature
-  check_attribute_100m(topic, feature, category, lang)
-  fid <- build_fid(topic, feature, category)
+  #check_attribute_100m(topic, feature, category, lang)
+
+  if (identical(year, "2011") && identical(res, "10km")) {
+    cli::cli_abort(c(
+      "Census 2011 data at a 10km resolution are not available",
+      "i" = "You can aggregate them manually, though"
+    ))
+  }
+
+  if (!is.null(categories)) {
+    if (identical(year, "11") && identical(res, "1km")) {
+      cli::cli_warn("No categories are defined for Census 2011 data at a 1km resolution.")
+    }
+
+    if (length(attribute) != 1 && length(attribute) != length(categories)) {
+      cli::cli_abort(c(
+        "`attribute` cannot be recycled to the length of `categories`.",
+        "i" = paste(
+          "If `categories` is provided, `attribute` must contain either a",
+          "single value or as many values as there are categories."
+        )
+      ))
+    }
+
+    attribute <- paste0(attribute, "_", categories)
+  }
+
   parq_file <- z22data_get(fid, "100m")
   att <- arrow::read_parquet(parq_file)
 
@@ -87,8 +102,11 @@ z22_get_attribute <- function(topic,
 #'
 #' # Get low-res grid as raster
 #' z22_grid("1km", rasterize = TRUE)}
-z22_grid <- function(res, rasterize = FALSE, as_sf = FALSE) {
-  grid <- arrow::read_parquet(z22data_get("_grid", res))
+z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE) {
+  res <- match.arg(res, c("100km", "10km", "5km", "1km", "500m", "100m"))
+  year <- match.arg(as.character(year), c("2015", "2017", "2018", "2019"))
+  gid <- sprintf("grid_%s_%s", year, res)
+  grid <- arrow::read_parquet(z22data_get("grids", gid))
   as_spatial_maybe(grid, rasterize = rasterize, as_sf = as_sf)
 }
 
@@ -115,7 +133,7 @@ build_fid <- function(dataset, feature, category) {
 }
 
 
-z22data_get <- function(fid, res) {
+z22data_get <- function(fid, dir) {
   data_dir <- getOption("z22.data_repo")
 
   if (!is.null(data_dir) && dir.exists(data_dir)) {
@@ -126,20 +144,20 @@ z22data_get <- function(fid, res) {
 
     parq_file <- list.files(data_dir, pattern = fid)
   } else {
-    parq_file <- z22data_download(fid, res)
+    parq_file <- z22data_download(fid, dir)
   }
 }
 
 
 z22data_download <- function(fid,
-                             res,
+                             dir,
                              user = "jslth",
                              repo = "z22data",
                              path = tempfile(fileext = ".parquet")) {
   req <- httr2::request("https://github.com/")
   req <- httr2::req_url_path(
     req, "jslth", "z22data", "raw", "refs", "heads",
-    "main", paste0("data_", res), paste0(fid, ".parquet")
+    "main", dir, paste0(fid, ".parquet")
   )
   if (getOption("z22.debug", FALSE)) {
     cli::cli_inform("GET {req$url}")
