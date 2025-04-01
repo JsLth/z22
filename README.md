@@ -22,7 +22,7 @@ remotes::install_github("jslth/z22")
 
 ## Available data
 
-|Theme     |Name                |Zensus11 (100m)            |Zensus11 (1km)   |Description                                                 |
+|Theme     |Zensus22                |Zensus11 (100m)            |Zensus11 (1km)   |Description                                                 |
 |----------|--------------------|---------------------------|-----------------|------------------------------------------------------------|
 |Population|`population`        |`INSGESAMT_Demographie`    |`Einwohner`      |Population                                                  |
 |Population|`foreigners`        |                           |`Auslaender_A`   |Share of foreigners                                         |
