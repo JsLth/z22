@@ -2,22 +2,20 @@
 % Please edit documentation in R/categories.R
 \name{categories}
 \alias{categories}
-\alias{z11_categories}
+\alias{z22_categories}
 \title{Feature categories}
 \usage{
-z11_categories(feature)
+z22_categories(feature)
 }
 \arguments{
-\item{feature}{A grid feature. See \code{\link{z11_features}} for a list
+\item{feature}{A grid feature. See \code{\link{z22_features}} for a list
 of available features. If a feature is provided that does not have
 categories, generates a table based on the feature description.}
 }
 \description{
 While some features contain total counts or averages, others contain figures
-classified by certain categories. This page documents the combinations of
-features and categories where applicable.
-
-You can access these tables programmatically using \code{z11_categories}.
+classified by certain categories. You can access these tables
+programmatically using \code{z22_categories}.
 }
 \examples{
 z11_categories("sex")
@@ -28,12 +26,12 @@ z11_categories("families")
   \item{\code{birth_country}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Deutschland      \tab Germany     \cr
-    		20 \tab Ausland          \tab Foreign     \cr
-    		21 \tab EU27-Land        \tab EU27 country\cr
-    		22 \tab Sonstiges Europa \tab Other Europe\cr
-    		23 \tab Sonstige Welt    \tab Other World \cr
-    		24 \tab Sonstige         \tab Other       
+    		 1 \tab Deutschland \tab Germany     \cr
+    		20 \tab Ausland     \tab Foreign     \cr
+    		21 \tab EU27-Land   \tab EU27 country\cr
+    		22 \tab Europa      \tab Europe      \cr
+    		23 \tab Welt        \tab World       \cr
+    		24 \tab Sonstige    \tab Other       
 		}
 }
 
@@ -65,12 +63,12 @@ z11_categories("families")
 \cr  \item{\code{citizenship_group}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Deutschland       \tab Germany     \cr
-    		20 \tab Sonstiges Ausland \tab Foreign     \cr
-    		21 \tab EU27-Land         \tab EU27 Country\cr
-    		22 \tab Sonstiges Europa  \tab Other Europe\cr
-    		23 \tab Sonstige Welt     \tab Other World \cr
-    		24 \tab Sonstige          \tab Other       
+    		 1 \tab Deutschland      \tab Germany     \cr
+    		20 \tab Ausland          \tab Foreign     \cr
+    		21 \tab EU27-Land        \tab EU27 Country\cr
+    		22 \tab Sonstiges Europa \tab Other Europe\cr
+    		23 \tab Sonstige Welt    \tab Other World \cr
+    		24 \tab Sonstige         \tab Other       
 		}
 }
 

@@ -5,20 +5,38 @@
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-Quickly and efficiently retrieve official socio-demographic microdata as 100m
-or 1km INSPIRE grids from the German Census 2022. Powered by the
-[z22data](https://github.com/jslth/z22data) data repository which hosts the
-Census grid data in small and digestible chunks. Based on the predecessor
-package [z11](https://github.com/stefanjuenger/z11/) which allows easy access
-to the gridded data from the Census 2011.
+As part of the German census, a number of socio-economic indicators are
+published at a small-scale grid level (100m, 1km, 10km). Usually the
+corresponding data files are very large and hard to work with. `{z22}` aims to
+quickly and efficiently retrieve German census grid data. The package also
+eases comparisons to grid data from the census 2011 by establishing a
+standardized feature format.
+
+Powered by the [z22data](https://github.com/jslth/z22data) data repository
+which hosts the census grid data in small and digestible chunks. Based on the
+predecessor package [z11](https://github.com/stefanjuenger/z11/) which allows
+easy access to the gridded data from the Census 2011.
+
 
 ## Installation
 
 You can install the development version of z22 like so:
 
 ``` r
-remotes::install_github("jslth/z22")
+pak::pkg_install("jslth/z22")
 ```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+``` r
+library(z22)
+## basic example code
+```
+
+
+
 
 ## Available data
 
@@ -79,13 +97,4 @@ remotes::install_github("jslth/z22")
 |Buildings |`building_design`            |Buildings by building design                                |❌      |✅             |❌            |
 |Buildings |`building_heat_type`         |Buildings by predominant heating type                       |✅      |✅             |❌            |
 |Buildings |`building_heat_src`          |Buildings by energy source of heating                       |✅      |❌             |❌            |
-
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(z22)
-## basic example code
-```
 

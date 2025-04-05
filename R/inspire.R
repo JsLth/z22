@@ -12,7 +12,7 @@
 #' @param coords A list, matrix, or dataframe where the X and Y coordinates are
 #' either in the columns \code{"x"} and \code{"y"} or in the first and second
 #' column position, respectively. Column names are converted to lowercase.
-#' @inheritParams z22_get_attribute_100m
+#' @inheritParams z22_data
 #' @returns A character vector containing the INSPIRE identifiers.
 #' @export
 #'

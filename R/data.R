@@ -1,4 +1,4 @@
-#' Get Census 2022 gridded attribute
+#' Get Census 2022 grid dataset
 #' @description
 #' Retrieve the values and coordinates of gridded attributes from the Census
 #' 2022.
@@ -57,13 +57,12 @@
 #'
 #' # Get data about buildings using district heating
 #' z22_get_attribute("buildings", "HEIZTYP", 1)}
-z22_get_attribute_100m <- function(topic,
-                                   feature,
-                                   category,
-                                   all_cells = FALSE,
-                                   rasterize = FALSE,
-                                   as_sf = FALSE,
-                                   update_cache = FALSE) {
+z22_data <- function(feature,
+                     category = NULL,
+                     all_cells = FALSE,
+                     rasterize = FALSE,
+                     as_sf = FALSE,
+                     update_cache = FALSE) {
   gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
   lang <- if (identical(gfeature, feature)) "german" else "english"
   feature <- gfeature
@@ -86,32 +85,6 @@ z22_get_attribute_100m <- function(topic,
 }
 
 
-#' @rdname z22_get_attribute_100m
-#' @export
-z22_get_attribute_1km <- function(feature,
-                                  type = "ordinal",
-                                  all_cells = TRUE,
-                                  rasterize = FALSE,
-                                  as_sf = FALSE,
-                                  update_cache = FALSE) {
-  gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
-  lang <- if (identical(gfeature, feature)) "german" else "english"
-  feature <- gfeature
-
-  fid <- paste0(type, "_", feature)
-  parq_file <- z22data_get(fid, "1km", overwrite = update_cache)
-  att <- arrow::read_parquet(parq_file)
-
-  if (isFALSE(all_cells)) {
-    att <- att[att$value > -1, ]
-  }
-
-  att$x <- att$x + 500
-  att$y <- att$y + 500
-
-  as_spatial_maybe(att, rasterize = rasterize, as_sf = as_sf)
-}
-
 #' Get INSPIRE grid
 #' @description
 #' Retrieve the entire INSPIRE grid.
@@ -128,7 +101,7 @@ z22_get_attribute_1km <- function(feature,
 #'  \item{1 km: 361 thousand rows, 2.7 MB}
 #' }
 #'
-#' @inherit z22_get_attribute_100m
+#' @inherit z22_data
 #'
 #' @export
 #'

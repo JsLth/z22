@@ -1,12 +1,10 @@
 #' Feature categories
 #' @description
 #' While some features contain total counts or averages, others contain figures
-#' classified by certain categories. This page documents the combinations of
-#' features and categories where applicable.
+#' classified by certain categories. You can access these tables
+#' programmatically using \code{z22_categories}.
 #'
-#' You can access these tables programmatically using \code{z11_categories}.
-#'
-#' @param feature A grid feature. See \code{\link{z11_features}} for a list
+#' @param feature A grid feature. See \code{\link{z22_features}} for a list
 #' of available features. If a feature is provided that does not have
 #' categories, generates a table based on the feature description.
 #'
@@ -17,27 +15,29 @@
 #' @examples
 #' z11_categories("sex")
 #' z11_categories("families")
-z11_categories <- function(feature) {
+z22_categories <- function(feature) {
   if (!feature %in% names(categories) && !feature %in% features$name) {
-    cli::cli_abort("")
+    cli::cli_abort(c(
+      "No feature {.val {feature}} available.",
+      "i" = "See `z22_features()` for a list of available features."
+    ))
   } else if (feature %in% features$name) {
-    feat_df <- features[features$name %in% feature]
-    out <- dplyr::tibble(
+    feat_df <- features[features$name %in% feature, ]
+    dplyr::tibble(
       code = 0,
       german = feat_df$german,
       english = feat_df$english
     )
-    return(out)
+  } else {
+    categories[[feature]]
   }
-
-  categories[[feature]]
 }
 
 categories <- list(
   birth_country = tibble::tibble(
     code = c(1, 20, 21, 22, 23, 24),
-    german = c("Deutschland", "Ausland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
-    english = c("Germany", "Foreign", "EU27 country", "Other Europe", "Other World", "Other"),
+    german = c("Deutschland", "Ausland", "EU27-Land", "Europa", "Welt", "Sonstige"),
+    english = c("Germany", "Foreign", "EU27 country", "Europe", "World", "Other"),
   ),
   sex = tibble::tibble(
     code = 1:2,
@@ -59,7 +59,7 @@ categories <- list(
   ),
   citizenship_group = tibble::tibble(
     code = c(1, 20, 21, 22, 23, 24),
-    german = c("Deutschland", "Sonstiges Ausland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
+    german = c("Deutschland", "Ausland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
     english = c("Germany", "Foreign", "EU27 Country", "Other Europe", "Other World", "Other"),
   ),
   citizenship_origin = tibble::tibble(

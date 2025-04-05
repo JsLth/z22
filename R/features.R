@@ -1,10 +1,54 @@
-z22_features <- function(theme = NULL, year = NULL, res = NULL) {
+#' Features
+#' @description
+#' Get a list of available features. To get a list of all categories, see
+#' \code{\link{z22_categories}}.
+#'
+#' @param theme Theme of the feature. Available themes are \code{"population"},
+#' \code{"families"}, \code{"households"}, \code{"dwellings"}, and
+#' \code{"buildings"}. If \code{NULL}, returns features for all themes.
+#' @param year Census year. Can be 2011 or 2022. If \code{NULL}, returns
+#' features for both years.
+#' @param res Resolution of the feature grid. Can be \code{"100m"},
+#' \code{"1km"}, or \code{"10km"}. For Census 2011, only 100m and 1km are
+#' available and not all features are available for both resolutions. For
+#' Census 2022, all features are available at all resolutions. If
+#' \code{NULL}, returns features for all resolutions.
+#' @param legacy_names If \code{TRUE}, uses legacy (german) feature names from
+#' the Census 2011 where possible. Defaults to \code{FALSE}.
+#'
+#' @returns A tibble containing the following columns:
+#'
+#' \itemize{
+#'  \item{\code{theme}: Theme of the feature}
+#'  \item{\code{feature}: Feature name}
+#'  \item{\code{desc}: Human-readable english description}
+#'  \item{\code{z22}: Whether the feature is available in the Census 2022}
+#'  \item{\code{z11_100m}: Whether the feature is available in the Census 2011
+#'  at a 100m resolution}
+#'  \item{\code{z11_1km}: Whether the feature is available in the Census 2011
+#'  at a 1km resolution}
+#'  \item{\code{has_cat}: Whether the feature is is further divided into
+#'  categories.}
+#' }
+#'
+#' @export
+#'
+#' @examples
+#' # return all features related to dwellings
+#' z22_features("dwellings")
+#'
+#' # return all features available in the Census 2011
+#' z22_features(year = 2011)
+#'
+#' # return all features available in 2011 at a 1km resolution
+#' z22_features(year = 2011, res = "1km")
+z22_features <- function(theme = NULL, year = NULL, res = NULL, legacy_names = FALSE) {
   check_theme(theme, null = TRUE)
   check_year(year, null = TRUE)
   check_resolution(res, year, null = TRUE)
 
   if (!is.null(theme)) {
-    overview <- overview[tolower(overview$theme) %in% tolower(theme), ]
+    features <- features[tolower(features$theme) %in% tolower(theme), ]
   }
 
   col <- "name"
@@ -14,9 +58,16 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL) {
   }
 
   if (length(col) > 1) {
-    feats <- overview[apply(!is.na(overview[col]), 1, any), ]
+    feats <- features[apply(!is.na(features[col]), 1, any), ]
   } else {
-    feats <- overview[!is.na(overview[[col]]), ]
+    feats <- features[!is.na(features[[col]]), ]
+  }
+
+  if (legacy_names) {
+    feats <- dplyr::mutate(
+      feats,
+      name = dplyr::coalesce(z11_100m, z11_1km, name)
+    )
   }
 
   dplyr::transmute(
@@ -26,11 +77,12 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL) {
     desc = desc,
     z22 = !is.na(z22),
     z11_100m = !is.na(z11_100m),
-    z11_1km = !is.na(z11_1km)
+    z11_1km = !is.na(z11_1km),
+    has_cat = feature %in% names(categories)
   )
 }
 
-overview <- dplyr::tribble(
+features <- dplyr::tribble(
   ~theme, ~name, ~z22, ~z11_100m, ~z11_1km, ~desc,
   "Population", "population", "population", "INSGESAMT_population", "Einwohner", "Population",
   "Population", "citizens", "citizens", NA, NA, "Number of german citizens, 18 or older",
@@ -73,8 +125,8 @@ overview <- dplyr::tribble(
   "Dwellings", "dwelling_rooms", "dwelling_rooms", "RAUMANZAHL", NA, "Dwellings by number of rooms",
   "Dwellings", "dwelling_constr_year", NA, "BAUJAHR_MZ_dwellings", NA, "Dwellings by construction year (microcensus classes)",
   "Dwellings", "dwelling_building_dwellings", NA, "ZAHLWOHNGN_HHG_dwellings", NA, "Dwellings by number of dwellings in the building",
-  "Dwellings", "dwelling_building_size", "dwelling_building_size", "GEBTYPGROESSE_dwellings", NA, "Dwellings by building type",
-  "Dwellings", "dwelling_building_type", NA, "GEBAEUDEART_SYS_dwellings", NA, "Dwellings by building classification",
+  "Dwellings", "dwelling_building_size", "dwelling_building_size", "GEBTYPGROESSE_dwellings", NA, "Dwellings by building type and size",
+  "Dwellings", "dwelling_building_type", NA, "GEBAEUDEART_SYS_dwellings", NA, "Dwellings by residential usage type",
   "Dwellings", "dwelling_building_design", NA, "GEBTYPBAUWEISE_dwellings", NA, "Dwelling by building design",
   "Dwellings", "dwelling_heat_type", "dwelling_heat_type", "HEIZTYP_dwellings", NA, "Dwellings by predominant heating type",
   "Dwellings", "dwelling_heat_src", "dwelling_heat_src", NA, NA, "Dwellings by energy source of heating",
@@ -82,8 +134,8 @@ overview <- dplyr::tribble(
   "Buildings", "building_ownership_property", NA, "EIGENTUM_buildings", NA, "Buildings by form of ownership",
   "Buildings", "building_constr_year", "building_constr_year", "BAUJAHR_MZ_buildings", NA, "Buildings by construction year (microcensus classes)",
   "Buildings", "building_dwellings", "building_dwellings", "ZAHLWOHNGN_HHG_buildings", NA, "Residential buildings by number of dwellings in the building",
-  "Buildings", "building_size", "building_size", "GEBTYPGROESSE_buildings", NA, "Residential buildings by building type",
-  "Buildings", "building_type", NA, "GEBAEUDEART_SYS_buildings", NA, "Buildings by building design",
+  "Buildings", "building_size", "building_size", "GEBTYPGROESSE_buildings", NA, "Residential buildings by building type and size",
+  "Buildings", "building_type", NA, "GEBAEUDEART_SYS_buildings", NA, "Buildings by residential usage type",
   "Buildings", "building_design", NA, "GEBTYPBAUWEISE_buildings", NA, "Buildings by building design",
   "Buildings", "building_heat_type", "building_heat_type", "HEIZTYP_buildings", NA, "Buildings by predominant heating type",
   "Buildings", "building_heat_src", "building_heat_src", NA, NA, "Buildings by energy source of heating"

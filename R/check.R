@@ -89,7 +89,7 @@ check_resolution <- function(res, year, null = FALSE) {
 check_theme <- function(theme, null = FALSE) {
   if (null && is.null(theme)) return()
   check_length(theme, 1)
-  if (!tolower(theme) %in% tolower(overview$theme)) {
+  if (!tolower(theme) %in% tolower(features$theme)) {
     cli::cli_abort(c(
       "Theme {theme} does not exist.",
       "i" = "Available themes: {unique(overview$theme)}"
