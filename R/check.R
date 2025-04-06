@@ -127,7 +127,7 @@ check_category <- function(categories, feature, null = FALSE) {
   for (cat in categories) {
     if (!cat %in% cat_df$code) {
       cli::cli_abort(c(
-        "Category code {.val {category}} not available for feature {.val {feature}}.",
+        "Category code {.val {cat}} not available for feature {.val {feature}}.",
         "i" = "See `z22_category(\"{feature}\")` for a list of available features."
       ))
     }
@@ -138,7 +138,7 @@ check_category <- function(categories, feature, null = FALSE) {
 check_normalize <- function(normalize, feature) {
   desc <- features[features$name %in% feature, ]$english
 
-  if (grepl("share|average", desc)) {
+  if (grepl("share|average", desc, ignore.case = TRUE)) {
     cli::cli_abort(paste(
       "Can only normalize (= compute shares) from absolute counts,",
       "not from shares or averages."
