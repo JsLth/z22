@@ -163,3 +163,16 @@ features <- dplyr::tribble(
   "Buildings", "building_heat_type", "building_heat_type", "HEIZTYP_buildings", NA, "Buildings by predominant heating type", "Gebäude nach überwiegender Heizungsart",
   "Buildings", "building_heat_src", "building_heat_src", NA, NA, "Buildings by energy source of heating", "Gebäude nach Energieträger der Heizung"
 )
+
+
+make_feature_table <- function() {
+  features |>
+   transmute(
+     Theme = theme,
+     Name = paste0("`", name, "`"),
+     Description = english,
+     Zensus22 = if_else(!is.na(z22), "\u2705", "\u274c"),
+     `Zensus11 (100m)` = if_else(!is.na(z11_100m), "\u2705", "\u274c"),
+     `Zensus11 (1km)` = if_else(!is.na(z11_1km), "\u2705", "\u274c")
+   )
+}
