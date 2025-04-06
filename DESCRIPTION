@@ -1,7 +1,7 @@
 Package: z22
 Type: Package
 Title: Official Gridded Data from the German Census 2022
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"))
 Maintainer: Jonas Lieth <jonas.lieth@gesis.org>
@@ -10,6 +10,8 @@ Description: More about what it does (maybe more than one line)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 3.3.0)
 Imports:
     utils,
     cli,
@@ -20,5 +22,3 @@ Suggests:
     terra, 
     sf
 RoxygenNote: 7.3.2
-Depends: 
-    R (>= 2.10)
