@@ -77,7 +77,8 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL, legacy_names = F
     feats,
     theme = theme,
     feature = name,
-    desc = desc,
+    english = english,
+    german = german,
     z22 = !is.na(z22),
     z11_100m = !is.na(z11_100m),
     z11_1km = !is.na(z11_1km),
@@ -89,11 +90,18 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL, legacy_names = F
 get_feature_any <- function(feature) {
   check_string(feature)
 
-  features[
-    features$name %in% feature |
-      features$z11_100m %in% feature |
-      features$z11_1km %in% feature,
-    ]$name
+  is_feat <- features$name %in% feature |
+    features$z11_100m %in% feature |
+    features$z11_1km %in% feature
+
+  if (!sum(is_feat)) {
+    cli::cli_abort(c(
+      "No feature {.val {feature}} available.",
+      "i" = "See `z22_features()` for a list of available features."
+    ))
+  }
+
+  features[is_feat, ]$name
 }
 
 

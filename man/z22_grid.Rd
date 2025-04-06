@@ -26,9 +26,13 @@ converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 converts the attribute coordinates to an \code{sf} tibble.}
 }
 \value{
-A tibble, \code{\link[terra:rast]{SpatRaster}} or
+A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
 \code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
 and \code{as_sf} arguments.
+
+If a tibble is returned each category in \code{categories} is stored in
+a column. If a \code{SpatRasterDataset} is returned, each category is a
+named layer.
 }
 \description{
 Retrieve the entire INSPIRE grid.

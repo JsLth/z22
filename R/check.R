@@ -103,10 +103,6 @@ check_feature <- function(feature, year, res, null = FALSE) {
   feature_row <- features[features$name %in% feature, ]
   tip <- c("i" = "See `z22_features()` for a list of available features.")
 
-  if (!nrow(feature_row)) {
-    cli::cli_abort(c("No feature {.val {feature}} available.", tip))
-  }
-
   if (year == 2011 && is.na(feature_row[[sprintf("z11_%s", res)]])) {
     cli::cli_abort(c(
       paste(
@@ -135,5 +131,17 @@ check_category <- function(categories, feature, null = FALSE) {
         "i" = "See `z22_category(\"{feature}\")` for a list of available features."
       ))
     }
+  }
+}
+
+
+check_normalize <- function(normalize, feature) {
+  desc <- features[features$name %in% feature, ]$english
+
+  if (grepl("share|average", desc)) {
+    cli::cli_abort(paste(
+      "Can only normalize (= compute shares) from absolute counts,",
+      "not from shares or averages."
+    ))
   }
 }

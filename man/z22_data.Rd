@@ -10,6 +10,7 @@ z22_data(
   year = 2022,
   res = "1km",
   all_cells = FALSE,
+  normalize = FALSE,
   rasterize = FALSE,
   as_sf = FALSE,
   update_cache = FALSE
@@ -50,9 +51,13 @@ for this call and overwrites the currently cached attribute file (if any)
 with a fresh one. Defaults to \code{TRUE}, i.e. always cache.}
 }
 \value{
-A tibble, \code{\link[terra:rast]{SpatRaster}} or
+A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
 \code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
 and \code{as_sf} arguments.
+
+If a tibble is returned each category in \code{categories} is stored in
+a column. If a \code{SpatRasterDataset} is returned, each category is a
+named layer.
 }
 \description{
 Retrieve the values and coordinates of gridded features from the censuses

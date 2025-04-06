@@ -41,11 +41,13 @@
 #' for this call and overwrites the currently cached attribute file (if any)
 #' with a fresh one. Defaults to \code{TRUE}, i.e. always cache.
 #'
-#' @returns A tibble, \code{\link[terra:rast]{SpatRaster}} or
+#' @returns A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
 #' \code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
 #' and \code{as_sf} arguments.
 #'
-#' If a dataframe is returned
+#' If a tibble is returned each category in \code{categories} is stored in
+#' a column. If a \code{SpatRasterDataset} is returned, each category is a
+#' named layer.
 #'
 #' @details
 #' Half of the grids cell width is added to each coordinate in the
@@ -67,16 +69,17 @@ z22_data <- function(feature,
                      year = 2022,
                      res = "1km",
                      all_cells = FALSE,
+                     normalize = FALSE,
                      rasterize = FALSE,
                      as_sf = FALSE,
                      update_cache = FALSE) {
   check_year(year)
   check_resolution(res, year)
-
   feature <- get_feature_any(feature)
   check_feature(feature, year, res)
   categories <- categories %||% z22_categories(feature)$code
   check_category(categories, feature)
+  check_normalize(normalize, feature)
 
   year <- substr(year, 3, 4)
   dir <- sprintf("z%s_data_%s", year, res)
@@ -90,12 +93,29 @@ z22_data <- function(feature,
     y <- y[!colnames(y) %in% "quality"]
     dplyr::left_join(x, y, by = c("x", "y"))
   })
-  out <- move_to_front(out, startsWith(names(out), "cat"))
+  out <- move_to_front(out, is_cat_col(out))
+
+  if (normalize) {
+    # To normalize, the respective totals dataframe is downloaded and
+    # used to divide the counts of the feature grid
+    theme <- tolower(features[features$name %in% feature, ]$theme)
+    fid <- sprintf("%s_%s", theme, 0)
+    parq_file <- z22data_get(dir, fid, overwrite = update_cache)
+    total <- arrow::read_parquet(parq_file)
+    out <- dplyr::left_join(out, total, by = c("x", "y"))
+    out <- dplyr::mutate(out, dplyr::across(
+      dplyr::starts_with("cat_"),
+      .fns = ~.x / value
+    ), .keep = "unused")
+  }
 
   if (isTRUE(all_cells)) {
     grid <- z22_grid(res)
     out <- dplyr::left_join(grid, out, by = c("x", "y"))
-    out$value[is.na(out$value)] <- 0
+    out <- dplyr::mutate(out, dplyr::across(
+      dplyr::starts_with("cat_"),
+      .fns = ~replace(.x, is.na(.x), 0)
+    ))
   }
 
   # Exchange INSPIRE coordinates with geographic centroids
@@ -204,7 +224,7 @@ z22data_get <- function(dir, fid, overwrite) {
 
     parq_file <- list.files(data_dir, pattern = fid, full.names = TRUE)
   } else {
-    temp_path <- file.path(tempdir(), paste0(fid, ".parquet"))
+    temp_path <- file.path(tempdir(), paste0(dir, fid, ".parquet"))
     parq_file <- z22data_download(
       dir,
       fid,
@@ -234,4 +254,10 @@ z22data_download <- function(dir,
     cli::cli_inform("GET {req$url}")
   }
   unclass(httr2::req_perform(req, path = path)$body)
+}
+
+
+is_cat_col <- function(.data) {
+  names <- names(.data)
+  startsWith(names, "cat_")
 }

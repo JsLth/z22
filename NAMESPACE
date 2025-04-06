@@ -2,11 +2,9 @@
 
 export(z22_categories)
 export(z22_data)
-export(z22_decode_cat)
-export(z22_decode_feat)
+export(z22_decode)
 export(z22_features)
 export(z22_grid)
 export(z22_inspire_extract)
 export(z22_inspire_generate)
-export(z22_translate_cat)
-export(z22_translate_feat)
+export(z22_pivot_longer)
