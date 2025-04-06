@@ -1,0 +1,72 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# z22
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/JsLth/z22/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JsLth/z22/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![CRAN status](https://www.r-pkg.org/badges/version/z22)](https://CRAN.R-project.org/package=z22)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Codecov test coverage](https://codecov.io/gh/JsLth/z22/branch/main/graph/badge.svg)](https://app.codecov.io/gh/JsLth/z22?branch=main)
+[![CodeFactor](https://www.codefactor.io/repository/github/jslth/z22/badge/main)](https://www.codefactor.io/repository/github/jslth/z22/overview/main)
+<!-- badges: end -->
+
+As part of the German census, a number of socio-economic indicators are
+published at a small-scale grid level (100m, 1km, 10km). Usually the
+corresponding data files are very large and hard to work with. `{z22}` aims to
+quickly and efficiently retrieve German census grid data. The package also
+eases comparisons to grid data from the census 2011 by establishing a
+standardized feature format.
+
+Powered by the [z22data](https://github.com/jslth/z22data) data repository
+which hosts the census grid data in small and digestible chunks. Based on the
+predecessor package [z11](https://github.com/stefanjuenger/z11/) which allows
+easy access to the gridded data from the Census 2011.
+
+
+## Installation
+
+You can install the development version of z22 like so:
+
+```{r eval=FALSE}
+pak::pkg_install("jslth/z22")
+```
+
+
+## Example
+
+The package contains a main function, `z22_data`, to retrieve and process census
+grid data. The following example downloads a feature grid on the vacancy share
+in Germany at a 1x1 km resolution.
+
+```{r}
+library(z22)
+library(terra)
+
+grid_vac <- z22_data("vacancies", all_cells = TRUE, rasterize = TRUE)
+```
+
+```{r}
+plot(grid_vac$cat_0)
+```
+
+
+## Available data
+
+```{r echo=FALSE}
+knitr::kable(z22:::make_feature_table())
+```
+
