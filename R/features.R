@@ -3,6 +3,9 @@
 #' Get a list of available features. To get a list of all categories, see
 #' \code{\link{z22_categories}}.
 #'
+#' For further clarification of terms used in the feature labels, see the
+#' \link{glossary}.
+#'
 #' @param theme Theme of the feature. Available themes are \code{"population"},
 #' \code{"families"}, \code{"households"}, \code{"dwellings"}, and
 #' \code{"buildings"}. If \code{NULL}, returns features for all themes.

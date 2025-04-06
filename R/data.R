@@ -89,30 +89,57 @@ z22_data <- function(feature,
 #' @description
 #' Retrieve the entire INSPIRE grid.
 #'
-#' Unlike the attribute grids retrieved from \code{\link{z22_get_attribute}},
+#' Unlike the attribute grids retrieved from \code{\link{z22_data}},
 #' the INSPIRE grid encompasses the entire area of Germany. You can thus use
-#' it to join with the incomplete attribute grids from \code{z22_get_attribute}
+#' it to join with the incomplete attribute grids from \code{z22_data}
 #' to create a complete dataset.
 #'
-#' Note the object sizes of the output:
+#' @param res Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
+#' \code{"1km"}, \code{"5km"} or \code{"10km"}.
+#' @param year Version of the grid. Can be 2015, 2017, 2018 and 2019. Defaults
+#' to the latest version.
+#' @inherit z22_data
+#'
+#' @details
+#' Note the uncompressed object sizes of the output (2019 version):
 #'
 #' \itemize{
-#'  \item{100 m: 36 million rows, 273 MB}
-#'  \item{1 km: 361 thousand rows, 2.7 MB}
+#'  \item{100 m: 38 million cells, 291 MB}
+#'  \item{250 m: 6 million cells, 47 MB}
+#'  \item{1 km: 384 thousand cells, 3 MB}
+#'  \item{5 km: 16 thousand cells, 0.12 MB}
+#'  \item{10 km: 4 thousand cells, 0.03 MB}
 #' }
-#'
-#' @inherit z22_data
 #'
 #' @export
 #'
 #' @examples
-#' \donttest{# Get high-res grid
-#' z22_grid()
+#' \donttest{# Get high-res grid as tibble
+#' z22_grid("100m")
 #'
 #' # Get low-res grid as raster
 #' z22_grid("1km", rasterize = TRUE)}
-z22_grid <- function(res, rasterize = FALSE, as_sf = FALSE) {
-  grid <- arrow::read_parquet(z22data_get("_grid", res))
+z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, cache = TRUE) {
+  years <- c(2015, 2017, 2018, 2019)
+  if (!year %in% years) {
+    cli::cli_abort(c(
+      "No grid available for year {year}.",
+      "i" = "INSPIRE grids are available for {years}"
+    ))
+  }
+
+  reses <- c("100m", "250m", "1km", "5km", "10km")
+  if (!res %in% reses) {
+    cli::cli_abort(c(
+      "No grid available at a resolution of {res}.",
+      "i" = "INSPIRE grids are available at the following resolutions: {reses}"
+    ))
+  }
+
+  fid <- sprintf("grid_%s_%s", year, res)
+  path <- z22data_get("grids", fid, overwrite = !cache)
+  grid <- arrow::read_parquet(path)
+  if (!cache) unlink(path)
   as_spatial_maybe(grid, rasterize = rasterize, as_sf = as_sf)
 }
 
@@ -120,7 +147,7 @@ z22_grid <- function(res, rasterize = FALSE, as_sf = FALSE) {
 as_spatial_maybe <- function(x, rasterize, as_sf) {
   if (isTRUE(rasterize)) {
     check_loadable("terra", "rasterize the attribute grid")
-    terra::rast(x[c("x", "y", "value")], type = "xyz", crs = "EPSG:3035")
+    terra::rast(x, type = "xyz", crs = "EPSG:3035")
   } else if (isTRUE(as_sf)) {
     check_loadable("sf", "convert the attribute grid to an sf object")
     sf::st_as_sf(x, coords = c("x", "y"), crs = 3035)
@@ -130,44 +157,21 @@ as_spatial_maybe <- function(x, rasterize, as_sf) {
 }
 
 
-build_fid <- function(..., res) {
-  switch(
-    res,
-    "100m" = build_fid_100m(...),
-    "1km" = build_fid_1km(...)
-  )
-}
-
-
-build_fid_100m <- function(dataset, feature, category) {
-  paste0(
-    dataset,
-    if (!missing(feature) && !is.null(feature)) paste0("_", feature),
-    if (!missing(category) && !is.null(category)) paste0("_", category)
-  )
-}
-
-
-build_fid_1km <- function(feature, type) {
-  paste0(type, "_", feature)
-}
-
-
-z22data_get <- function(fid, res, overwrite) {
+z22data_get <- function(dir, fid, overwrite) {
   data_dir <- getOption("z22.data_repo")
 
   if (!is.null(data_dir) && dir.exists(data_dir)) {
-    data_dir <- file.path(data_dir, paste0("data_", res))
+    data_dir <- file.path(data_dir, dir)
     if (!dir.exists(data_dir)) {
       abort_corrupt_data_dir()
     }
 
-    parq_file <- list.files(data_dir, pattern = fid)
+    parq_file <- list.files(data_dir, pattern = fid, full.names = TRUE)
   } else {
     temp_path <- file.path(tempdir(), paste0(fid, ".parquet"))
     parq_file <- z22data_download(
+      dir,
       fid,
-      res,
       path = temp_path,
       overwrite = overwrite
     )
@@ -175,8 +179,8 @@ z22data_get <- function(fid, res, overwrite) {
 }
 
 
-z22data_download <- function(fid,
-                             res,
+z22data_download <- function(dir,
+                             fid,
                              user = "jslth",
                              repo = "z22data",
                              path = tempfile(fileext = ".parquet"),
@@ -188,7 +192,7 @@ z22data_download <- function(fid,
   req <- httr2::request("https://github.com/")
   req <- httr2::req_url_path(
     req, "jslth", "z22data", "raw", "refs", "heads",
-    "main", paste0("data_", res), paste0(fid, ".parquet")
+    "main", dir, paste0(fid, ".parquet")
   )
   if (getOption("z22.debug", FALSE)) {
     cli::cli_inform("GET {req$url}")

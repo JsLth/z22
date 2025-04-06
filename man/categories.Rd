@@ -16,6 +16,9 @@ categories, generates a table based on the feature description.}
 While some features contain total counts or averages, others contain figures
 classified by certain categories. You can access these tables
 programmatically using \code{z22_categories}.
+
+For further clarification of terms used in the category labels, see
+the \link{glossary}.
 }
 \examples{
 z11_categories("sex")

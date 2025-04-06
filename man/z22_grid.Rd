@@ -4,11 +4,14 @@
 \alias{z22_grid}
 \title{Get INSPIRE grid}
 \usage{
-z22_grid(res, rasterize = FALSE, as_sf = FALSE)
+z22_grid(res, year = 2019, rasterize = FALSE, as_sf = FALSE, cache = TRUE)
 }
 \arguments{
-\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
-or \code{"1km"}.}
+\item{res}{Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
+\code{"1km"}, \code{"5km"} or \code{"10km"}.}
+
+\item{year}{Version of the grid. Can be 2015, 2017, 2018 and 2019. Defaults
+to the latest version.}
 
 \item{rasterize}{If \code{TRUE} and the \code{terra} package is installed,
 converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
@@ -24,27 +27,25 @@ and \code{as_sf} arguments.
 \description{
 Retrieve the entire INSPIRE grid.
 
-Unlike the attribute grids retrieved from \code{\link{z22_get_attribute}},
+Unlike the attribute grids retrieved from \code{\link{z22_data}},
 the INSPIRE grid encompasses the entire area of Germany. You can thus use
-it to join with the incomplete attribute grids from \code{z22_get_attribute}
+it to join with the incomplete attribute grids from \code{z22_data}
 to create a complete dataset.
-
-Note the object sizes of the output:
-
-\itemize{
- \item{100 m: 36 million rows, 273 MB}
- \item{1 km: 361 thousand rows, 2.7 MB}
-}
 }
 \details{
-Half of the grids cell width is added to each coordinate in the
-dataset internally. According to the INSPIRE guidelines, coordinates
-always represent the South-west of the grid cells. Centroids represent
-the geographic location of grid cells better which is why they are used.
+Note the uncompressed object sizes of the output (2019 version):
+
+\itemize{
+ \item{100 m: 38 million cells, 291 MB}
+ \item{250 m: 6 million cells, 47 MB}
+ \item{1 km: 384 thousand cells, 3 MB}
+ \item{5 km: 16 thousand cells, 0.12 MB}
+ \item{10 km: 4 thousand cells, 0.03 MB}
+}
 }
 \examples{
-\donttest{# Get high-res grid
-z22_grid()
+\donttest{# Get high-res grid as tibble
+z22_grid("100m")
 
 # Get low-res grid as raster
 z22_grid("1km", rasterize = TRUE)}

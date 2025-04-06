@@ -4,6 +4,9 @@
 #' classified by certain categories. You can access these tables
 #' programmatically using \code{z22_categories}.
 #'
+#' For further clarification of terms used in the category labels, see
+#' the \link{glossary}.
+#'
 #' @param feature A grid feature. See \code{\link{z22_features}} for a list
 #' of available features. If a feature is provided that does not have
 #' categories, generates a table based on the feature description.

@@ -69,7 +69,7 @@ check_year <- function(year, null = FALSE) {
 
 check_resolution <- function(res, year, null = FALSE) {
   if (null && is.null(res)) return()
-  check_length(res, 1)
+  check_string(res)
   if (year == 2011 && res == "10km") {
     cli::cli_abort(c(
       "For 2011, only resolutions 100m and 1km are available.",

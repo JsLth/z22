@@ -42,6 +42,9 @@ A tibble containing the following columns:
 \description{
 Get a list of available features. To get a list of all categories, see
 \code{\link{z22_categories}}.
+
+For further clarification of terms used in the feature labels, see the
+\link{glossary}.
 }
 \examples{
 # return all features related to dwellings
