@@ -6,7 +6,9 @@
 \usage{
 z22_data(
   feature,
-  category = NULL,
+  categories = NULL,
+  year = 2022,
+  res = "1km",
   all_cells = FALSE,
   rasterize = FALSE,
   as_sf = FALSE,
@@ -14,6 +16,19 @@ z22_data(
 )
 }
 \arguments{
+\item{feature}{A grid feature. See \code{\link{z22_features}} for a list
+of available features. You can pass both English names and legacy names
+(i.e., variable names from the 2011 census).}
+
+\item{categories}{One or multiple feature categories. See
+\code{\link{z22_categories}} for a list of available categories. If
+\code{NULL}, retrieves all categories for a given feature. Generally,
+the more categories are selected, the longer the download.}
+
+\item{res}{Resolution of the grid dataset. Can be \code{"100m"},
+\code{"1km"}, or \code{"10km"}. If \code{year} is 2011, \code{"10km"} is
+not available and some features are only available at certain resolutions.}
+
 \item{all_cells}{If \code{TRUE}, joins the retrieved attribute with the
 complete grid from \code{\link{z22_grid}}. Otherwise, the attribute grid
 will contain only those grid cells with one or more recorded units. Defaults
@@ -26,22 +41,13 @@ converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 \item{as_sf}{If \code{TRUE} and the \code{sf} package is installed,
 converts the attribute coordinates to an \code{sf} tibble.}
 
-\item{update_cache}{By default, both functions cache attribute files for
+\item{cache}{By default, both functions cache attribute files for
 the remainder of the R session. They are downloaded to a temporary directory
 and - if the file to download already exists - are recovered from the cache.
 In other words, when rerunning the same request multiple times, the
-subsequent calls should be much faster. If \code{TRUE}, disables caching
+subsequent calls should be much faster. If \code{FALSE}, disables caching
 for this call and overwrites the currently cached attribute file (if any)
-with a fresh one. Defaults to \code{FALSE}, i.e. always cache.}
-
-\item{topic, feature, category}{The topic, feature and category of the
-request attribute. A list of available combinations can be retrieved
-using \code{\link{z22_list_attributes}}. With the exception of
-\code{topic = "population"} (where only the topic can be specified), all
-arguments must be provided.}
-
-\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
-or \code{"1km"}.}
+with a fresh one. Defaults to \code{TRUE}, i.e. always cache.}
 }
 \value{
 A tibble, \code{\link[terra:rast]{SpatRaster}} or
@@ -49,18 +55,18 @@ A tibble, \code{\link[terra:rast]{SpatRaster}} or
 and \code{as_sf} arguments.
 }
 \description{
-Retrieve the values and coordinates of gridded attributes from the Census
-2022.
+Retrieve the values and coordinates of gridded features from the censuses
+2011 and 2022.
 
-An attribute is a thematic chunk divided by three aspects:
+When we are talking about a
 
 \itemize{
- \item{The general \strong{topic} of the attribute, e.g. demography or
- families (\code{topic})}
- \item{A single spatial characteristic or \strong{feature}, e.g. age or
- household size (\code{feature})}
- \item{The levels or \strong{categories} of each feature, e.g. single age
- groups (\code{category})}
+ \item{\strong{feature}, we talk about an indicator aggregated to grid cells,
+ e.g., age or the number of dwellings.}
+ \item{\strong{category}, we talk about the discrete classifications of
+ features, e.g., ages 10 to 19, 20 to 20, 30 to 39, etc.}
+ \item{Both feature and category have to be provided to uniquely identify
+ a \strong{dataset}.}
 }
 }
 \details{

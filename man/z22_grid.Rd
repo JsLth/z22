@@ -4,7 +4,13 @@
 \alias{z22_grid}
 \title{Get INSPIRE grid}
 \usage{
-z22_grid(res, year = 2019, rasterize = FALSE, as_sf = FALSE, cache = TRUE)
+z22_grid(
+  res,
+  year = 2019,
+  rasterize = FALSE,
+  as_sf = FALSE,
+  update_cache = FALSE
+)
 }
 \arguments{
 \item{res}{Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
@@ -27,9 +33,9 @@ and \code{as_sf} arguments.
 \description{
 Retrieve the entire INSPIRE grid.
 
-Unlike the attribute grids retrieved from \code{\link{z22_data}},
+Unlike the feature grids retrieved from \code{\link{z22_data}},
 the INSPIRE grid encompasses the entire area of Germany. You can thus use
-it to join with the incomplete attribute grids from \code{z22_data}
+it to join with the incomplete feature grids from \code{z22_data}
 to create a complete dataset.
 }
 \details{

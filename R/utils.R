@@ -45,6 +45,23 @@ loadable <- function(x) {
 }
 
 
+rename <- function(.data, ...) {
+  new <-   loc <- list(...)
+  loc <- match(names(new), names(.data))
+  names <- names(.data)
+  names[loc] <- new
+  names(.data) <- names
+  .data
+}
+
+
+move_to_front <- function(.data, which) {
+  cols <- names(.data)[which]
+  other_cols <- setdiff(names(.data), cols)
+  .data[c(cols, other_cols)]
+}
+
+
 na_tbl <- function(names) {
   tb <- do.call(
     dplyr::tibble,

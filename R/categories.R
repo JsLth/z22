@@ -24,15 +24,15 @@ z22_categories <- function(feature) {
       "No feature {.val {feature}} available.",
       "i" = "See `z22_features()` for a list of available features."
     ))
-  } else if (feature %in% features$name) {
+  } else if (feature %in% names(categories)) {
+    categories[[feature]]
+  } else {
     feat_df <- features[features$name %in% feature, ]
     dplyr::tibble(
       code = 0,
       german = feat_df$german,
       english = feat_df$english
     )
-  } else {
-    categories[[feature]]
   }
 }
 

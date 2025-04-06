@@ -15,8 +15,9 @@ z22_inspire_extract(inspire)
 either in the columns \code{"x"} and \code{"y"} or in the first and second
 column position, respectively. Column names are converted to lowercase.}
 
-\item{res}{Resolution of the grid dataset. Can be \code{"100m"}
-or \code{"1km"}.}
+\item{res}{Resolution of the grid dataset. Can be \code{"100m"},
+\code{"1km"}, or \code{"10km"}. If \code{year} is 2011, \code{"10km"} is
+not available and some features are only available at certain resolutions.}
 }
 \value{
 A character vector containing the INSPIRE identifiers.

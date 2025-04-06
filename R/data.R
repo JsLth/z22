@@ -1,26 +1,29 @@
 #' Get Census 2022 grid dataset
 #' @description
-#' Retrieve the values and coordinates of gridded attributes from the Census
-#' 2022.
+#' Retrieve the values and coordinates of gridded features from the censuses
+#' 2011 and 2022.
 #'
-#' An attribute is a thematic chunk divided by three aspects:
+#' When we are talking about a
 #'
 #' \itemize{
-#'  \item{The general \strong{topic} of the attribute, e.g. demography or
-#'  families (\code{topic})}
-#'  \item{A single spatial characteristic or \strong{feature}, e.g. age or
-#'  household size (\code{feature})}
-#'  \item{The levels or \strong{categories} of each feature, e.g. single age
-#'  groups (\code{category})}
+#'  \item{\strong{feature}, we talk about an indicator aggregated to grid cells,
+#'  e.g., age or the number of dwellings.}
+#'  \item{\strong{category}, we talk about the discrete classifications of
+#'  features, e.g., ages 10 to 19, 20 to 20, 30 to 39, etc.}
+#'  \item{Both feature and category have to be provided to uniquely identify
+#'  a \strong{dataset}.}
 #' }
 #'
-#' @param topic,feature,category The topic, feature and category of the
-#' request attribute. A list of available combinations can be retrieved
-#' using \code{\link{z22_list_attributes}}. With the exception of
-#' \code{topic = "population"} (where only the topic can be specified), all
-#' arguments must be provided.
-#' @param res Resolution of the grid dataset. Can be \code{"100m"}
-#' or \code{"1km"}.
+#' @param feature A grid feature. See \code{\link{z22_features}} for a list
+#' of available features. You can pass both English names and legacy names
+#' (i.e., variable names from the 2011 census).
+#' @param categories One or multiple feature categories. See
+#' \code{\link{z22_categories}} for a list of available categories. If
+#' \code{NULL}, retrieves all categories for a given feature. Generally,
+#' the more categories are selected, the longer the download.
+#' @param res Resolution of the grid dataset. Can be \code{"100m"},
+#' \code{"1km"}, or \code{"10km"}. If \code{year} is 2011, \code{"10km"} is
+#' not available and some features are only available at certain resolutions.
 #' @param all_cells If \code{TRUE}, joins the retrieved attribute with the
 #' complete grid from \code{\link{z22_grid}}. Otherwise, the attribute grid
 #' will contain only those grid cells with one or more recorded units. Defaults
@@ -30,17 +33,19 @@
 #' converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.
 #' @param as_sf If \code{TRUE} and the \code{sf} package is installed,
 #' converts the attribute coordinates to an \code{sf} tibble.
-#' @param update_cache By default, both functions cache attribute files for
+#' @param cache By default, both functions cache attribute files for
 #' the remainder of the R session. They are downloaded to a temporary directory
 #' and - if the file to download already exists - are recovered from the cache.
 #' In other words, when rerunning the same request multiple times, the
-#' subsequent calls should be much faster. If \code{TRUE}, disables caching
+#' subsequent calls should be much faster. If \code{FALSE}, disables caching
 #' for this call and overwrites the currently cached attribute file (if any)
-#' with a fresh one. Defaults to \code{FALSE}, i.e. always cache.
+#' with a fresh one. Defaults to \code{TRUE}, i.e. always cache.
 #'
 #' @returns A tibble, \code{\link[terra:rast]{SpatRaster}} or
 #' \code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
 #' and \code{as_sf} arguments.
+#'
+#' If a dataframe is returned
 #'
 #' @details
 #' Half of the grids cell width is added to each coordinate in the
@@ -58,30 +63,46 @@
 #' # Get data about buildings using district heating
 #' z22_get_attribute("buildings", "HEIZTYP", 1)}
 z22_data <- function(feature,
-                     category = NULL,
+                     categories = NULL,
+                     year = 2022,
+                     res = "1km",
                      all_cells = FALSE,
                      rasterize = FALSE,
                      as_sf = FALSE,
                      update_cache = FALSE) {
-  gfeature <- z22_translate_feat(feature, type = "name", lang = "german")
-  lang <- if (identical(gfeature, feature)) "german" else "english"
-  feature <- gfeature
-  check_attribute_100m(topic, feature, category, lang)
-  fid <- build_fid(topic, feature, category, "100m")
-  parq_file <- z22data_get(fid, "100m", overwrite = update_cache)
-  att <- arrow::read_parquet(parq_file)
+  check_year(year)
+  check_resolution(res, year)
+
+  feature <- get_feature_any(feature)
+  check_feature(feature, year, res)
+  categories <- categories %||% z22_categories(feature)$code
+  check_category(categories, feature)
+
+  year <- substr(year, 3, 4)
+  dir <- sprintf("z%s_data_%s", year, res)
+  out <- lapply(categories, function(cat) {
+    fid <- sprintf("%s_%s", feature, cat)
+    parq_file <- z22data_get(dir, fid, overwrite = update_cache)
+    out_feat <- arrow::read_parquet(parq_file)
+    rename(out_feat, value = sprintf("cat_%s", cat))
+  })
+  out <- Reduce(out, f = function(x, y) {
+    y <- y[!colnames(y) %in% "quality"]
+    dplyr::left_join(x, y, by = c("x", "y"))
+  })
+  out <- move_to_front(out, startsWith(names(out), "cat"))
 
   if (isTRUE(all_cells)) {
     grid <- z22_grid(res)
-    att <- dplyr::left_join(grid, att, by = c("x", "y"))
-    att$value[is.na(att$value)] <- 0
+    out <- dplyr::left_join(grid, out, by = c("x", "y"))
+    out$value[is.na(out$value)] <- 0
   }
 
   # Exchange INSPIRE coordinates with geographic centroids
-  att$x <- att$x + 50
-  att$y <- att$y + 50
+  out$x <- out$x + 50
+  out$y <- out$y + 50
 
-  as_spatial_maybe(att, rasterize = rasterize, as_sf = as_sf)
+  as_spatial_maybe(out, rasterize = rasterize, as_sf = as_sf)
 }
 
 
@@ -89,9 +110,9 @@ z22_data <- function(feature,
 #' @description
 #' Retrieve the entire INSPIRE grid.
 #'
-#' Unlike the attribute grids retrieved from \code{\link{z22_data}},
+#' Unlike the feature grids retrieved from \code{\link{z22_data}},
 #' the INSPIRE grid encompasses the entire area of Germany. You can thus use
-#' it to join with the incomplete attribute grids from \code{z22_data}
+#' it to join with the incomplete feature grids from \code{z22_data}
 #' to create a complete dataset.
 #'
 #' @param res Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
@@ -119,7 +140,7 @@ z22_data <- function(feature,
 #'
 #' # Get low-res grid as raster
 #' z22_grid("1km", rasterize = TRUE)}
-z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, cache = TRUE) {
+z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, update_cache = FALSE) {
   years <- c(2015, 2017, 2018, 2019)
   if (!year %in% years) {
     cli::cli_abort(c(
@@ -137,19 +158,25 @@ z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, cache =
   }
 
   fid <- sprintf("grid_%s_%s", year, res)
-  path <- z22data_get("grids", fid, overwrite = !cache)
+  path <- z22data_get("grids", fid, overwrite = update_cache)
   grid <- arrow::read_parquet(path)
-  if (!cache) unlink(path)
   as_spatial_maybe(grid, rasterize = rasterize, as_sf = as_sf)
 }
 
 
 as_spatial_maybe <- function(x, rasterize, as_sf) {
   if (isTRUE(rasterize)) {
-    check_loadable("terra", "rasterize the attribute grid")
-    terra::rast(x, type = "xyz", crs = "EPSG:3035")
+    check_loadable("terra", "rasterize the grid")
+    cnames <- names(x)
+    cnames <- cnames[startsWith(cnames, "cat_") | cnames %in% "quality"]
+    rasters <- lapply(cnames, function(cat) {
+      terra::rast(x[c("x", "y", cat)], type = "xyz", crs = "EPSG:3035")
+    })
+    rasters <- terra::sds(rasters)
+    names(rasters) <- cnames
+    rasters
   } else if (isTRUE(as_sf)) {
-    check_loadable("sf", "convert the attribute grid to an sf object")
+    check_loadable("sf", "convert the grid to an sf object")
     sf::st_as_sf(x, coords = c("x", "y"), crs = 3035)
   } else {
     x
@@ -163,7 +190,16 @@ z22data_get <- function(dir, fid, overwrite) {
   if (!is.null(data_dir) && dir.exists(data_dir)) {
     data_dir <- file.path(data_dir, dir)
     if (!dir.exists(data_dir)) {
-      abort_corrupt_data_dir()
+      cli::cli_abort(c(
+        paste(
+          "Directory specified in `getOption(\"z22.data_repo\")` is",
+          "not a valid z22 data repository."
+        ),
+        "i" = paste(
+          "Download the data from {.url https://github.com/jslth/z22data}",
+          "or set `options(z22.data_repo = NULL)`."
+        )
+      ))
     }
 
     parq_file <- list.files(data_dir, pattern = fid, full.names = TRUE)
@@ -198,34 +234,4 @@ z22data_download <- function(dir,
     cli::cli_inform("GET {req$url}")
   }
   unclass(httr2::req_perform(req, path = path)$body)
-}
-
-
-check_attribute_100m <- function(topic, feature, category, lang) {
-  Map(topic, feature, category, f = function(t, f, c) {
-    atts <- z22_list_attributes(t, f, lang = lang)
-    if (!c %in% atts$category) {
-      cli::cli_abort(c(
-        paste(
-          "The combination of topic = {.val {topic}}, feature = {.val",
-          "{feature}} and category = {.val {category}} does not exist."
-        ),
-        "i" = "Check out `z22_list_attributes()`."
-      ))
-    }
-  })
-}
-
-
-abort_corrupt_data_dir <- function() {
-  cli::cli_abort(c(
-    paste(
-      "Directory specified in `getOption(\"z22.data_repo\")` is",
-      "not a valid z22 data repository."
-    ),
-    "i" = paste(
-      "Download the data from {.url https://github.com/jslth/z22data}",
-      "or set `options(z22.data_repo = NULL)`."
-    )
-  ))
 }

@@ -96,3 +96,44 @@ check_theme <- function(theme, null = FALSE) {
     ))
   }
 }
+
+
+check_feature <- function(feature, year, res, null = FALSE) {
+  if (null && is.null(feature)) return()
+  feature_row <- features[features$name %in% feature, ]
+  tip <- c("i" = "See `z22_features()` for a list of available features.")
+
+  if (!nrow(feature_row)) {
+    cli::cli_abort(c("No feature {.val {feature}} available.", tip))
+  }
+
+  if (year == 2011 && is.na(feature_row[[sprintf("z11_%s", res)]])) {
+    cli::cli_abort(c(
+      paste(
+        "Feature {.val {feature}} is not available at a resolution",
+        "of {.val {res}} for {.val {year}}."
+      ),
+      tip
+    ))
+  } else if (year == 2022 && is.na(feature_row$z22)) {
+    cli::cli_abort(c(
+      "Feature {.val {feature}} is not available for {.val {year}}.",
+      tip
+    ))
+  }
+}
+
+
+check_category <- function(categories, feature, null = FALSE) {
+  if (null && is.null(feature)) return()
+  cat_df <- z22_categories(feature)
+
+  for (cat in categories) {
+    if (!cat %in% cat_df$code) {
+      cli::cli_abort(c(
+        "Category code {.val {category}} not available for feature {.val {feature}}.",
+        "i" = "See `z22_category(\"{feature}\")` for a list of available features."
+      ))
+    }
+  }
+}
