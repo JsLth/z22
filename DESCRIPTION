@@ -19,6 +19,9 @@ Imports:
     dplyr,
     arrow
 Suggests: 
-    terra, 
-    sf
+    terra,
+    sf,
+    knitr,
+    rmarkdown
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
