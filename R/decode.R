@@ -29,6 +29,10 @@ z22_decode <- function(codes, feature, lang = c("english", "german")) {
   lang <- match.arg(lang)
   cats <- z22_categories(feature)
 
+  if (is.factor(codes)) {
+    codes <- as.character(codes)
+  }
+
   if (is.character(codes) && all(startsWith(codes, "cat_"))) {
     codes <- as.integer(substr(codes, 5, nchar(codes)))
   }

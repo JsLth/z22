@@ -50,14 +50,41 @@ library(z22)
 library(terra)
 #> terra 1.8.43
 
-grid_vac <- z22_data("vacancies", all_cells = TRUE, rasterize = TRUE)
+grid_vac <- z22_data("vacancies", res = "10km", rasterize = TRUE)
+grid_vac
+#> class       : SpatRasterDataset 
+#> subdatasets : 1 
+#> dimensions  : 87, 65 (nrow, ncol)
+#> nlyr        : 1 
+#> resolution  : 10000, 10000  (x, y)
+#> extent      : 4030050, 4680050, 2680050, 3550050  (xmin, xmax, ymin, ymax)
+#> coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035) 
+#> source(s)   : memory 
+#> names       : cat_0
 ```
+
+<details>
+<summary>
+Code for the plot
+</summary>
 
 ``` r
-plot(grid_vac$cat_0)
+library(ggplot2)
+
+df_vac <- z22_pivot_longer(grid_vac, "vacancies")
+ggplot(df_vac) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) + 
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
 
-<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+</details>
+
+<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
 
 ## Available data
 

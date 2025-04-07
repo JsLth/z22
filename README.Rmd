@@ -56,13 +56,39 @@ in Germany at a 1x1 km resolution.
 library(z22)
 library(terra)
 
-grid_vac <- z22_data("vacancies", all_cells = TRUE, rasterize = TRUE)
+grid_vac <- z22_data("vacancies", res = "10km", rasterize = TRUE)
+grid_vac
 ```
 
-```{r}
-plot(grid_vac$cat_0)
-```
+<details><summary>Code for the plot</summary>
+```{r eval=FALSE}
+library(ggplot2)
 
+df_vac <- z22_pivot_longer(grid_vac, "vacancies")
+ggplot(df_vac) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) + 
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
+</details>
+
+```{r echo=FALSE}
+library(ggplot2)
+
+df_vac <- z22_pivot_longer(grid_vac, "vacancies")
+ggplot(df_vac) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) + 
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Count", na.value = "transparent", transform = "log2") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
 
 ## Available data
 
