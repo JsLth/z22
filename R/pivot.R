@@ -35,7 +35,7 @@ z22_pivot_longer <- function(.data, feature, lang = c("english", "german")) {
 
 sds_pivot_longer <- function(.data, feature, lang) {
   cats <- z22_categories(feature)
-  .data_list <- lapply(.data, as.data.frame, xy = TRUE)
+  .data_list <- lapply(.data, terra::as.data.frame, xy = TRUE)
   .data <- dplyr::bind_rows(.data_list, .id = "category")
   cat_cols <- colnames(.data)
   cat_cols <- cat_cols[startsWith(cat_cols, "cat_")]

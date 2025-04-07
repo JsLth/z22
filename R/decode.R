@@ -2,7 +2,8 @@
 #' @description
 #' Replace category codes with their labels.
 #'
-#' @param .data Output of \code{\link{z22_data}}.
+#' @param codes A vector of character codes, possibly prefixed with
+#' \code{"cat_"}.
 #' @param feature A grid feature that is represented by \code{.data}.
 #' @param lang Specifies the language of the output description. Can be
 #' either \code{"english"} (default) or \code{"german"}. Note that the
@@ -29,9 +30,8 @@ z22_decode <- function(codes, feature, lang = c("english", "german")) {
   cats <- z22_categories(feature)
 
   if (is.character(codes) && all(startsWith(codes, "cat_"))) {
-    codes <- as.integer(regex_match(codes, ".*_(.*)", i = 2))
+    codes <- as.integer(substr(codes, 5, nchar(codes)))
   }
 
-  cat_codes <- cats$code[codes]
-  cats[[lang]][cat_codes]
+  cats[[lang]][match(codes, cats$code)]
 }

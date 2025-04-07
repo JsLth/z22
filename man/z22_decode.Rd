@@ -7,14 +7,15 @@
 z22_decode(codes, feature, lang = c("english", "german"))
 }
 \arguments{
+\item{codes}{A vector of character codes, possibly prefixed with
+\code{"cat_"}.}
+
 \item{feature}{A grid feature that is represented by \code{.data}.}
 
 \item{lang}{Specifies the language of the output description. Can be
 either \code{"english"} (default) or \code{"german"}. Note that the
 English descriptions are only ad-hoc translations based off the German
 originals.}
-
-\item{.data}{Output of \code{\link{z22_data}}.}
 }
 \value{
 \code{.data} with category codes decoded to labels.
