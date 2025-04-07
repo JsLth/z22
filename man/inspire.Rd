@@ -6,21 +6,34 @@
 \alias{z22_inspire_extract}
 \title{Generate INSPIRE IDs}
 \usage{
-z22_inspire_generate(coords, res = c("100m", "1km"))
+z22_inspire_generate(coords, res = NULL, legacy = FALSE)
 
-z22_inspire_extract(inspire)
+z22_inspire_extract(inspire, as_sf = FALSE)
 }
 \arguments{
 \item{coords}{A list, matrix, or dataframe where the X and Y coordinates are
 either in the columns \code{"x"} and \code{"y"} or in the first and second
-column position, respectively. Column names are converted to lowercase.}
+column position, respectively. Column names are converted to lowercase.
 
-\item{res}{Resolution of the grid dataset. Can be \code{"100m"},
-\code{"1km"}, or \code{"10km"}. If \code{year} is 2011, \code{"10km"} is
-not available and some features are only available at certain resolutions.}
+Can also be a \code{sf}/\code{sfc} object in which case the coordinates are
+extracted using \code{\link[sf]{st_coordinates}}.}
+
+\item{res}{Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
+\code{"1km"}, \code{"5km"}, \code{"10km"}, or \code{"100km"}. If
+\code{NULL}, tries to guess the resolution from the provided coordinates.}
+
+\item{legacy}{If \code{TRUE}, generates legacy INSPIRE ID. Defaults to
+\code{FALSE}.}
+
+\item{inspire}{A vector of INSPIRE IDs. Can be either legacy or non-legacy.}
+
+\item{as_sf}{Whether to return an object of class \code{sfc} or a tibble.}
 }
 \value{
-A character vector containing the INSPIRE identifiers.
+\code{z22_inspire_generate} returns a character vector containing
+the INSPIRE identifiers. \code{z22_inspire_extract} returns a dataframe
+or \code{\link[sf:st_sfc]{sfc}} object containing the points extracted from
+the INSPIRE identifiers.
 }
 \description{
 Given pairs of coordinates, generates their INSPIRE grid representation.
@@ -44,14 +57,16 @@ INSPIRE grid cells.
 \examples{
 # Generate IDs from a dataframe
 coords <- data.frame(x = c(4334150, 4334250), y = c(2684050, 2684050))
-z22_inspire_generate(coords)
+z22_inspire_generate(coords) |>
+  z22_inspire_extract() |>
+  identical(coords)
 
-# Extract coordinates from ID strings
+# Extract coordinates from legacy ID strings
 z22_inspire_extract("100mN34000E44000")
 
 # Generate IDs from an sf dataframe
 if (requireNamespace("sf", quietly = TRUE)) {
   coords <- sf::st_as_sf(coords, coords = c("x", "y"))
-  z22_inspire_generate(sf::st_coordinates(coords))
+  z22_inspire_generate(coords)
 }
 }
