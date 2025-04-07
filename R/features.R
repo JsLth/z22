@@ -57,7 +57,10 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL, legacy_names = F
   col <- "name"
   if (!is.null(year)) {
     col <- switch(as.character(year), "2022" = "z22", "2011" = "z11")
-    col <- sprintf("z11_%s", res %||% c("100m", "1km"))
+
+    if (year == 2011) {
+      col <- sprintf("z11_%s", res %||% c("100m", "1km"))
+    }
   }
 
   if (length(col) > 1) {
