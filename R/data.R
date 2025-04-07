@@ -31,6 +31,12 @@
 #' will contain only those grid cells with one or more recorded units. Defaults
 #' to \code{FALSE}, because loading the grid and joining with it is
 #' computationally expensive.
+#' @param normalize If \code{TRUE} and \code{feature} is a counted feature,
+#' computes shares by dividing the counts by the total number of units in the
+#' grid cell. The type of unit depends on the theme of the feature, e.g., if
+#' the feature is in theme "Buildings", the feature counts are divided by the
+#' total number of buildings. Note that this operation requires an additional
+#' download (the total number of units). Defaults to \code{FALSE}.
 #' @param rasterize If \code{TRUE} and the \code{terra} package is installed,
 #' converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.
 #' @param as_sf If \code{TRUE} and the \code{sf} package is installed,
@@ -61,11 +67,11 @@
 #'
 #' @examples
 #' \donttest{# Get gridded population
-#' pop <- z22_get_attribute("population", all_cells = TRUE, rasterize = TRUE)
-#' terra::plot(pop)
+#' pop <- z22_get_attribute("population", res = "10km", rasterize = TRUE)
+#' terra::plot(pop$cat_0)
 #'
 #' # Get data about buildings using district heating
-#' z22_get_attribute("buildings", "HEIZTYP", 1)}
+#' z22_data("buildings", "citizenship", res = "1km")}
 z22_data <- function(feature,
                      categories = NULL,
                      year = 2022,

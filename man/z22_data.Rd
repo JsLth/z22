@@ -39,6 +39,13 @@ will contain only those grid cells with one or more recorded units. Defaults
 to \code{FALSE}, because loading the grid and joining with it is
 computationally expensive.}
 
+\item{normalize}{If \code{TRUE} and \code{feature} is a counted feature,
+computes shares by dividing the counts by the total number of units in the
+grid cell. The type of unit depends on the theme of the feature, e.g., if
+the feature is in theme "Buildings", the feature counts are divided by the
+total number of buildings. Note that this operation requires an additional
+download (the total number of units). Defaults to \code{FALSE}.}
+
 \item{rasterize}{If \code{TRUE} and the \code{terra} package is installed,
 converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 
