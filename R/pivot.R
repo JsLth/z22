@@ -19,10 +19,10 @@
 #'
 #' @examples
 #' \donttest{# get feature grid
-#' sex <- z22_data("sex", res = "10km")
+#' age <- z22_data("age_short", res = "10km")
 #'
 #' # pivot to a long table
-#' z22_pivot_longer(sex, feature = "sex")}
+#' z22_pivot_longer(age, feature = "age_short")}
 z22_pivot_longer <- function(.data, feature, lang = c("english", "german")) {
   lang <- match.arg(lang)
 
