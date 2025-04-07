@@ -24,6 +24,14 @@ converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 
 \item{as_sf}{If \code{TRUE} and the \code{sf} package is installed,
 converts the attribute coordinates to an \code{sf} tibble.}
+
+\item{update_cache}{By default, both functions cache attribute files for
+the remainder of the R session. They are downloaded to a temporary directory
+and - if the file to download already exists - are recovered from the cache.
+In other words, when rerunning the same request multiple times, the
+subsequent calls should be much faster. If \code{TRUE}, disables caching
+for this call and overwrites the currently cached attribute file (if any)
+with a fresh one. Defaults to \code{FALSE}, i.e. always cache.}
 }
 \value{
 A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or

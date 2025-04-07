@@ -26,6 +26,9 @@ of available features. You can pass both English names and legacy names
 \code{NULL}, retrieves all categories for a given feature. Generally,
 the more categories are selected, the longer the download.}
 
+\item{year}{Census year. Currently, only 2011 and 2022 are available.
+Defaults to 2022.}
+
 \item{res}{Resolution of the grid dataset. Can be \code{"100m"},
 \code{"1km"}, or \code{"10km"}. If \code{year} is 2011, \code{"10km"} is
 not available and some features are only available at certain resolutions.}
@@ -42,13 +45,13 @@ converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 \item{as_sf}{If \code{TRUE} and the \code{sf} package is installed,
 converts the attribute coordinates to an \code{sf} tibble.}
 
-\item{cache}{By default, both functions cache attribute files for
+\item{update_cache}{By default, both functions cache attribute files for
 the remainder of the R session. They are downloaded to a temporary directory
 and - if the file to download already exists - are recovered from the cache.
 In other words, when rerunning the same request multiple times, the
-subsequent calls should be much faster. If \code{FALSE}, disables caching
+subsequent calls should be much faster. If \code{TRUE}, disables caching
 for this call and overwrites the currently cached attribute file (if any)
-with a fresh one. Defaults to \code{TRUE}, i.e. always cache.}
+with a fresh one. Defaults to \code{FALSE}, i.e. always cache.}
 }
 \value{
 A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
