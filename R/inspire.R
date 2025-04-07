@@ -9,10 +9,8 @@
 #' coordinates. In case of \code{res = "100km"}, these are the first two
 #' digits, for \code{res = "100m"} the first five digits.
 #'
-#' \preformatted{
-#'  CRS3035{cellsize}mN{y}E{x} # new format
-#'  {cellsize}N{y}E{x}         # legacy format
-#' }
+#' \preformatted{CRS3035{cellsize}mN{y}E{x} # new format
+#' {cellsize}N{y}E{x}         # legacy format}
 #'
 #' The legacy format always uses meters while the legacy formats aggregates
 #' cell sizes greater or equal to 1000m to km.
@@ -47,7 +45,7 @@
 #' @name inspire
 #'
 #' @examples
-#' library(dplyr)
+#' library(dplyr, warn.conflicts = FALSE)
 #'
 #' # Generate IDs from a dataframe
 #' coords <- tibble(x = c(4334150, 4334250), y = c(2684050, 2684050))
