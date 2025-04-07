@@ -6,6 +6,7 @@
 #' Note that pivoting can quickly become expensive for larger 100m grids.
 #'
 #' @param .data Output of \code{\link{z22_data}}.
+#' @param feature A grid feature that is represented by \code{.data}.
 #' @inheritParams z22_decode
 #' @returns A dataframe containing the columns \code{category}, \code{value},
 #' \code{x} and \code{y}. All non-category columns are preserved.

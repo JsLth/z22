@@ -10,7 +10,7 @@ z22_decode(codes, feature, lang = c("english", "german"))
 \item{codes}{A vector of character codes, possibly prefixed with
 \code{"cat_"}.}
 
-\item{feature}{A grid feature that is represented by \code{.data}.}
+\item{feature}{A grid feature that the category \code{codes} belong to.}
 
 \item{lang}{Specifies the language of the output description. Can be
 either \code{"english"} (default) or \code{"german"}. Note that the

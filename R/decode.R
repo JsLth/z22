@@ -4,7 +4,7 @@
 #'
 #' @param codes A vector of character codes, possibly prefixed with
 #' \code{"cat_"}.
-#' @param feature A grid feature that is represented by \code{.data}.
+#' @param feature A grid feature that the category \code{codes} belong to.
 #' @param lang Specifies the language of the output description. Can be
 #' either \code{"english"} (default) or \code{"german"}. Note that the
 #' English descriptions are only ad-hoc translations based off the German
