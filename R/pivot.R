@@ -35,7 +35,7 @@ z22_pivot_longer <- function(.data, feature, lang = c("english", "german")) {
 
 sds_pivot_longer <- function(.data, feature, lang) {
   cats <- z22_categories(feature)
-  .data_list <- lapply(.data, dplyr::as_tibble, xy = TRUE)
+  .data_list <- lapply(.data, as.data.frame, xy = TRUE)
   .data <- dplyr::bind_rows(.data_list, .id = "category")
   cat_cols <- colnames(.data)
   cat_cols <- cat_cols[startsWith(cat_cols, "cat_")]
@@ -46,7 +46,7 @@ sds_pivot_longer <- function(.data, feature, lang) {
     category = factor(category, levels = cats[[lang]]),
     .keep = "unused"
   )
-  .data[c("category", "value", "x", "y")]
+  dplyr::as_tibble(.data[c("category", "value", "x", "y")])
 }
 
 

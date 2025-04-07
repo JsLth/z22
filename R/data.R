@@ -42,7 +42,7 @@
 #' with a fresh one. Defaults to \code{TRUE}, i.e. always cache.
 #'
 #' @returns A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
-#' \code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
+#' \code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{rasterize}
 #' and \code{as_sf} arguments.
 #'
 #' If a tibble is returned each category in \code{categories} is stored in
@@ -136,7 +136,7 @@ z22_data <- function(feature,
 #' to create a complete dataset.
 #'
 #' @param res Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
-#' \code{"1km"}, \code{"5km"} or \code{"10km"}.
+#' \code{"1km"}, \code{"5km"}, \code{"10km"}, or \code{"100km"}.
 #' @param year Version of the grid. Can be 2015, 2017, 2018 and 2019. Defaults
 #' to the latest version.
 #' @inherit z22_data
@@ -169,7 +169,7 @@ z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, update_
     ))
   }
 
-  reses <- c("100m", "250m", "1km", "5km", "10km")
+  reses <- c("100m", "250m", "1km", "5km", "10km", "100km")
   if (!res %in% reses) {
     cli::cli_abort(c(
       "No grid available at a resolution of {res}.",

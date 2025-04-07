@@ -21,6 +21,8 @@ Imports:
 Suggests: 
     terra,
     sf,
+    ggplot2,
+    sinew,
     knitr,
     rmarkdown
 RoxygenNote: 7.3.2

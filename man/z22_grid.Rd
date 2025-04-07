@@ -14,7 +14,7 @@ z22_grid(
 }
 \arguments{
 \item{res}{Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
-\code{"1km"}, \code{"5km"} or \code{"10km"}.}
+\code{"1km"}, \code{"5km"}, \code{"10km"}, or \code{"100km"}.}
 
 \item{year}{Version of the grid. Can be 2015, 2017, 2018 and 2019. Defaults
 to the latest version.}
@@ -27,7 +27,7 @@ converts the attribute coordinates to an \code{sf} tibble.}
 }
 \value{
 A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
-\code{\link[sf::st_as_sf]{sf}} tibble depending on the \code{rasterize}
+\code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{rasterize}
 and \code{as_sf} arguments.
 
 If a tibble is returned each category in \code{categories} is stored in
