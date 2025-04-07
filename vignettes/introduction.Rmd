@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
 ```
 
 ```{r setup}
@@ -79,7 +80,8 @@ grid_ht <- z22_data(
 )
 ```
 
-```{r}
+<details><summary>Code for the plot</summary>
+```{r eval=FALSE}
 df_ht <- z22_pivot_longer(grid_ht, "building_heat_type")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -90,7 +92,19 @@ ggplot(df_ht) +
   labs(x = NULL, y = NULL) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
+</details>
 
+```{r echo=FALSE}
+df_ht <- z22_pivot_longer(grid_ht, "building_heat_type")
+ggplot(df_ht) +
+  geom_raster(aes(x, y, fill = value)) +
+  facet_wrap(~category, nrow = 2, labeller = label_wrap_gen(width = 35)) +
+  coord_sf(crs = 3035) + 
+  scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
+  theme_bw(base_size = 10) +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
 
 By visualizing shares, we can observe that spatial differences are not nearly as pronounced as the total numbers had us believe. Particularly central heating is almost spatially homogeneous. Note that the `normalize` argument is only sensible for features that are counts.
 
@@ -105,8 +119,21 @@ grid_ht <- z22_data(
 )
 ```
 
+<details><summary>Code for the plot</summary>
+```{r eval=FALSE}
+df_ht <- z22_pivot_longer(grid_ht, "marital_status")
+ggplot(df_ht) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) + 
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Count", na.value = "transparent") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
+</details>
 
-```{r}
+```{r echo=FALSE}
 df_ht <- z22_pivot_longer(grid_ht, "marital_status")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -130,7 +157,21 @@ grid_ht <- z22_data(
 )
 ```
 
-```{r}
+<details><summary>Code for the plot</summary>
+```{r eval=FALSE}
+df_ht <- z22_pivot_longer(grid_ht, "marital_status")
+ggplot(df_ht) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) + 
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Count", na.value = "transparent") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
+</details>
+
+```{r echo=FALSE}
 df_ht <- z22_pivot_longer(grid_ht, "marital_status")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -149,5 +190,6 @@ grid_age <- z22_data("age_avg", res = "100m", rasterize = TRUE, all_cells = TRUE
 
 ext <- ext(c(4532432, 4574087, 3257338, 3287499))
 berlin_age <- crop(grid_age$cat_0, ext)
+plot(berlin_age)
 ```
 
