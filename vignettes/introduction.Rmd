@@ -64,7 +64,7 @@ ggplot(df_ht) +
   facet_wrap(~category, nrow = 2, labeller = label_wrap_gen(width = 35)) +
   coord_sf(crs = 3035) + 
   scale_fill_viridis_c("Count", na.value = "transparent", transform = "log2") +
-  theme_bw(base_size = 10) +
+  theme_bw(base_size = 8) +
   labs(x = NULL, y = NULL) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
@@ -88,7 +88,7 @@ ggplot(df_ht) +
   facet_wrap(~category, nrow = 2, labeller = label_wrap_gen(width = 35)) +
   coord_sf(crs = 3035) + 
   scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
-  theme_bw(base_size = 10) +
+  theme_bw(base_size = 8) +
   labs(x = NULL, y = NULL) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
@@ -101,7 +101,7 @@ ggplot(df_ht) +
   facet_wrap(~category, nrow = 2, labeller = label_wrap_gen(width = 35)) +
   coord_sf(crs = 3035) + 
   scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
-  theme_bw(base_size = 10) +
+  theme_bw(base_size = 8) +
   labs(x = NULL, y = NULL) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
