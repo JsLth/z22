@@ -5,9 +5,11 @@ Version: 1.0.0
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"))
 Maintainer: Jonas Lieth <jonas.lieth@gesis.org>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Quickly and efficiently retrieve gridded census data from Germany's
+    2011 and 2022 censuses.
 License: MIT + file LICENSE
+URL: https://github.com/jslth/z22/, https://jslth.github.io/z22/
+BugReports: https://github.com/jslth/z22/issues
 Encoding: UTF-8
 LazyData: true
 Depends: 

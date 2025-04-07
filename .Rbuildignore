@@ -4,3 +4,6 @@
 ^README\.Rmd$
 ^\.github$
 ^data-raw$
+^CITATION\.cff$
+^_pkgdown\.yml$
+^codemeta\.json$
