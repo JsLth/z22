@@ -33,17 +33,26 @@ extracted using \code{\link[sf]{st_coordinates}}.}
 \code{z22_inspire_generate} returns a character vector containing
 the INSPIRE identifiers. \code{z22_inspire_extract} returns a dataframe
 or \code{\link[sf:st_sfc]{sfc}} object containing the points extracted from
-the INSPIRE identifiers.
+the INSPIRE identifiers. Note that the returned coordinates are always
+the centers of the grid cells as opposed to the south-west corners.
 }
 \description{
 Given pairs of coordinates, generates their INSPIRE grid representation.
 Given INSPIRE identifiers, can also extract the X and Y coordinates.
 
-An INSPIRE ID contains both the cell size and the ETRS89-LAEA coordinates
-of the south-west corner of the grid cell in the format
-\code{\{cellsize\}N\code{\{x_coord\}}E\code{\{y_coord\}}}. Only the first
-four (or five if \code{res = "100m"}) digits of the coordinates are used
-in the identifier.
+An INSPIRE ID contains information about the CRS, cell size and the
+ETRS89-LAEA coordinates of the south-west corner of the grid cell in its
+format. Only the relevant first digits are used in place of the full
+coordinates. In case of \code{res = "100km"}, these are the first two
+digits, for \code{res = "100m"} the first five digits.
+
+\preformatted{
+ CRS3035{cellsize}mN{y}E{x} # new format
+ {cellsize}N{y}E{x}         # legacy format
+}
+
+The legacy format always uses meters while the legacy formats aggregates
+cell sizes greater or equal to 1000m to km.
 }
 \details{
 To remain fast even for huge grid datasets, the function is just a very
@@ -55,8 +64,10 @@ make sure that the coordinates are the south-west corner of existing
 INSPIRE grid cells.
 }
 \examples{
+library(dplyr)
+
 # Generate IDs from a dataframe
-coords <- data.frame(x = c(4334150, 4334250), y = c(2684050, 2684050))
+coords <- tibble(x = c(4334150, 4334250), y = c(2684050, 2684050))
 z22_inspire_generate(coords) |>
   z22_inspire_extract() |>
   identical(coords)

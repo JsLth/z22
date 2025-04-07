@@ -21,8 +21,10 @@ For further clarification of terms used in the category labels, see
 the \link{glossary}.
 }
 \examples{
-z11_categories("sex")
-z11_categories("families")
+z22_categories("sex")
+
+# Features without categories are given code 0
+z22_categories("families")
 }
 \section{Categories}{
 \describe{

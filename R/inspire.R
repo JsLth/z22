@@ -3,11 +3,19 @@
 #' Given pairs of coordinates, generates their INSPIRE grid representation.
 #' Given INSPIRE identifiers, can also extract the X and Y coordinates.
 #'
-#' An INSPIRE ID contains both the cell size and the ETRS89-LAEA coordinates
-#' of the south-west corner of the grid cell in the format
-#' \code{\{cellsize\}N\code{\{x_coord\}}E\code{\{y_coord\}}}. Only the first
-#' four (or five if \code{res = "100m"}) digits of the coordinates are used
-#' in the identifier.
+#' An INSPIRE ID contains information about the CRS, cell size and the
+#' ETRS89-LAEA coordinates of the south-west corner of the grid cell in its
+#' format. Only the relevant first digits are used in place of the full
+#' coordinates. In case of \code{res = "100km"}, these are the first two
+#' digits, for \code{res = "100m"} the first five digits.
+#'
+#' \preformatted{
+#'  CRS3035{cellsize}mN{y}E{x} # new format
+#'  {cellsize}N{y}E{x}         # legacy format
+#' }
+#'
+#' The legacy format always uses meters while the legacy formats aggregates
+#' cell sizes greater or equal to 1000m to km.
 #'
 #' @param coords A list, matrix, or dataframe where the X and Y coordinates are
 #' either in the columns \code{"x"} and \code{"y"} or in the first and second
@@ -23,7 +31,8 @@
 #' @returns \code{z22_inspire_generate} returns a character vector containing
 #' the INSPIRE identifiers. \code{z22_inspire_extract} returns a dataframe
 #' or \code{\link[sf:st_sfc]{sfc}} object containing the points extracted from
-#' the INSPIRE identifiers.
+#' the INSPIRE identifiers. Note that the returned coordinates are always
+#' the centers of the grid cells as opposed to the south-west corners.
 #' @export
 #'
 #' @details
@@ -38,8 +47,10 @@
 #' @name inspire
 #'
 #' @examples
+#' library(dplyr)
+#'
 #' # Generate IDs from a dataframe
-#' coords <- data.frame(x = c(4334150, 4334250), y = c(2684050, 2684050))
+#' coords <- tibble(x = c(4334150, 4334250), y = c(2684050, 2684050))
 #' z22_inspire_generate(coords) |>
 #'   z22_inspire_extract() |>
 #'   identical(coords)
@@ -141,7 +152,7 @@ guess_resolution <- function(x, y) {
   diff_y <- diff(sort(y))
   diff_x <- diff_x[!diff_x == 0]
   diff_y <- diff_y[!diff_y == 0]
-  dist <- median(c(diff_x, diff_y))
+  dist <- stats::median(c(diff_x, diff_y))
 
   if (!dist %in% res_to_m(grid_reses)) {
     cli::cli_abort(c(

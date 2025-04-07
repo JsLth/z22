@@ -16,8 +16,10 @@
 #' @export
 #'
 #' @examples
-#' z11_categories("sex")
-#' z11_categories("families")
+#' z22_categories("sex")
+#'
+#' # Features without categories are given code 0
+#' z22_categories("families")
 z22_categories <- function(feature) {
   if (!feature %in% names(categories) && !feature %in% features$name) {
     cli::cli_abort(c(
