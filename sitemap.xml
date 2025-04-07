@@ -1,20 +1,20 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
-<url><loc>/404.html</loc></url>
-<url><loc>/LICENSE-text.html</loc></url>
-<url><loc>/LICENSE.html</loc></url>
-<url><loc>/articles/index.html</loc></url>
-<url><loc>/articles/introduction.html</loc></url>
-<url><loc>/authors.html</loc></url>
-<url><loc>/index.html</loc></url>
-<url><loc>/reference/categories.html</loc></url>
-<url><loc>/reference/glossary.html</loc></url>
-<url><loc>/reference/index.html</loc></url>
-<url><loc>/reference/inspire.html</loc></url>
-<url><loc>/reference/z22-package.html</loc></url>
-<url><loc>/reference/z22_data.html</loc></url>
-<url><loc>/reference/z22_decode.html</loc></url>
-<url><loc>/reference/z22_features.html</loc></url>
-<url><loc>/reference/z22_grid.html</loc></url>
-<url><loc>/reference/z22_pivot_longer.html</loc></url>
+<url><loc>https://jslth.github.io/z22/404.html</loc></url>
+<url><loc>https://jslth.github.io/z22/LICENSE-text.html</loc></url>
+<url><loc>https://jslth.github.io/z22/LICENSE.html</loc></url>
+<url><loc>https://jslth.github.io/z22/articles/index.html</loc></url>
+<url><loc>https://jslth.github.io/z22/articles/z22.html</loc></url>
+<url><loc>https://jslth.github.io/z22/authors.html</loc></url>
+<url><loc>https://jslth.github.io/z22/index.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/categories.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/glossary.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/index.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/inspire.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/z22-package.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/z22_data.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/z22_decode.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/z22_features.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/z22_grid.html</loc></url>
+<url><loc>https://jslth.github.io/z22/reference/z22_pivot_longer.html</loc></url>
 </urlset>
 
