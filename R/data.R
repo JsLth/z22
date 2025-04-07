@@ -67,7 +67,7 @@
 #'
 #' @examples
 #' \donttest{# Get gridded population
-#' pop <- z22_get_attribute("population", res = "10km", rasterize = TRUE)
+#' pop <- z22_data("population", res = "10km", rasterize = TRUE)
 #' terra::plot(pop$cat_0)
 #'
 #' # Get data about buildings using district heating

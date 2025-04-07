@@ -92,9 +92,9 @@ the geographic location of grid cells better which is why they are used.
 }
 \examples{
 \donttest{# Get gridded population
-pop <- z22_get_attribute("population", all_cells = TRUE, rasterize = TRUE)
-terra::plot(pop)
+pop <- z22_data("population", res = "10km", rasterize = TRUE)
+terra::plot(pop$cat_0)
 
 # Get data about buildings using district heating
-z22_get_attribute("buildings", "HEIZTYP", 1)}
+z22_data("buildings", "citizenship", res = "1km")}
 }
