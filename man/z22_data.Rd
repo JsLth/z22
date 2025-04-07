@@ -95,6 +95,6 @@ the geographic location of grid cells better which is why they are used.
 pop <- z22_data("population", res = "10km", rasterize = TRUE)
 terra::plot(pop$cat_0)
 
-# Get data about buildings using district heating
-z22_data("buildings", "citizenship", res = "1km")}
+# Get data about the number of people born in a EU27 country
+z22_data("birth_country", categories = 21, res = "1km")}
 }
