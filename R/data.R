@@ -101,7 +101,6 @@ z22_data <- function(feature,
     y <- y[!colnames(y) %in% "quality"]
     dplyr::left_join(x, y, by = c("x", "y"))
   })
-  out <- move_to_front(out, is_cat_col(out))
 
   if (normalize) {
     # To normalize, the respective totals dataframe is downloaded and
@@ -120,16 +119,23 @@ z22_data <- function(feature,
   if (isTRUE(all_cells)) {
     grid <- z22_grid(res)
     out <- dplyr::left_join(grid, out, by = c("x", "y"))
-    out <- dplyr::mutate(out, dplyr::across(
-      dplyr::starts_with("cat_"),
-      .fns = ~replace(.x, is.na(.x), 0)
-    ))
+
+    # counts are always 0 if values are missing
+    # for shares or averages, it's a bit more complicated so they stay NA
+    type <- features[features$name %in% feature, ]$type
+    if (type %in% "count") {
+      out <- dplyr::mutate(out, dplyr::across(
+        dplyr::starts_with("cat_"),
+        .fns = ~replace(.x, is.na(.x), 0)
+      ))
+    }
   }
 
   # Exchange INSPIRE coordinates with geographic centroids
   out$x <- out$x + 50
   out$y <- out$y + 50
 
+  out <- move_to_front(out, is_cat_col(out))
   as_spatial_maybe(out, rasterize = rasterize, as_sf = as_sf)
 }
 

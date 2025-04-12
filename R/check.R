@@ -136,9 +136,9 @@ check_category <- function(categories, feature, null = FALSE) {
 
 
 check_normalize <- function(normalize, feature) {
-  desc <- features[features$name %in% feature, ]$english
+  type <- features[features$name %in% feature, ]$type
 
-  if (normalize && grepl("share|average", desc, ignore.case = TRUE)) {
+  if (normalize && type %in% c("share", "average")) {
     cli::cli_abort(paste(
       "Can only normalize (= compute shares) absolute counts,",
       "not from shares or averages."
