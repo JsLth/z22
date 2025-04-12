@@ -334,7 +334,7 @@ categories <- list(
       "Keine Heizung im Geb\U{E4}ude oder in den Wohnungen"
     ),
     english = c(
-      "District heating (long-distance heating)", "Floor heating", "Block heating",
+      "District heating (long-distance heating)", "Self-contained central heating", "Block heating",
       "Central heating",
       "Individual/multi-room stoves (including night storage heating)",
       "No heating in the building or in the apartments"
@@ -438,7 +438,7 @@ categories <- list(
       "Keine Heizung im Geb\U{E4}ude oder in den Wohnungen"
     ),
     english = c(
-      "District heating (long-distance heating)", "Floor heating", "Block heating",
+      "District heating (long-distance heating)", "Self-contained central heating", "Block heating",
       "Central heating",
       "Individual/multi-room stoves (including night storage heating)",
       "No heating in the building or in the apartments"
