@@ -65,7 +65,7 @@ rename <- function(.data, ...) {
   loc <- match(names(new), names(.data))
   names <- names(.data)
   names[loc] <- new
-  names(.data) <- names
+  names(.data) <- unlist(names)
   .data
 }
 

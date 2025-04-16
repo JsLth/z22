@@ -36,7 +36,9 @@
 #' grid cell. The type of unit depends on the theme of the feature, e.g., if
 #' the feature is in theme "Buildings", the feature counts are divided by the
 #' total number of buildings. Note that this operation requires an additional
-#' download (the total number of units). Defaults to \code{FALSE}.
+#' download (the total number of units). Also note that sometimes (possibly due
+#' to the key-cell method), shares of over 1 are computed. Defaults to
+#' \code{FALSE}.
 #' @param rasterize If \code{TRUE} and the \code{terra} package is installed,
 #' converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.
 #' @param as_sf If \code{TRUE} and the \code{sf} package is installed,

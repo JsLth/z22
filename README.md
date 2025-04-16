@@ -16,6 +16,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Codecov test
 coverage](https://codecov.io/gh/JsLth/z22/branch/main/graph/badge.svg)](https://app.codecov.io/gh/JsLth/z22?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/jslth/z22/badge/main)](https://www.codefactor.io/repository/github/jslth/z22/overview/main)
+[![Codecov test
+coverage](https://codecov.io/gh/JsLth/z22/graph/badge.svg)](https://app.codecov.io/gh/JsLth/z22)
 <!-- badges: end -->
 
 As part of the German census, a number of socio-economic indicators are
@@ -73,7 +75,7 @@ library(ggplot2)
 
 df_vac <- z22_pivot_longer(grid_vac, "vacancies")
 ggplot(df_vac) +
-  geom_raster(aes(x, y, fill = value)) +
+  geom_tile(aes(x, y, fill = value)) +
   coord_sf(crs = 3035) + 
   facet_wrap(~category, nrow = 2) +
   scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +

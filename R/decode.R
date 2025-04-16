@@ -33,7 +33,7 @@ z22_decode <- function(codes, feature, lang = c("english", "german")) {
     codes <- as.character(codes)
   }
 
-  if (is.character(codes) && any(startsWith(codes, "cat_"))) {
+  if (is.character(codes) && any(startsWith(codes, "cat_"), na.rm = TRUE)) {
     code_chr <- substr(codes, 5, nchar(codes))
     codes <- suppressWarnings(as.integer(code_chr))
   }

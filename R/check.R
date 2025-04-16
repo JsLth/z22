@@ -92,7 +92,7 @@ check_theme <- function(theme, null = FALSE) {
   if (!tolower(theme) %in% tolower(features$theme)) {
     cli::cli_abort(c(
       "Theme {theme} does not exist.",
-      "i" = "Available themes: {unique(overview$theme)}"
+      "i" = "Available themes: {tolower(unique(features$theme))}"
     ))
   }
 }
