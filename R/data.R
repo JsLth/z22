@@ -89,6 +89,11 @@ z22_data <- function(feature,
   check_category(categories, feature)
   check_normalize(normalize, feature)
 
+  # another country group was added in 2022 which is not available in 2011
+  if (year == 2011 && feature %in% c("birth_country", "citizenship_group")) {
+    categories <- setdiff(categories, 20)
+  }
+
   year <- substr(year, 3, 4)
   dir <- sprintf("z%s_data_%s", year, res)
   out <- lapply(categories, function(cat) {
