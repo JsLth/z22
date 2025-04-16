@@ -33,8 +33,9 @@ z22_decode <- function(codes, feature, lang = c("english", "german")) {
     codes <- as.character(codes)
   }
 
-  if (is.character(codes) && all(startsWith(codes, "cat_"))) {
-    codes <- as.integer(substr(codes, 5, nchar(codes)))
+  if (is.character(codes) && any(startsWith(codes, "cat_"))) {
+    code_chr <- substr(codes, 5, nchar(codes))
+    codes <- suppressWarnings(as.integer(code_chr))
   }
 
   cats[[lang]][match(codes, cats$code)]
