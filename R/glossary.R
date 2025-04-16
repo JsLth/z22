@@ -28,7 +28,7 @@
 #'
 #' @section Building classifications:
 #'
-#' The census distinguishes four types of building classifications. Because
+#' The census distinguishes three types of building classifications. Because
 #' they are very close terminologically, they need clarification:
 #'
 #' \describe{
@@ -72,9 +72,17 @@
 #' }
 #'
 #'
-#' @section Citizenship:
+#' @section Citizens / Citizenship:
 #'
-#' See "Nationals".
+#' Persons with German citizenship are counted as German \strong{citizens}.
+#' When assigning citizenship, a distinction is made between persons with German
+#' and non-German citizenship. Persons with a German citizenship are considered
+#' to be German, regardless of the existence of other citizenships.
+#'
+#' Members of the German Armed Forces, police authorities and the Foreign
+#' Service working abroad and their families residing there are not included in
+#' this analysis, as they cannot be assigned regionally at grid cell level in
+#' Germany.
 #'
 #' @section Core family:
 #'
@@ -117,7 +125,7 @@
 #'  biological daughter, stepdaughter or adopted daughter (regardless of age)
 #'  whose usual place of residence is in the private household of at least one
 #'  parent and one parent is the caregiver and/or partner of the caregiver.}
-#'  \item{A \strong{senior citizen} is defined as a person who has reached the
+#'  \item{A \strong{senior} is defined as a person who has reached the
 #'  age of 65 on the census date.}
 #' }
 #'
@@ -161,7 +169,7 @@
 #'
 #' @section Household:
 #'
-#' A private \strong{household} consists of at least one person. This isa based
+#' A private \strong{household} consists of at least one person. This is based
 #' on the "concept of communal living": all persons who live together in
 #' dwelling, regardless of their residential status (sole residence, main or
 #' secondary residence), are considered members of the same private household,
@@ -184,9 +192,10 @@
 #'  with heat from a central district heating plant (so-called district
 #'  heating).}
 #'
-#'  \item{\strong{Floor heating}}{Floor heating refers to a central heating system for
-#'  all rooms in a self-contained dwelling, whereby the heating source (for
-#'  example, gas boiler) is usually located within this dwelling.}
+#'  \item{\strong{Self-contained central heating}}{Self-contained central
+#'  heating refers to a central heating system for all rooms in a self-contained
+#'  dwelling, whereby the heating source (for example, gas boiler) is usually
+#'  located within this dwelling.}
 #'
 #'  \item{\strong{Block heating}}{Block heating is when a block of entire houses is
 #'  heated by a central heating system and the heating source is located in
@@ -218,24 +227,12 @@
 #' been possible since October 1, 2017. Unless existing civil partnerships are
 #' converted into a marriage, registered civil partnerships remain in place.
 #'
-#' @section Nationals:
-#'
-#' Persons with German citizenship are counted as German \strong{nationals}.
-#' When assigning nationality, a distinction is made between persons with German
-#' and non-German nationality. Persons with a German nationality are considered
-#' to be German, regardless of the existence of other nationalities.
-#'
-#' Members of the German Armed Forces, police authorities and the Foreign
-#' Service working abroad and their families residing there are not included in
-#' this analysis, as they cannot be assigned regionally at grid cell level in
-#' Germany.
-#'
 #' @section Net rent:
 #'
 #' The average \strong{net rent} per square meter is the ratio between the total rent
 #' per square meter of the dwellings and the total number of dwellings. The
 #' calculation is made for rented dwellings in residential buildings
-#' (excluding halls of residence). Apartments not rented out are excluded from
+#' (excluding dormitories). Dwellings not rented out are excluded from
 #' the calculation.
 #'
 #' @section Ownership:
@@ -324,7 +321,7 @@
 #'  with the help of collectors, heat pumps and heat exchangers. This also
 #'  includes heat obtained from the exhaust air of buildings (so-called exhaust
 #'  air heat).}
-#'  \item{\strong{Electricity (without heat pumpts)}}
+#'  \item{\strong{Electricity (without heat pumps)}}
 #'  \item{\strong{Coal}}
 #'  \item{\strong{District heating (various heating sources)}}
 #'  \item{\strong{No energy source (no heating)}}
@@ -336,13 +333,13 @@
 #' to all occupied and vacant dwellings. The market-active vacancy rate
 #' represents the proportion of vacant dwellings that are available again
 #' within three months as a percentage of all dwellings in residential
-#' buildings Not taken into account: Vacation and leisure dwellings as well as
+#' buildings. Not taken into account: Vacation and leisure dwellings as well as
 #' commercially used dwellings. The calculation is made for dwellings in
 #' residential buildings (excluding halls of residence).
 #'
 #' @source Translated and slightly edited version of the dataset descriptions
 #' of the Zensus 2022 and Zensus 2011 gridded datasets by the Federal
-#' Statistical Office of Germany
+#' Statistical Office of Germany.
 #'
 #' @name glossary
 NULL
