@@ -1,24 +1,34 @@
 Package: z22
 Type: Package
 Title: Official Gridded Data from the German Census 2022
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"))
 Maintainer: Jonas Lieth <jonas.lieth@gesis.org>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Quickly and efficiently retrieve gridded census data from Germany's
+    2011 and 2022 censuses.
 License: MIT + file LICENSE
+URL: https://github.com/jslth/z22/, https://jslth.github.io/z22/
+BugReports: https://github.com/jslth/z22/issues
 Encoding: UTF-8
 LazyData: true
+Depends: 
+    R (>= 3.3.0)
 Imports:
     utils,
+    stats,
     cli,
     httr2,
     dplyr,
     arrow
 Suggests: 
-    terra
-    sf
+    terra,
+    sf,
+    ggplot2,
+    sinew,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 RoxygenNote: 7.3.2
-Depends: 
-    R (>= 2.10)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
