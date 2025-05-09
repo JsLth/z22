@@ -2,8 +2,11 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "z22",
-  "description": "More about what it does (maybe more than one line) Use four spaces when indenting paragraphs within the Description.",
+  "description": "Quickly and efficiently retrieve gridded census data from Germany's 2011 and 2022 censuses.",
   "name": "z22: Official Gridded Data from the German Census 2022",
+  "relatedLink": "https://jslth.github.io/z22/",
+  "codeRepository": "https://github.com/jslth/z22/",
+  "issueTracker": "https://github.com/jslth/z22/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "1.0.0",
   "programmingLanguage": {
@@ -11,7 +14,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.3 (2025-02-28 ucrt)",
+  "runtimePlatform": "R version 4.4.0 (2024-04-24 ucrt)",
   "author": [
     {
       "@type": "Person",
@@ -108,6 +111,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "version": ">= 3.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
     }
   ],
   "softwareRequirements": {
@@ -177,10 +193,27 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "260.244KB",
-  "codeRepository": "https://github.com/JsLth/z22",
+  "fileSize": "26023.898KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2025",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Jonas",
+          "familyName": "Lieth"
+        }
+      ],
+      "name": "{z22: Official Gridded Data from the German Census 2022}",
+      "identifier": "10.32614/CRAN.package.z22",
+      "url": "https://github.com/jslth/z22/",
+      "@id": "https://doi.org/10.32614/CRAN.package.z22",
+      "sameAs": "https://doi.org/10.32614/CRAN.package.z22"
+    }
+  ],
   "readme": "https://github.com/JsLth/z22/blob/main/README.md",
-  "contIntegration": ["https://github.com/JsLth/z22/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/JsLth/z22?branch=main"],
+  "contIntegration": ["https://github.com/JsLth/z22/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/JsLth/z22?branch=main", "https://app.codecov.io/gh/JsLth/z22"],
   "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
   "keywords": ["r", "r-package", "rstats"]
 }

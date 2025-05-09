@@ -51,6 +51,7 @@ test_that("inspire can be converted", {
   expect_equal(z22_inspire_generate(coords5, legacy = TRUE), c("1kmN0E0", "1kmN1E1"))
   expect_error(z22_inspire_generate(coords6), "properly aligned")
   expect_warning(z22_inspire_extract(c("CRS4326RES100mN0E0", "CRS3035RES100mN1E1"), as_sf = TRUE))
+  expect_equal(sf::st_crs(z22_inspire_extract(c("1kmN0E0", "1kmN1E1"), as_sf = TRUE))$epsg, 3035)
 })
 
 
@@ -130,11 +131,12 @@ test_that("checkers work", {
   expect_no_error(check_feature("women", 2011, "1km"))
   expect_no_error(check_feature(NULL, 2022, "100m", null = TRUE))
   expect_no_error(check_category(c(1, 2), "citizenship"))
-  expect_no_error(check_category(NULL, "women", null = TRUE))
+  expect_no_error(check_category(NULL, NULL, null = TRUE))
   check_normalize(TRUE, "citizenship")
 
   expect_error(check_length(1, 2))
   expect_error(check_length(NULL, 1))
+  expect_error(check_string(1))
   expect_error(check_integerish(1.1))
   expect_error(check_class(1, "character"))
   expect_error(check_date("2024"))
