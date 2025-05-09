@@ -460,7 +460,7 @@ categories <- list(
 )
 
 
-make_rd_categories <- function() {
+make_rd_categories <- function() { # nocov start
   tb <- lapply(names(categories), function(x) {
     ltx <- sinew::tabular(categories[[x]])
     ltx <- gsub("#' ?", "\t\t", ltx)
@@ -469,4 +469,4 @@ make_rd_categories <- function() {
   })
   tb <- paste(tb, collapse = "\n\n\\cr")
   sprintf("\\section{Categories}{\n\\describe{\n%s\n}}", tb)
-}
+} # nocov end

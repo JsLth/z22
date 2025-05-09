@@ -63,11 +63,7 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL, legacy_names = F
     }
   }
 
-  if (length(col) > 1) {
-    feats <- features[apply(!is.na(features[col]), 1, any), ]
-  } else {
-    feats <- features[!is.na(features[[col]]), ]
-  }
+  feats <- features[!is.na(features[[col]]), ]
 
   if (legacy_names) {
     feats <- dplyr::mutate(
@@ -168,7 +164,7 @@ features <- dplyr::tribble(
 )
 
 
-make_feature_table <- function() {
+make_feature_table <- function() { # nocov start
   features |>
    dplyr::transmute(
      Theme = theme,
@@ -178,4 +174,4 @@ make_feature_table <- function() {
      `Zensus11 (100m)` = dplyr::if_else(!is.na(z11_100m), "\u2705", "\u274c"),
      `Zensus11 (1km)` = dplyr::if_else(!is.na(z11_1km), "\u2705", "\u274c")
    )
-}
+} # nocov end

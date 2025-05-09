@@ -93,7 +93,7 @@ z22_data <- function(feature,
 
   # another country group was added in 2022 which is not available in 2011
   if (year == 2011 && feature %in% c("birth_country", "citizenship_group")) {
-    categories <- setdiff(categories, 20)
+    categories <- setdiff(categories, 20) # nocov
   }
 
   year <- substr(year, 3, 4)
@@ -229,7 +229,7 @@ as_spatial_maybe <- function(x, rasterize, as_sf) {
 z22data_get <- function(dir, fid, overwrite) {
   data_dir <- getOption("z22.data_repo")
 
-  if (!is.null(data_dir) && dir.exists(data_dir)) {
+  if (!is.null(data_dir)) {
     data_dir <- file.path(data_dir, dir)
     if (!dir.exists(data_dir)) {
       cli::cli_abort(c(
@@ -259,8 +259,7 @@ z22data_get <- function(dir, fid, overwrite) {
 
 z22data_download <- function(dir,
                              fid,
-                             user = "jslth",
-                             repo = "z22data",
+                             repo = "jslth/z22data",
                              path = tempfile(fileext = ".parquet"),
                              overwrite = FALSE) {
   if (file.exists(path) && !overwrite) {
@@ -269,11 +268,11 @@ z22data_download <- function(dir,
 
   req <- httr2::request("https://github.com/")
   req <- httr2::req_url_path(
-    req, "jslth", "z22data", "raw", "refs", "heads",
+    req, repo, "raw", "refs", "heads",
     "main", dir, paste0(fid, ".parquet")
   )
   if (getOption("z22.debug", FALSE)) {
-    cli::cli_inform("GET {req$url}")
+    cli::cli_inform("GET {req$url}") # nocov
   }
   unclass(httr2::req_perform(req, path = path)$body)
 }

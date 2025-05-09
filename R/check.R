@@ -70,14 +70,14 @@ check_year <- function(year, null = FALSE) {
 check_resolution <- function(res, year, null = FALSE) {
   if (null && is.null(res)) return()
   check_string(res)
-  if (year == 2011 && res == "10km") {
+  if (2011 == year && "10km" %in% res) {
     cli::cli_abort(c(
       "For 2011, only resolutions 100m and 1km are available.",
       "i" = "See ?sf::aggregate for ways to aggregate to a coarser grid."
     ))
   }
 
-  if (!res %in% c("100m", "1km", "10km")) {
+  if (!all(res %in% c("100m", "1km", "10km"))) {
     cli::cli_abort(c(
       "Only resolutions 100m, 1km, and 10km are available.",
       "i" = "See ?sf::aggregate for ways to aggregate to a coarser grid."
@@ -102,6 +102,10 @@ check_feature <- function(feature, year, res, null = FALSE) {
   if (null && is.null(feature)) return()
   feature_row <- features[features$name %in% feature, ]
   tip <- c("i" = "See `z22_features()` for a list of available features.")
+
+  if (!nrow(feature_row)) {
+    cli::cli_abort(c("{.val {feature}} is not a valid Census feature.", tip))
+  }
 
   if (year == 2011 && is.na(feature_row[[sprintf("z11_%s", res)]])) {
     cli::cli_abort(c(

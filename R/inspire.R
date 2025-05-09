@@ -128,10 +128,7 @@ z22_inspire_extract <- function(inspire, as_sf = FALSE) {
     }
 
     if (length(crs) > 1) {
-      cli::cli_warn(c(
-        "More than one CRS parsed",
-        "i" = "Taking the first one."
-      ))
+      cli::cli_warn("More than one CRS parsed. Taking the first one.")
       crs <- crs[1]
     }
 
