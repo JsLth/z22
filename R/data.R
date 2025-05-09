@@ -139,8 +139,9 @@ z22_data <- function(feature,
   }
 
   # Exchange INSPIRE coordinates with geographic centroids
-  out$x <- out$x + 50
-  out$y <- out$y + 50
+  half <- switch(res, "100m" = 50, "1km" = 500, "10km" = 5000)
+  out$x <- out$x + half
+  out$y <- out$y + half
 
   out <- move_to_front(out, is_cat_col(out))
   as_spatial_maybe(out, rasterize = rasterize, as_sf = as_sf)
