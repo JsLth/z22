@@ -14,10 +14,22 @@ vignette: >
 </style>
 
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.cap = "",
+  fig.path = "man/figures/vignette/",
+  out.width = "100%",
+  warning = FALSE,
+  message = FALSE,
+  dev = "ragg_png",
+  dpi = 300
+)
+knitr::knit_hooks$set(crop = knitr::hook_pdfcrop)
+```
 
-
-
-``` r
+```{r setup}
 library(z22)
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
@@ -29,68 +41,37 @@ The German [2022 census](https://www.zensus2022.de/) marks the second German cen
 
 Data chunks are uniquely identified using **features** and **categories**. When I talk about a _feature_, I talk about an indicator aggregated to grid cells, for example, age groups or the number of dwellings. When I talk about a _category_, I talk about the discrete classifications of features, e.g., ages 10 to 19, 20 to 29, 30 to 39, etc. You can retrieve a list of all available features using:
 
-
-``` r
+```{r}
 z22_features()
-#> # A tibble: 55 × 8
-#>    theme      feature            english                                german                z22   z11_100m z11_1km has_cat
-#>    <chr>      <chr>              <chr>                                  <chr>                 <lgl> <lgl>    <lgl>   <lgl>  
-#>  1 Population population         Population                             Bevölkerung           TRUE  TRUE     TRUE    FALSE  
-#>  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsangeh… TRUE  FALSE    FALSE   FALSE  
-#>  3 Population foreigners         Share of foreigners                    Ausländeranteil       TRUE  FALSE    TRUE    FALSE  
-#>  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab 1… TRUE  FALSE    FALSE   FALSE  
-#>  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppen) TRUE  TRUE     FALSE   TRUE   
-#>  6 Population sex                Sex                                    Geschlecht            FALSE TRUE     FALSE   TRUE   
-#>  7 Population women              Share of women                         Frauenanteil          FALSE FALSE    TRUE    FALSE  
-#>  8 Population religion           Religion                               Religion              FALSE TRUE     FALSE   TRUE   
-#>  9 Population citizenship        Citizenship                            Staatsangehörigkeit   TRUE  TRUE     FALSE   TRUE   
-#> 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit … TRUE  TRUE     FALSE   TRUE   
-#> # ℹ 45 more rows
 ```
 
 Similarly, you can view a list of all categories for a feature.
 
-
-``` r
+```{r}
 z22_categories("birth_country")
-#> # A tibble: 6 × 3
-#>    code german      english     
-#>   <dbl> <chr>       <chr>       
-#> 1     1 Deutschland Germany     
-#> 2    20 Ausland     Foreign     
-#> 3    21 EU27-Land   EU27 country
-#> 4    22 Europa      Europe      
-#> 5    23 Welt        World       
-#> 6    24 Sonstige    Other
 ```
 
 When I talk about **grids**, I mean a geographical grid net according to the EU [INSPIRE](https://inspire.ec.europa.eu/theme/gg) standard. Grids always have a fixed resolution (100x100 m, 1x1 km, 10x10 km). Such grids are useful to aggregate sensitive spatial data to a relatively detailed level that is not as arbitrary as, e.g., municipality boundaries. You can get a raw grid dataset based on the [GeoGitter](https://gdz.bkg.bund.de/index.php/default/inspire/sonstige-inspire-themen/geographische-gitter-fur-deutschland-in-lambert-projektion-geogitter-inspire.html) dataset using:
 
-
-``` r
+```{r}
 grid <- z22_grid("10km", as_sf = TRUE)
 ```
 
-
-``` r
+```{r}
 plot(grid, pch = 15, cex = 0.5)
 ```
-
-<img src="../man/figures/vignette/unnamed-chunk-5-1.png" width="100%" />
 
 Although the data chunks are relatively small in size, downloading grids and features again and again can take a while and strain internet tariffs unnecessarily. That's why data files are automatically cached, i.e., if a file is downloaded again, it is simply read from the cache. You can update stale cache files using the `update_cache` argument.
 
 To equip a raw raster with feature values, you can use the `z22_data` function. Here, I download data on the type of heating in buildings across Germany. Using the `rasterize` argument, I can convert the output to a `SpatRaster` from the `{terra}` package.
 
-
-``` r
+```{r marital_status}
 grid_ht <- z22_data("building_heat_type", res = "10km", rasterize = TRUE)
 ```
 
 After rasterization, the results are returned in a `SpatRasterDataset`, which is essentially a list of `SpatRaster`s. To plot them, you can use the `z22_pivot_longer` function to turn them to a long (and facetable) table.
 
-
-``` r
+```{r multiplot}
 df_ht <- z22_pivot_longer(grid_ht, "building_heat_type")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -102,12 +83,9 @@ ggplot(df_ht) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
 
-<img src="../man/figures/vignette/multiplot-1.png" width="100%" />
-
 However, as you can see, we are dealing with absolute counts, which makes the meaningfulness of the data questionable on its own. The spatial patterns look very similar in each facet and mostly trace spatial population patterns of Germany. To retrieve normalized (= percentage) figures, we can use the `normalize` argument of `z22_data`. Re-downloading the data should also take much less time because the data files are still cached.
 
-
-``` r
+```{r normalize}
 grid_ht <- z22_data(
   "building_heat_type",
   res = "10km",
@@ -117,8 +95,7 @@ grid_ht <- z22_data(
 ```
 
 <details><summary>Code for the plot</summary>
-
-``` r
+```{r eval=FALSE}
 df_ht <- z22_pivot_longer(grid_ht, "building_heat_type")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -131,14 +108,23 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="../man/figures/vignette/normalize_plot-1.png" width="100%" />
+```{r normalize_plot, echo=FALSE}
+df_ht <- z22_pivot_longer(grid_ht, "building_heat_type")
+ggplot(df_ht) +
+  geom_raster(aes(x, y, fill = value)) +
+  facet_wrap(~category, nrow = 2, labeller = label_wrap_gen(width = 35)) +
+  coord_sf(crs = 3035) +
+  scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
+  theme_bw(base_size = 8) +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
 
 By visualizing shares, we can observe that spatial differences are not nearly as pronounced as the total numbers had us believe. Particularly central heating is almost spatially homogeneous. Note that the `normalize` argument is only sensible for features that are counts.
 
 There is one more issue that you can see in the map above. Some cells are `NA` or entirely missing from the dataset and thus not shown at all on the maps. These are cells where no observations can be counted. In the case of heating, the issue is not as pressing but in other cases the feature grid becomes a patchwork. Some marital statuses, for example, are rarely seen in some areas of Germany.
 
-
-``` r
+```{r patchwork}
 grid_ht <- z22_data(
   "marital_status",
   categories = 6,
@@ -148,8 +134,7 @@ grid_ht <- z22_data(
 ```
 
 <details><summary>Code for the plot</summary>
-
-``` r
+```{r eval=FALSE}
 df_ht <- z22_pivot_longer(grid_ht, "marital_status")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -162,12 +147,21 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="../man/figures/vignette/patchwork_plot-1.png" width="100%" />
+```{r patchwork_plot, echo=FALSE}
+df_ht <- z22_pivot_longer(grid_ht, "marital_status")
+ggplot(df_ht) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) +
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Count", na.value = "transparent") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
 
 To fill these gaps, you can request all cells using the `all_cells` argument.
 
-
-``` r
+```{r allcells}
 grid_ht <- z22_data(
   "marital_status",
   categories = 6,
@@ -178,8 +172,7 @@ grid_ht <- z22_data(
 ```
 
 <details><summary>Code for the plot</summary>
-
-``` r
+```{r eval=FALSE}
 df_ht <- z22_pivot_longer(grid_ht, "marital_status")
 ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
@@ -192,18 +185,25 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="../man/figures/vignette/allcells_plot-1.png" width="100%" />
+```{r allcells_plot, echo=FALSE}
+df_ht <- z22_pivot_longer(grid_ht, "marital_status")
+ggplot(df_ht) +
+  geom_raster(aes(x, y, fill = value)) +
+  coord_sf(crs = 3035) +
+  facet_wrap(~category, nrow = 2) +
+  scale_fill_viridis_c("Count", na.value = "transparent") +
+  theme_bw() +
+  labs(x = NULL, y = NULL) +
+  theme(panel.grid = element_blank(), axis.text = element_blank())
+```
 
 Working with 10x10 km grids is cool and all, but the census grids get really exciting when looking at 100x100 m grids. Let's, for example, look at the average age distribution in the area of Berlin.
 
-
-``` r
+```{r 100m_plot}
 grid_age <- z22_data("age_avg", res = "100m", rasterize = TRUE, all_cells = TRUE)
 
 ext <- ext(c(4532432, 4574087, 3257338, 3287499))
 berlin_age <- crop(grid_age$cat_0, ext)
 plot(berlin_age)
 ```
-
-<img src="../man/figures/vignette/100m_plot-1.png" width="100%" />
 
