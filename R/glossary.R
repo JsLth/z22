@@ -1,14 +1,14 @@
 #' Definitions and explanations for common Census terms
 #'
 #' @description First off, this package uses a couple of semi-official terms to
-#' make it easier to unequivocally identidy certain parts of an aspect. When we
+#' make it easier to unequivocally identify certain parts of an aspect. When we
 #' are talking about a
 #'
 #' \itemize{
 #'  \item{\strong{feature}, we talk about an indicator aggregated to grid cells,
 #'  e.g., age or the number of dwellings.}
 #'  \item{\strong{category}, we talk about the discrete classifications of
-#'  features, e.g., ages 10 to 19, 20 to 20, 30 to 39, etc.}
+#'  features, e.g., ages 10 to 19, 20 to 29, 30 to 39, etc.}
 #'  \item{Both feature and category have to be provided to uniquely identify
 #'  a \strong{dataset}.}
 #' }

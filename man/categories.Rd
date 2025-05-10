@@ -358,7 +358,7 @@ z22_categories("families")
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
-    		2 \tab Etagenheizung                                    \tab Floor heating                                                 \cr
+    		2 \tab Etagenheizung                                    \tab Self-contained central heating                                \cr
     		3 \tab Blockheizung                                     \tab Block heating                                                 \cr
     		4 \tab Zentralheizung                                   \tab Central heating                                               \cr
     		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
@@ -463,7 +463,7 @@ z22_categories("families")
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
-    		2 \tab Etagenheizung                                    \tab Floor heating                                                 \cr
+    		2 \tab Etagenheizung                                    \tab Self-contained central heating                                \cr
     		3 \tab Blockheizung                                     \tab Block heating                                                 \cr
     		4 \tab Zentralheizung                                   \tab Central heating                                               \cr
     		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr

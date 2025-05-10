@@ -6,7 +6,7 @@
 \alias{z22-package}
 \title{z22: Official Gridded Data from the German Census 2022}
 \description{
-Quickly and efficiently retrieve gridded census data from Germany's 2011 and 2022 censuses.
+Quickly and easily retrieve gridded census data from Germany's 2011 and 2022 censuses.
 }
 \seealso{
 Useful links:
@@ -18,7 +18,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jonas Lieth \email{jonas.lieth@gesis.org} [copyright holder]
+\strong{Maintainer}: Jonas Lieth \email{jonas.lieth@gesis.org} (\href{https://orcid.org/0000-0002-3451-3176}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
