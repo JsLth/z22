@@ -5,4 +5,4 @@
 .Renviron
 inst/doc
 *.rds
-*.png
+/*.png
