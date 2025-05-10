@@ -341,5 +341,7 @@
 #' of the Zensus 2022 and Zensus 2011 gridded datasets by the Federal
 #' Statistical Office of Germany.
 #'
+#' © Statistische Ämter des Bundes und der Länder, 2024
+#'
 #' @name glossary
 NULL

@@ -7,6 +7,8 @@
 Translated and slightly edited version of the dataset descriptions
 of the Zensus 2022 and Zensus 2011 gridded datasets by the Federal
 Statistical Office of Germany.
+
+© Statistische Ämter des Bundes und der Länder, 2024
 }
 \description{
 First off, this package uses a couple of semi-official terms to
