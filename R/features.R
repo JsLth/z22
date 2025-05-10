@@ -169,13 +169,13 @@ features <- dplyr::tribble(
 
 
 make_feature_table <- function() { # nocov start
-  features |>
-   dplyr::transmute(
-     Theme = theme,
-     Name = paste0("`", name, "`"),
-     Description = english,
-     Zensus22 = dplyr::if_else(!is.na(z22), "\u2705", "\u274c"),
-     `Zensus11 (100m)` = dplyr::if_else(!is.na(z11_100m), "\u2705", "\u274c"),
-     `Zensus11 (1km)` = dplyr::if_else(!is.na(z11_1km), "\u2705", "\u274c")
-   )
+  dplyr::transmute(
+    features,
+    Theme = theme,
+    Name = paste0("`", name, "`"),
+    Description = english,
+    Zensus22 = dplyr::if_else(!is.na(z22), "\u2705", "\u274c"),
+    `Zensus11 (100m)` = dplyr::if_else(!is.na(z11_100m), "\u2705", "\u274c"),
+    `Zensus11 (1km)` = dplyr::if_else(!is.na(z11_1km), "\u2705", "\u274c")
+  )
 } # nocov end

@@ -67,7 +67,7 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf arrow::codec_is_available("zstd")
 #' \donttest{# Get gridded population
 #' pop <- z22_data("population", res = "10km", rasterize = TRUE)
 #' terra::plot(pop$cat_0)

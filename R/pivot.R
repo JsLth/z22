@@ -17,7 +17,7 @@
 #'
 #' @export
 #'
-#' @examples
+#' @examplesIf arrow::codec_is_available("zstd")
 #' \donttest{# get feature grid
 #' age <- z22_data("age_short", res = "10km")
 #'

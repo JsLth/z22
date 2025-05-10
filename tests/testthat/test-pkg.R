@@ -61,6 +61,7 @@ test_that("data can be downloaded and prepared", {
 
   skip_on_cran()
   skip_if_offline("github.com")
+  skip_if_not(arrow::codec_is_available("zstd"))
 
   grid1 <- z22_data("citizenship", res = "10km")
   expect_named(grid1, c("cat_1", "cat_2", "x", "y"))
@@ -88,6 +89,7 @@ test_that("data can be downloaded and prepared", {
 
 
 test_that("grid can be downloaded", {
+  skip_if_not(arrow::codec_is_available("zstd"))
   expect_error(z22_grid(year = -999), "for year")
   expect_error(z22_grid(res = "test"), "resolution of")
   expect_named(z22_grid("100km"), c("x", "y"))
@@ -95,6 +97,7 @@ test_that("grid can be downloaded", {
 
 
 test_that("data can be read offline", {
+  skip_if_not(arrow::codec_is_available("zstd"))
   old <- options(z22.data_repo = test_path("fixtures"))
   on.exit(options(old))
   expect_equal(nrow(z22_data("foreigners")), 6)
@@ -103,7 +106,8 @@ test_that("data can be read offline", {
 })
 
 
-test_that("data can be read offline", {
+test_that("data can be pivoted", {
+  skip_if_not(arrow::codec_is_available("zstd"))
   old <- options(z22.data_repo = test_path("fixtures"))
   on.exit(options(old))
   piv1 <- z22_pivot_longer(z22_data("citizenship"), "citizenship")
