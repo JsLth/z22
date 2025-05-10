@@ -130,8 +130,20 @@ the Census 2011 where possible. Defaults to <code>FALSE</code>.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># return all features available in the Census 2011</span></span></span>
 <span class="r-in"><span><span class="fu">z22_features</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2011</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in features[[col]]:</span> Can't extract column with `col`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">✖</span> Subscript `col` must be size 1, not 2.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 48 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    theme      feature            english   german z22   z11_100m z11_1km has_cat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Population population         Populati… Bevöl… TRUE  TRUE     TRUE    FALSE  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Population foreigners         Share of… Auslä… TRUE  FALSE    TRUE    FALSE  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Population birth_country      Country … Gebur… TRUE  TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Population sex                Sex       Gesch… FALSE TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Population women              Share of… Fraue… FALSE FALSE    TRUE    FALSE  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Population religion           Religion  Relig… FALSE TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Population citizenship        Citizens… Staat… TRUE  TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Population citizenship_group  Citizens… Staat… TRUE  TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Population citizenship_origin Citizens… Staat… FALSE TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Population citizenship_total  Number o… Anzah… FALSE TRUE     FALSE   TRUE   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 38 more rows</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># return all features available in 2011 at a 1km resolution</span></span></span>
 <span class="r-in"><span><span class="fu">z22_features</span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2011</span>, res <span class="op">=</span> <span class="st">"1km"</span><span class="op">)</span></span></span>
