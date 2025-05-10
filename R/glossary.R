@@ -5,12 +5,12 @@
 #' are talking about a
 #'
 #' \itemize{
-#'  \item{\strong{feature}, we talk about an indicator aggregated to grid cells,
-#'  e.g., age or the number of dwellings.}
-#'  \item{\strong{category}, we talk about the discrete classifications of
-#'  features, e.g., ages 10 to 19, 20 to 29, 30 to 39, etc.}
-#'  \item{Both feature and category have to be provided to uniquely identify
-#'  a \strong{dataset}.}
+#'  \item \strong{feature}, we talk about an indicator aggregated to grid cells,
+#'  e.g., age or the number of dwellings.
+#'  \item \strong{category}, we talk about the discrete classifications of
+#'  features, e.g., ages 10 to 19, 20 to 29, 30 to 39, etc.
+#'  \item Both feature and category have to be provided to uniquely identify
+#'  a \strong{dataset}.
 #' }
 #'
 #' This documentation is a collection of definitions as they are provided
@@ -42,27 +42,27 @@
 #'  of residential buildings. It distinguishes buildings based on how much
 #'  space is used for residential purposes. Categories include:
 #'  \itemize{
-#'   \item{\strong{Buildings with living space}: Permanent buildings which
+#'   \item \strong{Buildings with living space}: Permanent buildings which
 #'   are either fully or partially reserved for residential use by
 #'   households. This also includes buildings used for administrative or
 #'   commercial purposes if they contain at least one dwelling used for
 #'   residential purposes. Buildings with living space are divided into
-#'   residential buildings and other buildings with living space.}
+#'   residential buildings and other buildings with living space.
 #'
-#'   \item{\strong{Residential buildings}: Buildings in which at least half of
+#'   \item \strong{Residential buildings}: Buildings in which at least half of
 #'   the total usable floor space is used for residential purposes. Residential
 #'   buildings also include dormitories (where residents run their own
-#'   household).}
+#'   household).
 #'
-#'   \item{\strong{Dormitories}: Dormitories are residential buildings that
+#'   \item \strong{Dormitories}: Dormitories are residential buildings that
 #'   primarily serve the housing needs of certain groups of the population
 #'   (e.g. student residences, retirement homes). Dormitories have common
-#'   rooms. Residents of dormitories run their own households.}
+#'   rooms. Residents of dormitories run their own households.
 #'
-#'   \item{\strong{Other buildings with living space}: Buildings in which
+#'   \item \strong{Other buildings with living space}: Buildings in which
 #'   less than half of the total floor space is used for residential
 #'   purposes, e.g. because the building is predominantly occupied by
-#'   stores or offices.}
+#'   stores or offices.
 #'  }}
 #'
 #'  \item{\strong{Building design}}{Originally called "building type construction
@@ -108,25 +108,25 @@
 #' A range of terms relate to core families:
 #'
 #' \itemize{
-#'  \item{A \strong{couple} comprises of married couples, couples in a
+#'  \item A \strong{couple} comprises of married couples, couples in a
 #'  registered civil partnership and couples in a non-marital partnership
-#'  who live together in a private household.}
-#'  \item{A \strong{married couple} is a couple married according to the legal
-#'  marital status on the reference date and living in a private household.}
-#'  \item{A \strong{registered civil partnership} (ELP) is a legally
+#'  who live together in a private household.
+#'  \item A \strong{married couple} is a couple married according to the legal
+#'  marital status on the reference date and living in a private household.
+#'  \item A \strong{registered civil partnership} (ELP) is a legally
 #'  recognized same-sex couple in a private household according to the legal
-#'  marital status on the reference date.}
-#'  \item{A \strong{non-marital partnership} (NELG) is a mixed-sex couple
+#'  marital status on the reference date.
+#'  \item A \strong{non-marital partnership} (NELG) is a mixed-sex couple
 #'  in a private household who were not married to each other according to
-#'  their legal marital status on the reference date.}
-#'  \item{A \strong{single mother} or a \strong{single father} is a parent
-#'  without a partner with at least one child within a private household.}
-#'  \item{A \strong{child} is a biological son, stepson or adopted son or a
+#'  their legal marital status on the reference date.
+#'  \item A \strong{single mother} or a \strong{single father} is a parent
+#'  without a partner with at least one child within a private household.
+#'  \item A \strong{child} is a biological son, stepson or adopted son or a
 #'  biological daughter, stepdaughter or adopted daughter (regardless of age)
 #'  whose usual place of residence is in the private household of at least one
-#'  parent and one parent is the caregiver and/or partner of the caregiver.}
-#'  \item{A \strong{senior} is defined as a person who has reached the
-#'  age of 65 on the census date.}
+#'  parent and one parent is the caregiver and/or partner of the caregiver.
+#'  \item A \strong{senior} is defined as a person who has reached the
+#'  age of 65 on the census date.
 #' }
 #'
 #' @section Dwelling:
@@ -148,15 +148,15 @@
 #' account:
 #'
 #' \itemize{
-#'  \item{\strong{full}: floor areas of rooms or parts of rooms with a clear
-#'  height of at least 2 meters}
+#'  \item \strong{full}: floor areas of rooms or parts of rooms with a clear
+#'  height of at least 2 meters.
 #'
-#'  \item{\strong{half}: floor areas of rooms or parts of rooms with a clear
+#'  \item \strong{half}: floor areas of rooms or parts of rooms with a clear
 #'  height of at least 1 meter but less than 2 meters; unheatable observatories,
-#'  swimming pools, and similar rooms closed on all sides}
+#'  swimming pools, and similar rooms closed on all sides.
 #'
-#'  \item{\strong{generally a quarter, but no more than half}: areas of
-#'  balconies, loggias, roof gardens, terraces}
+#'  \item \strong{generally a quarter, but no more than half}: areas of
+#'  balconies, loggias, roof gardens, terraces.
 #' }
 #'
 #'
@@ -308,28 +308,28 @@
 #' specified here.
 #'
 #' \itemize{
-#'  \item{\strong{Gas}}
-#'  \item{\strong{Heating oil}}
-#'  \item{\strong{Wood, wood pellets}}
-#'  \item{\strong{Biomass (excluding wood), biogas}: All organic substances produced by
+#'  \item \strong{Gas}
+#'  \item \strong{Heating oil}
+#'  \item \strong{Wood, wood pellets}
+#'  \item \strong{Biomass (excluding wood), biogas}: All organic substances produced by
 #'  plants or animals from which energy can be obtained by burning. Energy can
 #'  be obtained through combustion. This includes straw, organic waste or
 #'  liquid manure (excluding wood). Biogas is produced during the fermentation
-#'  of biomass and is also classified here.}
-#'  \item{\strong{Solar/geothermal energy, environmental heat, exhaust air heat}:
+#'  of biomass and is also classified here.
+#'  \item \strong{Solar/geothermal energy, environmental heat, exhaust air heat}:
 #'  Solar energy as well as energy from water, air and earth is obtained here
 #'  with the help of collectors, heat pumps and heat exchangers. This also
 #'  includes heat obtained from the exhaust air of buildings (so-called exhaust
-#'  air heat).}
-#'  \item{\strong{Electricity (without heat pumps)}}
-#'  \item{\strong{Coal}}
-#'  \item{\strong{District heating (various heating sources)}}
-#'  \item{\strong{No energy source (no heating)}}
+#'  air heat).
+#'  \item \strong{Electricity (without heat pumps)}
+#'  \item \strong{Coal}
+#'  \item \strong{District heating (various heating sources)}
+#'  \item \strong{No energy source (no heating)}
 #' }
 #'
 #' @section Vacancy:
 #'
-#' The \strong{vacancy rate} (dwellings) represents the ratio of vacant dwelligngs
+#' The \strong{vacancy rate} (dwellings) represents the ratio of vacant dwellings
 #' to all occupied and vacant dwellings. The market-active vacancy rate
 #' represents the proportion of vacant dwellings that are available again
 #' within three months as a percentage of all dwellings in residential
@@ -344,4 +344,5 @@
 #' © Statistische Ämter des Bundes und der Länder, 2024
 #'
 #' @name glossary
+#' @encoding UTF-8
 NULL

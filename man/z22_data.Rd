@@ -93,10 +93,12 @@ always represent the South-west of the grid cells. Centroids represent
 the geographic location of grid cells better which is why they are used.
 }
 \examples{
+\dontshow{if (arrow::codec_is_available("zstd")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{# Get gridded population
 pop <- z22_data("population", res = "10km", rasterize = TRUE)
 terra::plot(pop$cat_0)
 
 # Get data about the number of people born in a EU27 country
 z22_data("birth_country", categories = 21, res = "1km")}
+\dontshow{\}) # examplesIf}
 }

@@ -14,6 +14,7 @@
 #' @evalRd make_rd_categories()
 #' @name categories
 #' @export
+#' @encoding UTF-8
 #'
 #' @examples
 #' z22_categories("sex")

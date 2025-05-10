@@ -66,9 +66,7 @@ library(dplyr, warn.conflicts = FALSE)
 
 # Generate IDs from a dataframe
 coords <- tibble(x = c(4334150, 4334250), y = c(2684050, 2684050))
-z22_inspire_generate(coords) |>
-  z22_inspire_extract() |>
-  identical(coords)
+identical(z22_inspire_extract(z22_inspire_generate(coords)), coords)
 
 # Extract coordinates from legacy ID strings
 z22_inspire_extract("100mN34000E44000")
