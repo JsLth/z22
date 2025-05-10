@@ -16,6 +16,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Codecov test
 coverage](https://codecov.io/gh/JsLth/z22/branch/main/graph/badge.svg)](https://app.codecov.io/gh/JsLth/z22?branch=main)
 [![CodeFactor](https://www.codefactor.io/repository/github/jslth/z22/badge/main)](https://www.codefactor.io/repository/github/jslth/z22/overview/main)
+[![Codecov test
+coverage](https://codecov.io/gh/JsLth/z22/graph/badge.svg)](https://app.codecov.io/gh/JsLth/z22)
 <!-- badges: end -->
 
 As part of the German census, a number of socio-economic indicators are
@@ -48,7 +50,6 @@ on the vacancy share in Germany at a 1x1 km resolution.
 ``` r
 library(z22)
 library(terra)
-#> terra 1.8.43
 
 grid_vac <- z22_data("vacancies", res = "10km", rasterize = TRUE)
 grid_vac
@@ -57,7 +58,7 @@ grid_vac
 #> dimensions  : 87, 65 (nrow, ncol)
 #> nlyr        : 1 
 #> resolution  : 10000, 10000  (x, y)
-#> extent      : 4030050, 4680050, 2680050, 3550050  (xmin, xmax, ymin, ymax)
+#> extent      : 4035000, 4685000, 2685000, 3555000  (xmin, xmax, ymin, ymax)
 #> coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035) 
 #> source(s)   : memory 
 #> names       : cat_0
