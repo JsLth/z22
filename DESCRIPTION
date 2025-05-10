@@ -6,7 +6,7 @@ Authors@R:
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"),
            comment = c(ORCID = "0000-0002-3451-3176"))
 Maintainer: Jonas Lieth <jonas.lieth@gesis.org>
-Description: Quickly and efficiently retrieve gridded census data from Germany's
+Description: Quickly and easily retrieve gridded census data from Germany's
     2011 and 2022 censuses.
 License: MIT + file LICENSE
 URL: https://github.com/jslth/z22/, https://jslth.github.io/z22/
