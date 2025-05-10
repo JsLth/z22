@@ -4,7 +4,7 @@ Title: Official Gridded Data from the German Census 2022
 Version: 1.0.0
 Authors@R: 
     person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"),
-           comment = c(orcid = "0000-0002-3451-3176"))
+           comment = c(ORCID = "0000-0002-3451-3176"))
 Maintainer: Jonas Lieth <jonas.lieth@gesis.org>
 Description: Quickly and efficiently retrieve gridded census data from Germany's
     2011 and 2022 censuses.

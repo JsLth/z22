@@ -63,7 +63,11 @@ z22_features <- function(theme = NULL, year = NULL, res = NULL, legacy_names = F
     }
   }
 
-  feats <- features[!is.na(features[[col]]), ]
+  if (length(col) > 1) {
+    feats <- features[apply(!is.na(features[col]), 1, any), ]
+  } else {
+    feats <- features[!is.na(features[[col]]), ]
+  }
 
   if (legacy_names) {
     feats <- dplyr::mutate(

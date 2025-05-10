@@ -4,6 +4,7 @@ test_that("feature list subsets correctly", {
   expect_true(all(z22_features(year = "2022")$z22))
   expect_true(all(z22_features(year = "2011", res = "100m")$z11_100m))
   expect_true(all(z22_features(year = "2011", res = "1km")$z11_1km))
+  expect_no_error(z22_features(year = "2011"))
   expect_in("Population", z22_features(theme = "population")$theme)
   expect_failure(expect_equal(z22_features(legacy_names = TRUE)$feature, features$feature))
   expect_error(z22_features("test"), "does not exist")
