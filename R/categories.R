@@ -468,6 +468,7 @@ make_rd_categories <- function() { # nocov start
     header <- sprintf("\\code{%s}", x)
     sprintf("  \\item{%s}{\n%s}", header, ltx)
   })
-  tb <- paste(tb, collapse = "\n\n\\cr")
+  tb <- paste(tb, collapse = "\\emph{}")
+  tb <- gsub("\u2265", ">=", tb)
   sprintf("\\section{Categories}{\n\\describe{\n%s\n}}", tb)
 } # nocov end
