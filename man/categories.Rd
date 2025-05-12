@@ -39,26 +39,38 @@ z22_categories("families")
     		23 \tab Welt        \tab World       \cr
     		24 \tab Sonstige    \tab Other       
 		}
-}\emph{}  \item{\code{sex}}{
+}
+
+\enc{}{}
+  \item{\code{sex}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Männlich \tab Male  \cr
     		2 \tab Weiblich \tab Female
 		}
-}\emph{}  \item{\code{religion}}{
+}
+
+\enc{}{}
+  \item{\code{religion}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Römisch-katholische Kirche   \tab Roman Catholic Church      \cr
     		2 \tab Evangelische Kirche          \tab Evangelical Church         \cr
     		3 \tab Sonstige, keine, ohne Angabe \tab Other, none, no information
 		}
-}\emph{}  \item{\code{citizenship}}{
+}
+
+\enc{}{}
+  \item{\code{citizenship}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Deutschland \tab Germany\cr
     		2 \tab Ausland     \tab Foreign
 		}
-}\emph{}  \item{\code{citizenship_group}}{
+}
+
+\enc{}{}
+  \item{\code{citizenship_group}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Deutschland      \tab Germany     \cr
@@ -68,7 +80,10 @@ z22_categories("families")
     		23 \tab Sonstige Welt    \tab Other World \cr
     		24 \tab Sonstige         \tab Other       
 		}
-}\emph{}  \item{\code{citizenship_origin}}{
+}
+
+\enc{}{}
+  \item{\code{citizenship_origin}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Deutschland             \tab Germany               \cr
@@ -86,7 +101,10 @@ z22_categories("families")
     		13 \tab Ukraine                 \tab Ukraine               \cr
     		14 \tab Sonstige                \tab Other                 
 		}
-}\emph{}  \item{\code{citizenship_total}}{
+}
+
+\enc{}{}
+  \item{\code{citizenship_total}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Eine Staatsangehörigkeit  \tab One citizenship        \cr
@@ -94,7 +112,10 @@ z22_categories("families")
     		3 \tab Mehrere, nur ausländische \tab Several, only foreign  \cr
     		4 \tab Nicht bekannt             \tab Unknown                
 		}
-}\emph{}  \item{\code{age_short}}{
+}
+
+\enc{}{}
+  \item{\code{age_short}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Unter 18     \tab Under 18    \cr
@@ -103,7 +124,10 @@ z22_categories("families")
     		4 \tab 50 - 64      \tab 50 to 64    \cr
     		5 \tab 65 und älter \tab 65 and older
 		}
-}\emph{}  \item{\code{age_long}}{
+}
+
+\enc{}{}
+  \item{\code{age_long}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Unter 10     \tab Under 10    \cr
@@ -116,7 +140,10 @@ z22_categories("families")
     		8 \tab 70 - 79      \tab 70 to 79    \cr
     		9 \tab 80 und älter \tab 80 and older
 		}
-}\emph{}  \item{\code{marital_status}}{
+}
+
+\enc{}{}
+  \item{\code{marital_status}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Ledig                                   \tab Single                         \cr
@@ -128,7 +155,10 @@ z22_categories("families")
     		7 \tab Eingetr. Lebenspartnerschaft aufgehoben \tab Registered partnership annulled\cr
     		8 \tab Ohne Angabe                             \tab No information                 
 		}
-}\emph{}  \item{\code{family_type}}{
+}
+
+\enc{}{}
+  \item{\code{family_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Ehepaare ohne Kind                               \tab Couples without child                               \cr
@@ -145,7 +175,10 @@ z22_categories("families")
     		12 \tab Alleinerziehende Mütter mind. 1 Kind < 18        \tab Single mothers, at least 1 child < 18               \cr
     		13 \tab Alleinerziehende Mütter alle Kinder >= 18         \tab Single mothers all children >= 18                    
 		}
-}\emph{}  \item{\code{family_size}}{
+}
+
+\enc{}{}
+  \item{\code{family_size}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab 2 Personen          \tab 2 Persons         \cr
@@ -154,7 +187,10 @@ z22_categories("families")
     		4 \tab 5 Personen          \tab 5 Persons         \cr
     		5 \tab 6 und mehr Personen \tab 6 and more Persons
 		}
-}\emph{}  \item{\code{household_family}}{
+}
+
+\enc{}{}
+  \item{\code{household_family}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Einpersonenhaushalte (Singlehaushalte) \tab One-person households (Single households)  \cr
@@ -163,7 +199,10 @@ z22_categories("families")
     		4 \tab Alleinerziehende Elternteile           \tab Single parents                             \cr
     		5 \tab Mehrpersonenhaushalte ohne Kernfamilie \tab Multi-person households without core family
 		}
-}\emph{}  \item{\code{household_lifestyle}}{
+}
+
+\enc{}{}
+  \item{\code{household_lifestyle}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Einpersonenhaushalte (Singlehaushalte) \tab One-person households (Single households)  \cr
@@ -174,14 +213,20 @@ z22_categories("families")
     		6 \tab Alleinerziehende Väter                 \tab Single fathers                             \cr
     		7 \tab Mehrpersonenhaushalte ohne Kernfamilie \tab Multi-person households without core family
 		}
-}\emph{}  \item{\code{household_senior}}{
+}
+
+\enc{}{}
+  \item{\code{household_senior}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Haushalte mit ausschließlich Senioren/-innen \tab Households with only seniors              \cr
     		2 \tab Haushalte mit Senioren/-innen und Jüngeren   \tab Households with seniors and younger people\cr
     		3 \tab Haushalte ohne Senioren/-innen               \tab Households without seniors                
 		}
-}\emph{}  \item{\code{household_size_group}}{
+}
+
+\enc{}{}
+  \item{\code{household_size_group}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab 1 Person            \tab 1 Person          \cr
@@ -191,7 +236,10 @@ z22_categories("families")
     		5 \tab 5 Personen          \tab 5 Persons         \cr
     		6 \tab 6 und mehr Personen \tab 6 and more Persons
 		}
-}\emph{}  \item{\code{dwelling_occupancy}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_occupancy}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Von Eigentümer/-in bewohnt                 \tab Occupied by owner                             \cr
@@ -205,7 +253,10 @@ z22_categories("families")
     		 5 \tab Diplomaten-/Streitkräftewohnung            \tab Diplomatic/Military housing                   \cr
     		99 \tab Gewerbl. Nutzung                           \tab Commercial use                                
 		}
-}\emph{}  \item{\code{dwelling_ownership_home}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_ownership_home}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Privatperson/-en                                  \tab Private person(s)                       \cr
@@ -214,7 +265,10 @@ z22_categories("families")
     		 4 \tab Wohnungsgenossenschaft                            \tab Housing cooperative                     \cr
     		99 \tab Trifft nicht zu (da keine Eigentumswohnung)       \tab Does not apply (no condominium)         
 		}
-}\emph{}  \item{\code{dwelling_ownership_property}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_ownership_property}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Gemeinschaft von Wohnungseigentümern/-innen  \tab Homeowner association                    \cr
@@ -226,7 +280,10 @@ z22_categories("families")
     		7 \tab Bund oder Land                               \tab Federal or state government              \cr
     		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche) \tab Non-profit organization (e.g. church)    
 		}
-}\emph{}  \item{\code{floor_space}}{
+}
+
+\enc{}{}
+  \item{\code{floor_space}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Unter 30           \tab Under 30        \cr
@@ -248,7 +305,10 @@ z22_categories("families")
     		17 \tab 180 und mehr       \tab 180 and more    \cr
     		99 \tab t.n.z., gewerblich \tab n.a., commercial
 		}
-}\emph{}  \item{\code{dwelling_rooms}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_rooms}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab 1 Raum             \tab 1 Room          \cr
@@ -260,7 +320,10 @@ z22_categories("families")
     		 7 \tab 7 und mehr Räume   \tab 7 and more Rooms\cr
     		99 \tab t.n.z., gewerblich \tab n.a., commercial
 		}
-}\emph{}  \item{\code{dwelling_constr_year}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_constr_year}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Vor 1919        \tab Before 1919   \cr
@@ -274,7 +337,10 @@ z22_categories("families")
     		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
     		10 \tab 2009 und später \tab 2009 and later
 		}
-}\emph{}  \item{\code{dwelling_building_type}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_building_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
@@ -283,7 +349,10 @@ z22_categories("families")
     		112 \tab Wohnheim                       \tab Dormitory                                   \cr
     		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            
 		}
-}\emph{}  \item{\code{dwelling_building_design}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_building_design}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Freistehendes Haus \tab Detached house     \cr
@@ -291,7 +360,10 @@ z22_categories("families")
     		3 \tab Gereihtes Haus     \tab Terraced house     \cr
     		4 \tab Anderer Gebäudetyp \tab Other building type
 		}
-}\emph{}  \item{\code{dwelling_building_size}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_building_size}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Freistehendes Einfamilienhaus           \tab Detached single-family house              \cr
@@ -305,7 +377,10 @@ z22_categories("families")
     		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen \tab Multi-family house: 13 and more apartments\cr
     		10 \tab Anderer Gebäudetyp                      \tab Other building type                       
 		}
-}\emph{}  \item{\code{dwelling_heat_type}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_heat_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
@@ -315,96 +390,10 @@ z22_categories("families")
     		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
     		6 \tab Keine Heizung im Gebäude oder in den Wohnungen   \tab No heating in the building or in the apartments               
 		}
-}\emph{}  \item{\code{dwelling_heat_src}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Gas                            \tab Gas                             \cr
-    		2 \tab Heizöl                         \tab Heating oil                     \cr
-    		3 \tab Holz(pellets)                  \tab Wood (pellets)                  \cr
-    		4 \tab Biomasse (ohne Holz), Biogas   \tab Biomass (no wood), biogas       \cr
-    		5 \tab Solar-/Geothermie, Wärmepumpen \tab Solar, geothermal, heat pumps   \cr
-    		6 \tab Strom (ohne Wärmepumpen)       \tab Electric heating (no heat pumps)\cr
-    		7 \tab Kohle                          \tab Coal                            \cr
-    		8 \tab Fernwärme                      \tab District heating                \cr
-    		9 \tab Kein Energieträger             \tab No heating                      
-		}
-}\emph{}  \item{\code{building_ownership_property}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Gemeinschaft von Wohnungseigentümern/-innen  \tab Homeowner association                    \cr
-    		2 \tab Privatperson/-en                             \tab Private person(s)                        \cr
-    		3 \tab Wohnungsgenossenschaft                       \tab Housing cooperative                      \cr
-    		4 \tab Kommune oder Kommunales Wohnungsunternehmen  \tab Municipality or municipal housing company\cr
-    		5 \tab Privatwirtschaftliches Wohnungsunternehmen   \tab Private sector housing company           \cr
-    		6 \tab Anderes privatwirtschaftliches Unternehmen   \tab Other private sector company             \cr
-    		7 \tab Bund oder Land                               \tab Federal or state government              \cr
-    		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche) \tab Non-profit organization (e.g. church)    
-		}
-}\emph{}  \item{\code{building_constr_year}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Vor 1919        \tab Before 1919   \cr
-    		 2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
-    		 3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
-    		 4 \tab 1979 - 1986     \tab 1979 - 1986   \cr
-    		 5 \tab 1987 - 1990     \tab 1987 - 1990   \cr
-    		 6 \tab 1991 - 1995     \tab 1991 - 1995   \cr
-    		 7 \tab 1996 - 2000     \tab 1996 - 2000   \cr
-    		 8 \tab 2001 - 2004     \tab 2001 - 2004   \cr
-    		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
-    		10 \tab 2009 und später \tab 2009 and later
-		}
-}\emph{}  \item{\code{building_dwellings}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab 1 Wohnung             \tab 1 Apartment           \cr
-    		2 \tab 2 Wohnungen           \tab 2 Apartments          \cr
-    		3 \tab 3 - 6 Wohnungen       \tab 3 - 6 Apartments      \cr
-    		4 \tab 7 - 12 Wohnungen      \tab 7 - 12 Apartments     \cr
-    		5 \tab 13 und mehr Wohnungen \tab 13 and more Apartments
-		}
-}\emph{}  \item{\code{building_size}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Freistehendes Einfamilienhaus           \tab Detached single-family house              \cr
-    		 2 \tab Einfamilienhaus: Doppelhaushälfte       \tab Single-family house: semi-detached        \cr
-    		 3 \tab Einfamilienhaus: Reihenhaus             \tab Single-family house: terraced             \cr
-    		 4 \tab Freistehendes Zweifamilienhaus          \tab Detached two-family house                 \cr
-    		 5 \tab Zweifamilienhaus: Doppelhaushälfte      \tab Two-family house: semi-detached           \cr
-    		 6 \tab Zweifamilienhaus: Reihenhaus            \tab Two-family house: terraced                \cr
-    		 7 \tab Mehrfamilienhaus: 3-6 Wohnungen         \tab Multi-family house: 3-6 apartments        \cr
-    		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen        \tab Multi-family house: 7-12 apartments       \cr
-    		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen \tab Multi-family house: 13 and more apartments\cr
-    		10 \tab Anderer Gebäudetyp                      \tab Other building type                       
-		}
-}\emph{}  \item{\code{building_type}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
-    		 11 \tab Wohngebäude                    \tab Residential building                        \cr
-    		111 \tab Wohngebäude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
-    		112 \tab Wohnheim                       \tab Dormitory                                   \cr
-    		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            
-		}
-}\emph{}  \item{\code{building_design}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Freistehendes Haus \tab Detached house     \cr
-    		2 \tab Doppelhaus Hälfte  \tab Semi-detached house\cr
-    		3 \tab Gereihtes Haus     \tab Terraced house     \cr
-    		4 \tab Anderer Gebäudetyp \tab Other building type
-		}
-}\emph{}  \item{\code{building_heat_type}}{
-		\tabular{rll}{
-    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
-    		2 \tab Etagenheizung                                    \tab Self-contained central heating                                \cr
-    		3 \tab Blockheizung                                     \tab Block heating                                                 \cr
-    		4 \tab Zentralheizung                                   \tab Central heating                                               \cr
-    		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
-    		6 \tab Keine Heizung im Gebäude oder in den Wohnungen   \tab No heating in the building or in the apartments               
-		}
-}\emph{}  \item{\code{building_heat_src}}{
+}
+
+\enc{}{}
+  \item{\code{dwelling_heat_src}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		1 \tab Gas                            \tab Gas                             \cr
@@ -418,4 +407,119 @@ z22_categories("families")
     		9 \tab Kein Energieträger             \tab No heating                      
 		}
 }
+
+\enc{}{}
+  \item{\code{building_ownership_property}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab Gemeinschaft von Wohnungseigentümern/-innen  \tab Homeowner association                    \cr
+    		2 \tab Privatperson/-en                             \tab Private person(s)                        \cr
+    		3 \tab Wohnungsgenossenschaft                       \tab Housing cooperative                      \cr
+    		4 \tab Kommune oder Kommunales Wohnungsunternehmen  \tab Municipality or municipal housing company\cr
+    		5 \tab Privatwirtschaftliches Wohnungsunternehmen   \tab Private sector housing company           \cr
+    		6 \tab Anderes privatwirtschaftliches Unternehmen   \tab Other private sector company             \cr
+    		7 \tab Bund oder Land                               \tab Federal or state government              \cr
+    		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche) \tab Non-profit organization (e.g. church)    
+		}
+}
+
+\enc{}{}
+  \item{\code{building_constr_year}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		 1 \tab Vor 1919        \tab Before 1919   \cr
+    		 2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		 3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		 4 \tab 1979 - 1986     \tab 1979 - 1986   \cr
+    		 5 \tab 1987 - 1990     \tab 1987 - 1990   \cr
+    		 6 \tab 1991 - 1995     \tab 1991 - 1995   \cr
+    		 7 \tab 1996 - 2000     \tab 1996 - 2000   \cr
+    		 8 \tab 2001 - 2004     \tab 2001 - 2004   \cr
+    		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
+    		10 \tab 2009 und später \tab 2009 and later
+		}
+}
+
+\enc{}{}
+  \item{\code{building_dwellings}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab 1 Wohnung             \tab 1 Apartment           \cr
+    		2 \tab 2 Wohnungen           \tab 2 Apartments          \cr
+    		3 \tab 3 - 6 Wohnungen       \tab 3 - 6 Apartments      \cr
+    		4 \tab 7 - 12 Wohnungen      \tab 7 - 12 Apartments     \cr
+    		5 \tab 13 und mehr Wohnungen \tab 13 and more Apartments
+		}
+}
+
+\enc{}{}
+  \item{\code{building_size}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		 1 \tab Freistehendes Einfamilienhaus           \tab Detached single-family house              \cr
+    		 2 \tab Einfamilienhaus: Doppelhaushälfte       \tab Single-family house: semi-detached        \cr
+    		 3 \tab Einfamilienhaus: Reihenhaus             \tab Single-family house: terraced             \cr
+    		 4 \tab Freistehendes Zweifamilienhaus          \tab Detached two-family house                 \cr
+    		 5 \tab Zweifamilienhaus: Doppelhaushälfte      \tab Two-family house: semi-detached           \cr
+    		 6 \tab Zweifamilienhaus: Reihenhaus            \tab Two-family house: terraced                \cr
+    		 7 \tab Mehrfamilienhaus: 3-6 Wohnungen         \tab Multi-family house: 3-6 apartments        \cr
+    		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen        \tab Multi-family house: 7-12 apartments       \cr
+    		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen \tab Multi-family house: 13 and more apartments\cr
+    		10 \tab Anderer Gebäudetyp                      \tab Other building type                       
+		}
+}
+
+\enc{}{}
+  \item{\code{building_type}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
+    		 11 \tab Wohngebäude                    \tab Residential building                        \cr
+    		111 \tab Wohngebäude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
+    		112 \tab Wohnheim                       \tab Dormitory                                   \cr
+    		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            
+		}
+}
+
+\enc{}{}
+  \item{\code{building_design}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab Freistehendes Haus \tab Detached house     \cr
+    		2 \tab Doppelhaus Hälfte  \tab Semi-detached house\cr
+    		3 \tab Gereihtes Haus     \tab Terraced house     \cr
+    		4 \tab Anderer Gebäudetyp \tab Other building type
+		}
+}
+
+\enc{}{}
+  \item{\code{building_heat_type}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
+    		2 \tab Etagenheizung                                    \tab Self-contained central heating                                \cr
+    		3 \tab Blockheizung                                     \tab Block heating                                                 \cr
+    		4 \tab Zentralheizung                                   \tab Central heating                                               \cr
+    		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
+    		6 \tab Keine Heizung im Gebäude oder in den Wohnungen   \tab No heating in the building or in the apartments               
+		}
+}
+
+\enc{}{}
+  \item{\code{building_heat_src}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab Gas                            \tab Gas                             \cr
+    		2 \tab Heizöl                         \tab Heating oil                     \cr
+    		3 \tab Holz(pellets)                  \tab Wood (pellets)                  \cr
+    		4 \tab Biomasse (ohne Holz), Biogas   \tab Biomass (no wood), biogas       \cr
+    		5 \tab Solar-/Geothermie, Wärmepumpen \tab Solar, geothermal, heat pumps   \cr
+    		6 \tab Strom (ohne Wärmepumpen)       \tab Electric heating (no heat pumps)\cr
+    		7 \tab Kohle                          \tab Coal                            \cr
+    		8 \tab Fernwärme                      \tab District heating                \cr
+    		9 \tab Kein Energieträger             \tab No heating                      
+		}
+}
+
+
 }}

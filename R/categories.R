@@ -466,9 +466,9 @@ make_rd_categories <- function() { # nocov start
     ltx <- sinew::tabular(categories[[x]])
     ltx <- gsub("#' ?", "\t\t", ltx)
     header <- sprintf("\\code{%s}", x)
-    sprintf("  \\item{%s}{\n%s}", header, ltx)
+    sprintf("  \\item{%s}{\n%s}\n\n", header, ltx)
   })
-  tb <- paste(tb, collapse = "\\emph{}")
+  tb <- paste(tb, collapse = "\\enc{}{}\n")
   tb <- gsub("\u2265", ">=", tb)
   sprintf("\\section{Categories}{\n\\describe{\n%s\n}}", tb)
 } # nocov end
