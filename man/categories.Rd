@@ -13,6 +13,11 @@ z22_categories(feature)
 of available features. If a feature is provided that does not have
 categories, generates a table based on the feature description.}
 }
+\value{
+A tibble containing the category code (\code{code}) as well as
+German and English labels (\code{german} and \code{english}). Each row
+relates to a category of a feature.
+}
 \description{
 While some features contain total counts or averages, others contain figures
 classified by certain categories. You can access these tables

@@ -65,6 +65,12 @@
 #' always represent the South-west of the grid cells. Centroids represent
 #' the geographic location of grid cells better which is why they are used.
 #'
+#' By default, data are downloaded from the
+#' \href{https://github.com/jslth/z22data}{z22data} data repository which
+#' stores all pre-processed data. You can download this repository and use
+#' it offline or use an entirely different repository by setting
+#' \code{options(z22.data_repo = "path/to/z22data")}.
+#'
 #' @export
 #'
 #' @examplesIf arrow::codec_is_available("zstd")

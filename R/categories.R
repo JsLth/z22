@@ -11,6 +11,10 @@
 #' of available features. If a feature is provided that does not have
 #' categories, generates a table based on the feature description.
 #'
+#' @returns A tibble containing the category code (\code{code}) as well as
+#' German and English labels (\code{german} and \code{english}). Each row
+#' relates to a category of a feature.
+#'
 #' @evalRd make_rd_categories()
 #' @name categories
 #' @export

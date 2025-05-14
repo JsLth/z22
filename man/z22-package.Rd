@@ -6,7 +6,7 @@
 \alias{z22-package}
 \title{z22: Official Gridded Data from the German Census 2022}
 \description{
-Quickly and easily retrieve gridded census data from Germany's 2011 and 2022 censuses.
+Provides fast and easy access to German census grid data from the 2011 and 2022 censuses \url{https://www.zensus2022.de/}, including a wide range of socio-economic indicators at multiple spatial resolutions (100m, 1km, 10km). Enables efficient download, processing, and analysis of large census datasets covering population, households, families, dwellings, and buildings. Harmonized data structures allow direct comparison with the 2011 census, supporting temporal and spatial analyses. Facilitates conversion of data into common formats for spatial analysis and mapping ('terra', 'sf', 'ggplot2').
 }
 \seealso{
 Useful links:
