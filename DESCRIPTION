@@ -19,7 +19,6 @@ License: MIT + file LICENSE
 URL: https://github.com/jslth/z22/, https://jslth.github.io/z22/
 BugReports: https://github.com/jslth/z22/issues
 Encoding: UTF-8
-LazyData: true
 Depends: 
     R (>= 3.3.0)
 Imports:
@@ -38,4 +37,5 @@ Suggests:
     rmarkdown,
     testthat (>= 3.0.0)
 RoxygenNote: 7.3.2
+VignetteBuilder: knitr
 Config/testthat/edition: 3
