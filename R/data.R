@@ -214,6 +214,7 @@ z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, update_
 as_spatial_maybe <- function(x, rasterize, as_sf) {
   if (isTRUE(rasterize)) {
     check_loadable("terra", "rasterize the grid")
+    x <- as.data.frame(x)
     cnames <- names(x)
     cnames <- cnames[startsWith(cnames, "cat_") | cnames %in% "quality"]
 
