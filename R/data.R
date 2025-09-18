@@ -102,8 +102,8 @@ z22_data <- function(feature,
     categories <- setdiff(categories, 20) # nocov
   }
 
-  year <- substr(year, 3, 4)
-  dir <- sprintf("z%s_data_%s", year, res)
+  short_year <- substr(year, 3, 4)
+  dir <- sprintf("z%s_data_%s", short_year, res)
   out <- lapply(categories, function(cat) {
     fid <- sprintf("%s_%s", feature, cat)
     parq_file <- z22data_get(dir, fid, overwrite = update_cache)
@@ -115,13 +115,21 @@ z22_data <- function(feature,
     dplyr::left_join(x, y, by = c("x", "y"))
   })
 
+  # Exchange INSPIRE coordinates with geographic centroids
+  out <- shift_by_half(out, res)
+
   if (normalize) {
     # To normalize, the respective totals dataframe is downloaded and
     # used to divide the counts of the feature grid
     theme <- tolower(features[features$name %in% feature, ]$theme)
-    fid <- sprintf("%s_%s", theme, 0)
-    parq_file <- z22data_get(dir, fid, overwrite = update_cache)
-    total <- arrow::read_parquet(parq_file)
+    total <- z22_data(
+      theme,
+      year = year,
+      res = res,
+      update_cache = update_cache
+    )
+    names(total)[1] <- "value"
+
     out <- dplyr::left_join(out, total, by = c("x", "y"))
     out <- dplyr::mutate(out, dplyr::across(
       dplyr::starts_with("cat_"),
@@ -143,9 +151,6 @@ z22_data <- function(feature,
       ))
     }
   }
-
-  # Exchange INSPIRE coordinates with geographic centroids
-  out <- shift_by_half(out, res)
 
   out <- move_to_front(out, is_cat_col(out))
   as_spatial_maybe(out, rasterize = rasterize, as_sf = as_sf)
