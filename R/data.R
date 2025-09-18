@@ -217,11 +217,18 @@ as_spatial_maybe <- function(x, rasterize, as_sf) {
     check_loadable("terra", "rasterize the grid")
     cnames <- names(x)
     cnames <- cnames[startsWith(cnames, "cat_") | cnames %in% "quality"]
-    rasters <- lapply(cnames, function(cat) {
-      terra::rast(x[c("x", "y", cat)], type = "xyz", crs = "EPSG:3035")
-    })
-    rasters <- terra::sds(rasters)
-    names(rasters) <- cnames
+
+    if (length(cnames)) {
+      rasters <- lapply(cnames, function(cat) {
+        terra::rast(x[c("x", "y", cat)], type = "xyz", crs = "EPSG:3035")
+      })
+
+      rasters <- do.call(c, rasters)
+      names(rasters) <- cnames
+    } else {
+      rasters <- terra::rast(x, crs = "EPSG:3035")
+    }
+
     rasters
   } else if (isTRUE(as_sf)) {
     check_loadable("sf", "convert the grid to an sf object")

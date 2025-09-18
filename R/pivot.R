@@ -26,15 +26,17 @@
 z22_pivot_longer <- function(.data, feature, lang = c("english", "german")) {
   lang <- match.arg(lang)
 
-  if (inherits(.data, "SpatRasterDataset")) {
-    sds_pivot_longer(.data, feature, lang)
+  if (inherits(.data, "SpatRaster")) {
+    rast_pivot_longer(.data, feature, lang)
   } else if (is.data.frame(.data)) {
     df_pivot_longer(.data, feature, lang)
+  } else {
+    cli::cli_abort("`.data` must be a SpatRaster or a (sf) dataframe.")
   }
 }
 
 
-sds_pivot_longer <- function(.data, feature, lang) {
+rast_pivot_longer <- function(.data, feature, lang) {
   cats <- z22_categories(feature)
   .data_list <- lapply(.data, terra::as.data.frame, xy = TRUE)
   .data <- dplyr::bind_rows(.data_list, .id = "category")

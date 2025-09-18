@@ -79,8 +79,8 @@ test_that("data can be downloaded and prepared", {
 
   skip_if_not_installed("terra")
   grid4 <- z22_data("citizenship", res = "10km", rasterize = TRUE)
-  expect_s4_class(grid4, "SpatRasterDataset")
-  expect_length(grid4, 2)
+  expect_s4_class(grid4, "SpatRaster")
+  expect_equal(terra::nlyr(grid4), 2)
 
   skip_if_not_installed("sf")
   grid5 <- z22_data("citizenship", res = "10km", as_sf = TRUE)
@@ -93,6 +93,11 @@ test_that("grid can be downloaded", {
   expect_error(z22_grid(year = -999), "for year")
   expect_error(z22_grid(res = "test"), "resolution of")
   expect_named(z22_grid("100km"), c("x", "y"))
+
+  skip_if_not_installed("terra")
+  raster <- z22_grid("100km", rasterize = TRUE)
+  expect_s4_class(raster, "SpatRaster")
+  expect_equal(terra::res(raster), c(1e+05, 1e+05))
 })
 
 
