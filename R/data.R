@@ -145,9 +145,7 @@ z22_data <- function(feature,
   }
 
   # Exchange INSPIRE coordinates with geographic centroids
-  half <- switch(res, "100m" = 50, "1km" = 500, "10km" = 5000)
-  out$x <- out$x + half
-  out$y <- out$y + half
+  out <- shift_by_half(out, res)
 
   out <- move_to_front(out, is_cat_col(out))
   as_spatial_maybe(out, rasterize = rasterize, as_sf = as_sf)
@@ -208,6 +206,7 @@ z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, update_
   fid <- sprintf("grid_%s_%s", year, res)
   path <- z22data_get("grids", fid, overwrite = update_cache)
   grid <- arrow::read_parquet(path)
+  grid <- shift_by_half(grid, res)
   as_spatial_maybe(grid, rasterize = rasterize, as_sf = as_sf)
 }
 
@@ -294,4 +293,12 @@ z22data_download <- function(dir,
 is_cat_col <- function(.data) {
   names <- names(.data)
   startsWith(names, "cat_")
+}
+
+
+shift_by_half <- function(grid, res) {
+  half <- res_to_m(res) / 2
+  grid$x <- grid$x + half
+  grid$y <- grid$y + half
+  grid
 }
