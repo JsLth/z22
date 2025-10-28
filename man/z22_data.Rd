@@ -11,8 +11,7 @@ z22_data(
   res = "1km",
   all_cells = FALSE,
   normalize = FALSE,
-  rasterize = FALSE,
-  as_sf = FALSE,
+  as = c("df", "sf", "raster"),
   update_cache = FALSE
 )
 }
@@ -48,11 +47,12 @@ download (the total number of units). Also note that sometimes (possibly due
 to the key-cell method), shares of over 1 are computed. Defaults to
 \code{FALSE}.}
 
-\item{rasterize}{If \code{TRUE} and the \code{terra} package is installed,
-converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
-
-\item{as_sf}{If \code{TRUE} and the \code{sf} package is installed,
-converts the attribute coordinates to an \code{sf} tibble.}
+\item{as}{Specifies the output class. Must be one of \code{"df"},
+\code{"sf"}, or \code{"raster"}. If \code{"df"} (default), returns flat
+coordinates in a dataframe. If \code{"sf"} (and the \code{sf} package is
+installed), converts the coordinates to an \code{sf} tibble. If
+\code{"raster"} (and the \code{terra} package is installed), converts the
+coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 
 \item{update_cache}{By default, both functions cache attribute files for
 the remainder of the R session. They are downloaded to a temporary directory
@@ -63,12 +63,11 @@ for this call and overwrites the currently cached attribute file (if any)
 with a fresh one. Defaults to \code{FALSE}, i.e. always cache.}
 }
 \value{
-A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
-\code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{rasterize}
-and \code{as_sf} arguments.
+A tibble, \code{\link[terra:rast]{SpatRaster}} or
+\code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{as} argument.
 
 If a tibble is returned each category in \code{categories} is stored in
-a column. If a \code{SpatRasterDataset} is returned, each category is a
+a column. If a \code{SpatRaster} is returned, each category is a
 named layer.
 }
 \description{
@@ -101,7 +100,7 @@ it offline or use an entirely different repository by setting
 \examples{
 \dontshow{if (arrow::codec_is_available("zstd")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{# Get gridded population
-pop <- z22_data("population", res = "10km", rasterize = TRUE)
+pop <- z22_data("population", res = "10km", as = "raster")
 terra::plot(pop$cat_0)
 
 # Get data about the number of people born in a EU27 country

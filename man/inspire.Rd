@@ -8,7 +8,7 @@
 \usage{
 z22_inspire_generate(coords, res = NULL, legacy = FALSE)
 
-z22_inspire_extract(inspire, as_sf = FALSE)
+z22_inspire_extract(inspire, as = c("df", "sf"))
 }
 \arguments{
 \item{coords}{A list, matrix, or dataframe where the X and Y coordinates are

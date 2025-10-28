@@ -49,21 +49,23 @@ on the vacancy share in Germany at a 1x1 km resolution.
 library(z22)
 library(terra)
 
-grid_vac <- z22_data("vacancies", res = "10km", rasterize = TRUE)
+grid_vac <- z22_data("vacancies", res = "10km", as = "raster")
 grid_vac
-#> class       : SpatRasterDataset 
-#> subdatasets : 1 
-#> dimensions  : 87, 65 (nrow, ncol)
-#> nlyr        : 1 
+#> class       : SpatRaster 
+#> dimensions  : 87, 65, 1  (nrow, ncol, nlyr)
 #> resolution  : 10000, 10000  (x, y)
 #> extent      : 4035000, 4685000, 2685000, 3555000  (xmin, xmax, ymin, ymax)
 #> coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035) 
-#> source(s)   : memory 
-#> names       : cat_0
+#> source(s)   : memory
+#> name        : cat_0 
+#> min value   :  1.34 
+#> max value   : 22.51
 ```
 
 <details>
+
 <summary>
+
 Code for the plot
 </summary>
 

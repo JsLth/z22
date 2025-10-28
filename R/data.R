@@ -39,10 +39,12 @@
 #' download (the total number of units). Also note that sometimes (possibly due
 #' to the key-cell method), shares of over 1 are computed. Defaults to
 #' \code{FALSE}.
-#' @param rasterize If \code{TRUE} and the \code{terra} package is installed,
-#' converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.
-#' @param as_sf If \code{TRUE} and the \code{sf} package is installed,
-#' converts the attribute coordinates to an \code{sf} tibble.
+#' @param as Specifies the output class. Must be one of \code{"df"},
+#' \code{"sf"}, or \code{"raster"}. If \code{"df"} (default), returns flat
+#' coordinates in a dataframe. If \code{"sf"} (and the \code{sf} package is
+#' installed), converts the coordinates to an \code{sf} tibble. If
+#' \code{"raster"} (and the \code{terra} package is installed), converts the
+#' coordinates to a \code{\link[terra:rast]{SpatRaster}}.
 #' @param update_cache By default, both functions cache attribute files for
 #' the remainder of the R session. They are downloaded to a temporary directory
 #' and - if the file to download already exists - are recovered from the cache.
@@ -51,12 +53,11 @@
 #' for this call and overwrites the currently cached attribute file (if any)
 #' with a fresh one. Defaults to \code{FALSE}, i.e. always cache.
 #'
-#' @returns A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
-#' \code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{rasterize}
-#' and \code{as_sf} arguments.
+#' @returns A tibble, \code{\link[terra:rast]{SpatRaster}} or
+#' \code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{as} argument.
 #'
 #' If a tibble is returned each category in \code{categories} is stored in
-#' a column. If a \code{SpatRasterDataset} is returned, each category is a
+#' a column. If a \code{SpatRaster} is returned, each category is a
 #' named layer.
 #'
 #' @details
@@ -75,7 +76,7 @@
 #'
 #' @examplesIf arrow::codec_is_available("zstd")
 #' \donttest{# Get gridded population
-#' pop <- z22_data("population", res = "10km", rasterize = TRUE)
+#' pop <- z22_data("population", res = "10km", as = "raster")
 #' terra::plot(pop$cat_0)
 #'
 #' # Get data about the number of people born in a EU27 country
@@ -86,8 +87,7 @@ z22_data <- function(feature,
                      res = "1km",
                      all_cells = FALSE,
                      normalize = FALSE,
-                     rasterize = FALSE,
-                     as_sf = FALSE,
+                     as = c("df", "sf", "raster"),
                      update_cache = FALSE) {
   check_year(year)
   check_resolution(res, year)
@@ -96,6 +96,7 @@ z22_data <- function(feature,
   categories <- categories %||% z22_categories(feature)$code
   check_category(categories, feature)
   check_normalize(normalize, feature)
+  as <- match.arg(as)
 
   # another country group was added in 2022 which is not available in 2011
   if (year == 2011 && feature %in% c("birth_country", "citizenship_group")) {
@@ -153,7 +154,7 @@ z22_data <- function(feature,
   }
 
   out <- move_to_front(out, is_cat_col(out))
-  as_spatial_maybe(out, rasterize = rasterize, as_sf = as_sf)
+  as_spatial_maybe(out, as = as)
 }
 
 
@@ -185,13 +186,20 @@ z22_data <- function(feature,
 #'
 #' @export
 #'
+#' @returns A tibble, \code{\link[terra:rast]{SpatRaster}} or
+#' \code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{as} argument.
+#'
 #' @examples
 #' \donttest{# Get high-res grid as tibble
 #' z22_grid("100m")
 #'
 #' # Get low-res grid as raster
-#' z22_grid("1km", rasterize = TRUE)}
-z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, update_cache = FALSE) {
+#' z22_grid("1km", as = "raster")}
+z22_grid <- function(res,
+                     year = 2019,
+                     as = c("df", "sf", "raster"),
+                     update_cache = FALSE) {
+  as <- match.arg(as)
   years <- c(2015, 2017, 2018, 2019)
   if (!year %in% years) {
     cli::cli_abort(c(
@@ -212,35 +220,40 @@ z22_grid <- function(res, year = 2019, rasterize = FALSE, as_sf = FALSE, update_
   path <- z22data_get("grids", fid, overwrite = update_cache)
   grid <- arrow::read_parquet(path)
   grid <- shift_by_half(grid, res)
-  as_spatial_maybe(grid, rasterize = rasterize, as_sf = as_sf)
+  as_spatial_maybe(grid, as = as)
 }
 
 
-as_spatial_maybe <- function(x, rasterize, as_sf) {
-  if (isTRUE(rasterize)) {
-    check_loadable("terra", "rasterize the grid")
-    x <- as.data.frame(x)
-    cnames <- names(x)
-    cnames <- cnames[startsWith(cnames, "cat_") | cnames %in% "quality"]
+as_spatial_maybe <- function(x, as) {
+  switch(
+    as,
+    raster = {
+      check_loadable("terra", "rasterize the grid")
+      x <- as.data.frame(x)
+      cnames <- names(x)
+      cnames <- cnames[startsWith(cnames, "cat_") | cnames %in% "quality"]
 
-    if (length(cnames)) {
-      rasters <- lapply(cnames, function(cat) {
-        terra::rast(x[c("x", "y", cat)], type = "xyz", crs = "EPSG:3035")
-      })
+      if (length(cnames)) {
+        rasters <- lapply(cnames, function(cat) {
+          terra::rast(x[c("x", "y", cat)], type = "xyz", crs = "EPSG:3035")
+        })
 
-      rasters <- do.call(c, rasters)
-      names(rasters) <- cnames
-    } else {
-      rasters <- terra::rast(x, crs = "EPSG:3035")
-    }
+        rasters <- do.call(c, rasters)
+        names(rasters) <- cnames
+      } else {
+        rasters <- terra::rast(x, crs = "EPSG:3035")
+      }
 
-    rasters
-  } else if (isTRUE(as_sf)) {
-    check_loadable("sf", "convert the grid to an sf object")
-    sf::st_as_sf(x, coords = c("x", "y"), crs = 3035)
-  } else {
+      rasters
+    },
+
+    sf = {
+      check_loadable("sf", "convert the grid to an sf object")
+      sf::st_as_sf(x, coords = c("x", "y"), crs = 3035)
+    },
+
     x
-  }
+  )
 }
 
 

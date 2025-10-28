@@ -68,7 +68,7 @@ When I talk about **grids**, I mean a geographical grid net according to the EU 
 
 
 ``` r
-grid <- z22_grid("10km", as_sf = TRUE)
+grid <- z22_grid("10km", as = "sf")
 ```
 
 
@@ -76,15 +76,15 @@ grid <- z22_grid("10km", as_sf = TRUE)
 plot(grid, pch = 15, cex = 0.5)
 ```
 
-<img src="../man/figures/vignette/unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/vignette/unnamed-chunk-5-1.png" width="100%" />
 
 Although the data chunks are relatively small in size, downloading grids and features again and again can take a while and strain internet tariffs unnecessarily. That's why data files are automatically cached, i.e., if a file is downloaded again, it is simply read from the cache. You can update stale cache files using the `update_cache` argument.
 
-To equip a raw raster with feature values, you can use the `z22_data` function. Here, I download data on the type of heating in buildings across Germany. Using the `rasterize` argument, I can convert the output to a `SpatRaster` from the `{terra}` package.
+To equip a raw raster with feature values, you can use the `z22_data` function. Here, I download data on the type of heating in buildings across Germany. Using `as = "raster"`, I can convert the output to a `SpatRaster` from the `{terra}` package.
 
 
 ``` r
-grid_ht <- z22_data("building_heat_type", res = "10km", rasterize = TRUE)
+grid_ht <- z22_data("building_heat_type", res = "10km", as = "raster")
 ```
 
 After rasterization, the results are returned in a `SpatRasterDataset`, which is essentially a list of `SpatRaster`s. To plot them, you can use the `z22_pivot_longer` function to turn them to a long (and facetable) table.
@@ -102,7 +102,7 @@ ggplot(df_ht) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
 
-<img src="../man/figures/vignette/multiplot-1.png" width="100%" />
+<img src="man/figures/vignette/multiplot-1.png" width="100%" />
 
 However, as you can see, we are dealing with absolute counts, which makes the meaningfulness of the data questionable on its own. The spatial patterns look very similar in each facet and mostly trace spatial population patterns of Germany. To retrieve normalized (= percentage) figures, we can use the `normalize` argument of `z22_data`. Re-downloading the data should also take much less time because the data files are still cached.
 
@@ -111,7 +111,7 @@ However, as you can see, we are dealing with absolute counts, which makes the me
 grid_ht <- z22_data(
   "building_heat_type",
   res = "10km",
-  rasterize = TRUE,
+  as = "raster",
   normalize = TRUE
 )
 ```
@@ -131,7 +131,7 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="../man/figures/vignette/normalize_plot-1.png" width="100%" />
+<img src="man/figures/vignette/normalize_plot-1.png" width="100%" />
 
 By visualizing shares, we can observe that spatial differences are not nearly as pronounced as the total numbers had us believe. Particularly central heating is almost spatially homogeneous. Note that the `normalize` argument is only sensible for features that are counts.
 
@@ -143,7 +143,7 @@ grid_ht <- z22_data(
   "marital_status",
   categories = 6,
   res = "10km",
-  rasterize = TRUE
+  as = "raster"
 )
 ```
 
@@ -162,7 +162,7 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="../man/figures/vignette/patchwork_plot-1.png" width="100%" />
+<img src="man/figures/vignette/patchwork_plot-1.png" width="100%" />
 
 To fill these gaps, you can request all cells using the `all_cells` argument.
 
@@ -172,9 +172,10 @@ grid_ht <- z22_data(
   "marital_status",
   categories = 6,
   res = "10km",
-  rasterize = TRUE,
+  as = "raster",
   all_cells = TRUE
 )
+#> Error in switch(as, raster = {: EXPR must be a length 1 vector
 ```
 
 <details><summary>Code for the plot</summary>
@@ -192,18 +193,19 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="../man/figures/vignette/allcells_plot-1.png" width="100%" />
+<img src="man/figures/vignette/allcells_plot-1.png" width="100%" />
 
 Working with 10x10 km grids is cool and all, but the census grids get really exciting when looking at 100x100 m grids. Let's, for example, look at the average age distribution in the area of Berlin.
 
 
 ``` r
-grid_age <- z22_data("age_avg", res = "100m", rasterize = TRUE, all_cells = TRUE)
+grid_age <- z22_data("age_avg", res = "100m", as = "raster", all_cells = TRUE)
+#> Error in switch(as, raster = {: EXPR must be a length 1 vector
 
 ext <- ext(c(4532432, 4574087, 3257338, 3287499))
 berlin_age <- crop(grid_age$cat_0, ext)
+#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'crop': object 'grid_age' not found
 plot(berlin_age)
+#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'berlin_age' not found
 ```
-
-<img src="../man/figures/vignette/100m_plot-1.png" width="100%" />
 

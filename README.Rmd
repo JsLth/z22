@@ -59,7 +59,7 @@ in Germany at a 1x1 km resolution.
 library(z22)
 library(terra)
 
-grid_vac <- z22_data("vacancies", res = "10km", rasterize = TRUE)
+grid_vac <- z22_data("vacancies", res = "10km", as = "raster")
 grid_vac
 ```
 

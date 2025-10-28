@@ -4,13 +4,7 @@
 \alias{z22_grid}
 \title{Get INSPIRE grid}
 \usage{
-z22_grid(
-  res,
-  year = 2019,
-  rasterize = FALSE,
-  as_sf = FALSE,
-  update_cache = FALSE
-)
+z22_grid(res, year = 2019, as = c("df", "sf", "raster"), update_cache = FALSE)
 }
 \arguments{
 \item{res}{Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
@@ -19,11 +13,12 @@ z22_grid(
 \item{year}{Version of the grid. Can be 2015, 2017, 2018 and 2019. Defaults
 to the latest version.}
 
-\item{rasterize}{If \code{TRUE} and the \code{terra} package is installed,
-converts the attribute coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
-
-\item{as_sf}{If \code{TRUE} and the \code{sf} package is installed,
-converts the attribute coordinates to an \code{sf} tibble.}
+\item{as}{Specifies the output class. Must be one of \code{"df"},
+\code{"sf"}, or \code{"raster"}. If \code{"df"} (default), returns flat
+coordinates in a dataframe. If \code{"sf"} (and the \code{sf} package is
+installed), converts the coordinates to an \code{sf} tibble. If
+\code{"raster"} (and the \code{terra} package is installed), converts the
+coordinates to a \code{\link[terra:rast]{SpatRaster}}.}
 
 \item{update_cache}{By default, both functions cache attribute files for
 the remainder of the R session. They are downloaded to a temporary directory
@@ -34,13 +29,8 @@ for this call and overwrites the currently cached attribute file (if any)
 with a fresh one. Defaults to \code{FALSE}, i.e. always cache.}
 }
 \value{
-A tibble, \code{\link[terra:sds]{SpatRasterDataset}} or
-\code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{rasterize}
-and \code{as_sf} arguments.
-
-If a tibble is returned each category in \code{categories} is stored in
-a column. If a \code{SpatRasterDataset} is returned, each category is a
-named layer.
+A tibble, \code{\link[terra:rast]{SpatRaster}} or
+\code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{as} argument.
 }
 \description{
 Retrieve the entire INSPIRE grid.
@@ -66,5 +56,5 @@ Note the uncompressed object sizes of the output (2019 version):
 z22_grid("100m")
 
 # Get low-res grid as raster
-z22_grid("1km", rasterize = TRUE)}
+z22_grid("1km", as = "raster")}
 }

@@ -51,8 +51,8 @@ test_that("inspire can be converted", {
   coords6 <- dplyr::tibble(x = c(500, 1500), y = c(500, 1200))
   expect_equal(z22_inspire_generate(coords5, legacy = TRUE), c("1kmN0E0", "1kmN1E1"))
   expect_error(z22_inspire_generate(coords6), "properly aligned")
-  expect_warning(z22_inspire_extract(c("CRS4326RES100mN0E0", "CRS3035RES100mN1E1"), as_sf = TRUE))
-  expect_equal(sf::st_crs(z22_inspire_extract(c("1kmN0E0", "1kmN1E1"), as_sf = TRUE))$epsg, 3035)
+  expect_warning(z22_inspire_extract(c("CRS4326RES100mN0E0", "CRS3035RES100mN1E1"), as = "sf"))
+  expect_equal(sf::st_crs(z22_inspire_extract(c("1kmN0E0", "1kmN1E1"), as = "sf"))$epsg, 3035)
 })
 
 
@@ -78,12 +78,12 @@ test_that("data can be downloaded and prepared", {
   expect_gt(nrow(grid3), nrow(grid1))
 
   skip_if_not_installed("terra")
-  grid4 <- z22_data("citizenship", res = "10km", rasterize = TRUE)
+  grid4 <- z22_data("citizenship", res = "10km", as = "raster")
   expect_s4_class(grid4, "SpatRaster")
   expect_equal(terra::nlyr(grid4), 2)
 
   skip_if_not_installed("sf")
-  grid5 <- z22_data("citizenship", res = "10km", as_sf = TRUE)
+  grid5 <- z22_data("citizenship", res = "10km", as = "sf")
   expect_s3_class(grid5, "sf")
 })
 
@@ -95,7 +95,7 @@ test_that("grid can be downloaded", {
   expect_named(z22_grid("100km"), c("x", "y"))
 
   skip_if_not_installed("terra")
-  raster <- z22_grid("100km", rasterize = TRUE)
+  raster <- z22_grid("100km", as = "raster")
   expect_s4_class(raster, "SpatRaster")
   expect_equal(terra::res(raster), c(1e+05, 1e+05))
 })
@@ -116,8 +116,8 @@ test_that("data can be pivoted", {
   old <- options(z22.data_repo = test_path("fixtures"))
   on.exit(options(old))
   piv1 <- z22_pivot_longer(z22_data("citizenship"), "citizenship")
-  piv2 <- z22_pivot_longer(z22_data("citizenship", as_sf = TRUE), "citizenship")
-  piv3 <- z22_pivot_longer(z22_data("citizenship", rasterize = TRUE), "citizenship")
+  piv2 <- z22_pivot_longer(z22_data("citizenship", as = "sf"), "citizenship")
+  piv3 <- z22_pivot_longer(z22_data("citizenship", as = "raster"), "citizenship")
   coords <- sf::st_coordinates(piv2)
   piv2 <- dplyr::tibble(sf::st_drop_geometry(piv2), x = coords[, "X"], y = coords[, "Y"])
   names(piv2) <- tolower(names(piv2))

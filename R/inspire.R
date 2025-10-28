@@ -99,7 +99,8 @@ z22_inspire_generate <- function(coords, res = NULL, legacy = FALSE) {
 #' @param inspire A vector of INSPIRE IDs. Can be either legacy or non-legacy.
 #' @param as_sf Whether to return an object of class \code{sfc} or a tibble.
 #' @export
-z22_inspire_extract <- function(inspire, as_sf = FALSE) {
+z22_inspire_extract <- function(inspire, as = c("df", "sf")) {
+  as <- match.arg(as)
   if (all(startsWith(inspire, "CRS"))) {
     parsed <- utils::strcapture(
       "^CRS([0-9]+)RES([0-9]+)mN([0-9]+)E([0-9]+)$",
@@ -118,23 +119,27 @@ z22_inspire_extract <- function(inspire, as_sf = FALSE) {
   parsed$x <- parsed$x * parsed$res + parsed$res / 2
   parsed$y <- parsed$y * parsed$res + parsed$res / 2
 
-  if (as_sf) {
-    crs <- unique(parsed$crs)
+  switch(
+    as,
 
-    if (is.null(crs)) {
-      crs <- 3035
-    }
+    sf = {
+      crs <- unique(parsed$crs)
 
-    if (length(crs) > 1) {
-      cli::cli_warn("More than one CRS parsed. Taking the first one.")
-      crs <- crs[1]
-    }
+      if (is.null(crs)) {
+        crs <- 3035
+      }
 
-    parsed <- sf::st_as_sf(parsed, coords = c("x", "y"), crs = crs)
-    sf::st_geometry(parsed)
-  } else {
-    dplyr::tibble(parsed[c("x", "y")])
-  }
+      if (length(crs) > 1) {
+        cli::cli_warn("More than one CRS parsed. Taking the first one.")
+        crs <- crs[1]
+      }
+
+      parsed <- sf::st_as_sf(parsed, coords = c("x", "y"), crs = crs)
+      sf::st_geometry(parsed)
+    },
+
+    df = dplyr::tibble(parsed[c("x", "y")])
+  )
 }
 
 
