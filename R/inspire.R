@@ -5,14 +5,12 @@
 #'
 #' An INSPIRE ID contains information about the CRS, cell size and the
 #' ETRS89-LAEA coordinates of the south-west corner of the grid cell in its
-#' format. Only the relevant first digits are used in place of the full
-#' coordinates. In case of \code{res = "100km"}, these are the first two
-#' digits, for \code{res = "100m"} the first five digits.
+#' format.
 #'
-#' \preformatted{CRS3035{cellsize}mN{y}E{x} # new format
-#' {cellsize}N{y}E{x}         # legacy format}
+#' \preformatted{CRS3035RES{cellsize}mN{y}E{x} # long format
+#' {cellsize}N{y}E{x}         # short format}
 #'
-#' The legacy format always uses meters while the legacy formats aggregates
+#' The short format always uses meters while the short formats aggregates
 #' cell sizes greater or equal to 1000m to km.
 #'
 #' @param coords A list, matrix, or dataframe where the X and Y coordinates are
@@ -24,8 +22,12 @@
 #' @param res Resolution of the grid. Can be \code{"100m"}, \code{"250m"},
 #' \code{"1km"}, \code{"5km"}, \code{"10km"}, or \code{"100km"}. If
 #' \code{NULL}, tries to guess the resolution from the provided coordinates.
-#' @param legacy If \code{TRUE}, generates legacy INSPIRE ID. Defaults to
+#' @param short If \code{TRUE}, generates short INSPIRE IDs. Defaults to
 #' \code{FALSE}.
+#' @param llc Do the coordinates in \code{coords} represent the lower-left
+#' corners of their cells? If \code{FALSE}, subtracts each coordinate by
+#' half of \code{res}. If \code{TRUE}, leaves them as-is. Defaults
+#' to \code{FALSE}, i.e., treat coordinates as cell centroids.
 #' @returns \code{z22_inspire_generate} returns a character vector containing
 #' the INSPIRE identifiers. \code{z22_inspire_extract} returns a dataframe
 #' or \code{\link[sf:st_sfc]{sfc}} object containing the points extracted from
@@ -49,23 +51,31 @@
 #'
 #' # Generate IDs from a dataframe
 #' coords <- tibble(x = c(4334150, 4334250), y = c(2684050, 2684050))
-#' identical(z22_inspire_extract(z22_inspire_generate(coords)), coords)
+#' identical(z22_inspire_extract(z22_inspire_generate(coords))[c("x", "y")], coords)
 #'
-#' # Extract coordinates from legacy ID strings
+#' # Extract coordinates from short ID strings
 #' z22_inspire_extract("100mN34000E44000")
 #'
 #' # Generate IDs from an sf dataframe
 #' if (requireNamespace("sf", quietly = TRUE)) {
-#'   coords <- sf::st_as_sf(coords, coords = c("x", "y"))
+#'   coords <- sf::st_as_sf(coords, coords = c("x", "y"), crs = 3035)
 #'   z22_inspire_generate(coords)
 #' }
-z22_inspire_generate <- function(coords, res = NULL, legacy = FALSE) {
+z22_inspire_generate <- function(coords,
+                                 res = NULL,
+                                 short = FALSE,
+                                 llc = FALSE) {
   if (inherits(coords, c("sf", "sfc"))) {
+    coords <- sf::st_transform(coords, 3035)
     coords <- sf::st_coordinates(coords)
   }
 
   if (is.matrix(coords)) {
     coords <- as.data.frame(coords)
+  }
+
+  if (!nrow(coords)) {
+    cli::cli_abort("Argument `coords` cannot be empty.")
   }
 
   colnames(coords) <- tolower(colnames(coords))
@@ -77,13 +87,22 @@ z22_inspire_generate <- function(coords, res = NULL, legacy = FALSE) {
     y <- coords[[2]]
   }
 
+  if (any(is.na(x)) || any(is.na(y))) {
+    cli::cli_abort("Argument `coords` contains missing values in the coordinates.")
+  }
+
   if (is.null(res)) {
     res <- guess_resolution(x, y)
   } else {
     res <- res_to_m(res)
   }
 
-  if (legacy) {
+  if (!llc) {
+    x <- x - res / 2
+    y <- y - res / 2
+  }
+
+  if (short) {
     x <- trunc(x / res)
     y <- trunc(y / res)
     res <- m_to_res(res)
@@ -95,11 +114,22 @@ z22_inspire_generate <- function(coords, res = NULL, legacy = FALSE) {
 
 
 #' @name inspire
-#' @param inspire A vector of INSPIRE IDs. Can be either legacy or non-legacy.
-#' @param as_sf Whether to return an object of class \code{sfc} or a tibble.
+#' @param inspire A vector of INSPIRE IDs. Can be either short or long format.
+#' @param as Specifies the output class. Must be one of \code{"df"} or
+#' \code{"sf"}. If \code{"df"} (default), returns flat
+#' coordinates in a dataframe. If \code{"sf"} (and the \code{sf} package is
+#' installed), converts the coordinates to an \code{sf} tibble.
+#' @param meta Whether to include parsed CRS and resolution in the output.
+#' If \code{FALSE}, output contains only coordinates. If \code{TRUE}, also
+#' contains columns \code{"crs"} and \code{"res"}.
 #' @export
-z22_inspire_extract <- function(inspire, as = c("df", "sf")) {
+z22_inspire_extract <- function(inspire, as = c("df", "sf"), meta = FALSE) {
   as <- match.arg(as)
+
+  if (!is.character(inspire) && !length(inspire) > 0) {
+    cli::cli_abort("Argument `inspire` must be a character vector with more than one value.")
+  }
+
   if (all(startsWith(inspire, "CRS"))) {
     parsed <- utils::strcapture(
       "^CRS([0-9]+)RES([0-9]+)mN([0-9]+)E([0-9]+)$",
@@ -113,10 +143,15 @@ z22_inspire_extract <- function(inspire, as = c("df", "sf")) {
       proto = list(res = character(), y = integer(), x = integer())
     )
     parsed$res <- res_to_m(parsed$res)
+
+    # add truncated zeroes
+    parsed$x <- parsed$x * parsed$res
+    parsed$y <- parsed$y * parsed$res
   }
 
-  parsed$x <- parsed$x * parsed$res + parsed$res / 2
-  parsed$y <- parsed$y * parsed$res + parsed$res / 2
+  # LLCs to centroids
+  parsed$x <- parsed$x + parsed$res / 2
+  parsed$y <- parsed$y + parsed$res / 2
 
   switch(
     as,
@@ -129,36 +164,52 @@ z22_inspire_extract <- function(inspire, as = c("df", "sf")) {
       }
 
       if (length(crs) > 1) {
-        cli::cli_warn("More than one CRS parsed. Taking the first one.")
-        crs <- crs[1]
+        cli::cli_abort("INSPIRE identifiers contain more than one CRS.")
       }
 
-      parsed <- sf::st_as_sf(parsed, coords = c("x", "y"), crs = crs)
-      sf::st_geometry(parsed)
+      if (!meta) {
+        parsed <- parsed[c("x", "y")]
+      }
+
+      sf::st_as_sf(parsed, coords = c("x", "y"), crs = crs)
     },
 
-    df = dplyr::tibble(parsed[c("x", "y")])
+    df = dplyr::tibble(parsed[c(if (meta) c("crs", "res"), "x", "y")])
   )
 }
 
 
-guess_resolution <- function(x, y) {
-  x <- x[1:2000] # take a sample
-  y <- y[1:2000]
+guess_resolution <- function(x, y, sample = 2000, tolerance = 1e-6) {
+  sample <- min(sample, length(x))
+  x <- x[seq(1, sample)]
+  y <- y[seq(1, sample)]
   diff_x <- diff(sort(x))
   diff_y <- diff(sort(y))
   diff_x <- diff_x[!diff_x == 0]
   diff_y <- diff_y[!diff_y == 0]
-  dist <- stats::median(c(diff_x, diff_y))
 
-  if (!dist %in% res_to_m(grid_reses)) {
-    cli::cli_abort(c(
-      "Provided coordinates are not properly aligned in a supported grid.",
-      "i" = "Supported grid resolutions are {.val {grid_reses}}."
-    ))
+  if (!length(diff_x) && !length(diff_y)) {
+    cli::cli_abort(
+      "Cannot determine resolution: not enough unique coordinates to form a grid."
+    )
   }
 
-  dist
+  res_x <- stats::median(diff_x)
+  res_y <- stats::median(diff_y)
+
+  if (!is.na(res_x) && any(abs(diff_x - res_x) > tolerance)) {
+    cli::cli_abort("Coordinates have non-uniform spacing in the X dimension.")
+  }
+
+  if (!is.na(res_y) && any(abs(diff_y - res_y) > tolerance)) {
+    cli::cli_abort("Coordinates have non-uniform spacing in the Y dimension.")
+  }
+
+  if (!is.na(res_x) && !is.na(res_y) && abs(res_x - res_y) > tolerance) {
+    cli::cli_abort("Coordinates form an anisotropic grid. X and Y coordinates have a different resolution.")
+  }
+
+  res_x
 }
 
 

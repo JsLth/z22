@@ -6,9 +6,9 @@
 \alias{z22_inspire_extract}
 \title{Generate INSPIRE IDs}
 \usage{
-z22_inspire_generate(coords, res = NULL, legacy = FALSE)
+z22_inspire_generate(coords, res = NULL, short = FALSE, llc = FALSE)
 
-z22_inspire_extract(inspire, as = c("df", "sf"))
+z22_inspire_extract(inspire, as = c("df", "sf"), meta = FALSE)
 }
 \arguments{
 \item{coords}{A list, matrix, or dataframe where the X and Y coordinates are
@@ -22,12 +22,24 @@ extracted using \code{\link[sf]{st_coordinates}}.}
 \code{"1km"}, \code{"5km"}, \code{"10km"}, or \code{"100km"}. If
 \code{NULL}, tries to guess the resolution from the provided coordinates.}
 
-\item{legacy}{If \code{TRUE}, generates legacy INSPIRE ID. Defaults to
+\item{short}{If \code{TRUE}, generates short INSPIRE IDs. Defaults to
 \code{FALSE}.}
 
-\item{inspire}{A vector of INSPIRE IDs. Can be either legacy or non-legacy.}
+\item{llc}{Do the coordinates in \code{coords} represent the lower-left
+corners of their cells? If \code{FALSE}, subtracts each coordinate by
+half of \code{res}. If \code{TRUE}, leaves them as-is. Defaults
+to \code{FALSE}, i.e., treat coordinates as cell centroids.}
 
-\item{as_sf}{Whether to return an object of class \code{sfc} or a tibble.}
+\item{inspire}{A vector of INSPIRE IDs. Can be either short or long format.}
+
+\item{as}{Specifies the output class. Must be one of \code{"df"} or
+\code{"sf"}. If \code{"df"} (default), returns flat
+coordinates in a dataframe. If \code{"sf"} (and the \code{sf} package is
+installed), converts the coordinates to an \code{sf} tibble.}
+
+\item{meta}{Whether to include parsed CRS and resolution in the output.
+If \code{FALSE}, output contains only coordinates. If \code{TRUE}, also
+contains columns \code{"crs"} and \code{"res"}.}
 }
 \value{
 \code{z22_inspire_generate} returns a character vector containing
@@ -42,14 +54,12 @@ Given INSPIRE identifiers, can also extract the X and Y coordinates.
 
 An INSPIRE ID contains information about the CRS, cell size and the
 ETRS89-LAEA coordinates of the south-west corner of the grid cell in its
-format. Only the relevant first digits are used in place of the full
-coordinates. In case of \code{res = "100km"}, these are the first two
-digits, for \code{res = "100m"} the first five digits.
+format.
 
-\preformatted{CRS3035{cellsize}mN{y}E{x} # new format
-{cellsize}N{y}E{x}         # legacy format}
+\preformatted{CRS3035RES{cellsize}mN{y}E{x} # long format
+{cellsize}N{y}E{x}         # short format}
 
-The legacy format always uses meters while the legacy formats aggregates
+The short format always uses meters while the short formats aggregates
 cell sizes greater or equal to 1000m to km.
 }
 \details{
@@ -66,14 +76,14 @@ library(dplyr, warn.conflicts = FALSE)
 
 # Generate IDs from a dataframe
 coords <- tibble(x = c(4334150, 4334250), y = c(2684050, 2684050))
-identical(z22_inspire_extract(z22_inspire_generate(coords)), coords)
+identical(z22_inspire_extract(z22_inspire_generate(coords))[c("x", "y")], coords)
 
-# Extract coordinates from legacy ID strings
+# Extract coordinates from short ID strings
 z22_inspire_extract("100mN34000E44000")
 
 # Generate IDs from an sf dataframe
 if (requireNamespace("sf", quietly = TRUE)) {
-  coords <- sf::st_as_sf(coords, coords = c("x", "y"))
+  coords <- sf::st_as_sf(coords, coords = c("x", "y"), crs = 3035)
   z22_inspire_generate(coords)
 }
 }
