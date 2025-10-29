@@ -33,18 +33,18 @@ Data chunks are uniquely identified using **features** and **categories**. When 
 ``` r
 z22_features()
 #> # A tibble: 55 × 8
-#>    theme      feature            english                                german                z22   z11_100m z11_1km has_cat
-#>    <chr>      <chr>              <chr>                                  <chr>                 <lgl> <lgl>    <lgl>   <lgl>  
-#>  1 Population population         Population                             Bevölkerung           TRUE  TRUE     TRUE    FALSE  
-#>  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsangeh… TRUE  FALSE    FALSE   FALSE  
-#>  3 Population foreigners         Share of foreigners                    Ausländeranteil       TRUE  FALSE    TRUE    FALSE  
-#>  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab 1… TRUE  FALSE    FALSE   FALSE  
-#>  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppen) TRUE  TRUE     FALSE   TRUE   
-#>  6 Population sex                Sex                                    Geschlecht            FALSE TRUE     FALSE   TRUE   
-#>  7 Population women              Share of women                         Frauenanteil          FALSE FALSE    TRUE    FALSE  
-#>  8 Population religion           Religion                               Religion              FALSE TRUE     FALSE   TRUE   
-#>  9 Population citizenship        Citizenship                            Staatsangehörigkeit   TRUE  TRUE     FALSE   TRUE   
-#> 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit … TRUE  TRUE     FALSE   TRUE   
+#>    theme      feature            english                                german               z22   z11_100m z11_1km has_cat
+#>    <chr>      <chr>              <chr>                                  <chr>                <lgl> <lgl>    <lgl>   <lgl>  
+#>  1 Population population         Population                             Bevölkerung          TRUE  TRUE     TRUE    FALSE  
+#>  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsange… TRUE  FALSE    FALSE   FALSE  
+#>  3 Population foreigners         Share of foreigners                    Ausländeranteil      TRUE  FALSE    TRUE    FALSE  
+#>  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab … TRUE  FALSE    FALSE   FALSE  
+#>  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppe… TRUE  TRUE     FALSE   TRUE   
+#>  6 Population sex                Sex                                    Geschlecht           FALSE TRUE     FALSE   TRUE   
+#>  7 Population women              Share of women                         Frauenanteil         FALSE FALSE    TRUE    FALSE  
+#>  8 Population religion           Religion                               Religion             FALSE TRUE     FALSE   TRUE   
+#>  9 Population citizenship        Citizenship                            Staatsangehörigkeit  TRUE  TRUE     FALSE   TRUE   
+#> 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit… TRUE  TRUE     FALSE   TRUE   
 #> # ℹ 45 more rows
 ```
 
@@ -175,7 +175,6 @@ grid_ht <- z22_data(
   as = "raster",
   all_cells = TRUE
 )
-#> Error in switch(as, raster = {: EXPR must be a length 1 vector
 ```
 
 <details><summary>Code for the plot</summary>
@@ -200,12 +199,11 @@ Working with 10x10 km grids is cool and all, but the census grids get really exc
 
 ``` r
 grid_age <- z22_data("age_avg", res = "100m", as = "raster", all_cells = TRUE)
-#> Error in switch(as, raster = {: EXPR must be a length 1 vector
 
 ext <- ext(c(4532432, 4574087, 3257338, 3287499))
 berlin_age <- crop(grid_age$cat_0, ext)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'crop': object 'grid_age' not found
 plot(berlin_age)
-#> Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'berlin_age' not found
 ```
+
+<img src="man/figures/vignette/100m_plot-1.png" width="100%" />
 
