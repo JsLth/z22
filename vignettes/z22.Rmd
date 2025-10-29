@@ -33,18 +33,18 @@ Data chunks are uniquely identified using **features** and **categories**. When 
 ``` r
 z22_features()
 #> # A tibble: 55 × 8
-#>    theme      feature            english                                german               z22   z11_100m z11_1km has_cat
-#>    <chr>      <chr>              <chr>                                  <chr>                <lgl> <lgl>    <lgl>   <lgl>  
-#>  1 Population population         Population                             Bevölkerung          TRUE  TRUE     TRUE    FALSE  
-#>  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsange… TRUE  FALSE    FALSE   FALSE  
-#>  3 Population foreigners         Share of foreigners                    Ausländeranteil      TRUE  FALSE    TRUE    FALSE  
-#>  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab … TRUE  FALSE    FALSE   FALSE  
-#>  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppe… TRUE  TRUE     FALSE   TRUE   
-#>  6 Population sex                Sex                                    Geschlecht           FALSE TRUE     FALSE   TRUE   
-#>  7 Population women              Share of women                         Frauenanteil         FALSE FALSE    TRUE    FALSE  
-#>  8 Population religion           Religion                               Religion             FALSE TRUE     FALSE   TRUE   
-#>  9 Population citizenship        Citizenship                            Staatsangehörigkeit  TRUE  TRUE     FALSE   TRUE   
-#> 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit… TRUE  TRUE     FALSE   TRUE   
+#>    theme      feature            english                                german                z22   z11_100m z11_1km has_cat
+#>    <chr>      <chr>              <chr>                                  <chr>                 <lgl> <lgl>    <lgl>   <lgl>  
+#>  1 Population population         Population                             Bevölkerung           TRUE  TRUE     TRUE    FALSE  
+#>  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsangeh… TRUE  FALSE    FALSE   FALSE  
+#>  3 Population foreigners         Share of foreigners                    Ausländeranteil       TRUE  FALSE    TRUE    FALSE  
+#>  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab 1… TRUE  FALSE    FALSE   FALSE  
+#>  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppen) TRUE  TRUE     FALSE   TRUE   
+#>  6 Population sex                Sex                                    Geschlecht            FALSE TRUE     FALSE   TRUE   
+#>  7 Population women              Share of women                         Frauenanteil          FALSE FALSE    TRUE    FALSE  
+#>  8 Population religion           Religion                               Religion              FALSE TRUE     FALSE   TRUE   
+#>  9 Population citizenship        Citizenship                            Staatsangehörigkeit   TRUE  TRUE     FALSE   TRUE   
+#> 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit … TRUE  TRUE     FALSE   TRUE   
 #> # ℹ 45 more rows
 ```
 
@@ -76,7 +76,7 @@ grid <- z22_grid("10km", as = "sf")
 plot(grid, pch = 15, cex = 0.5)
 ```
 
-<img src="man/figures/vignette/unnamed-chunk-5-1.png" width="100%" />
+<img src="../man/figures/vignette/unnamed-chunk-5-1.png" width="100%" />
 
 Although the data chunks are relatively small in size, downloading grids and features again and again can take a while and strain internet tariffs unnecessarily. That's why data files are automatically cached, i.e., if a file is downloaded again, it is simply read from the cache. You can update stale cache files using the `update_cache` argument.
 
@@ -102,7 +102,7 @@ ggplot(df_ht) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
 
-<img src="man/figures/vignette/multiplot-1.png" width="100%" />
+<img src="../man/figures/vignette/multiplot-1.png" width="100%" />
 
 However, as you can see, we are dealing with absolute counts, which makes the meaningfulness of the data questionable on its own. The spatial patterns look very similar in each facet and mostly trace spatial population patterns of Germany. To retrieve normalized (= percentage) figures, we can use the `normalize` argument of `z22_data`. Re-downloading the data should also take much less time because the data files are still cached.
 
@@ -124,14 +124,19 @@ ggplot(df_ht) +
   geom_raster(aes(x, y, fill = value)) +
   facet_wrap(~category, nrow = 2, labeller = label_wrap_gen(width = 35)) +
   coord_sf(crs = 3035) +
-  scale_fill_viridis_c("Share", na.value = "transparent", transform = "log2") +
+  scale_fill_viridis_c(
+    "Share",
+    na.value = "transparent",
+    transform = "log2",
+    labels = \(x) paste(round(x * 100, 2), "%")
+  ) +
   theme_bw(base_size = 8) +
   labs(x = NULL, y = NULL) +
   theme(panel.grid = element_blank(), axis.text = element_blank())
 ```
 </details>
 
-<img src="man/figures/vignette/normalize_plot-1.png" width="100%" />
+<img src="../man/figures/vignette/normalize_plot-1.png" width="100%" />
 
 By visualizing shares, we can observe that spatial differences are not nearly as pronounced as the total numbers had us believe. Particularly central heating is almost spatially homogeneous. Note that the `normalize` argument is only sensible for features that are counts.
 
@@ -162,7 +167,7 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="man/figures/vignette/patchwork_plot-1.png" width="100%" />
+<img src="../man/figures/vignette/patchwork_plot-1.png" width="100%" />
 
 To fill these gaps, you can request all cells using the `all_cells` argument.
 
@@ -192,7 +197,7 @@ ggplot(df_ht) +
 ```
 </details>
 
-<img src="man/figures/vignette/allcells_plot-1.png" width="100%" />
+<img src="../man/figures/vignette/allcells_plot-1.png" width="100%" />
 
 Working with 10x10 km grids is cool and all, but the census grids get really exciting when looking at 100x100 m grids. Let's, for example, look at the average age distribution in the area of Berlin.
 
@@ -205,5 +210,5 @@ berlin_age <- crop(grid_age$cat_0, ext)
 plot(berlin_age)
 ```
 
-<img src="man/figures/vignette/100m_plot-1.png" width="100%" />
+<img src="../man/figures/vignette/100m_plot-1.png" width="100%" />
 
