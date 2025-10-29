@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">z22</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,18 +102,18 @@ a list of all available features using:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/z22_features.html">z22_features</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 55 × 8</span></span>
-<span><span class="co">#&gt;    theme      feature            english                                german                z22   z11_100m z11_1km has_cat</span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;              &lt;chr&gt;                                  &lt;chr&gt;                 &lt;lgl&gt; &lt;lgl&gt;    &lt;lgl&gt;   &lt;lgl&gt;  </span></span>
-<span><span class="co">#&gt;  1 Population population         Population                             Bevölkerung           TRUE  TRUE     TRUE    FALSE  </span></span>
-<span><span class="co">#&gt;  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsangeh… TRUE  FALSE    FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  3 Population foreigners         Share of foreigners                    Ausländeranteil       TRUE  FALSE    TRUE    FALSE  </span></span>
-<span><span class="co">#&gt;  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab 1… TRUE  FALSE    FALSE   FALSE  </span></span>
-<span><span class="co">#&gt;  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppen) TRUE  TRUE     FALSE   TRUE   </span></span>
-<span><span class="co">#&gt;  6 Population sex                Sex                                    Geschlecht            FALSE TRUE     FALSE   TRUE   </span></span>
-<span><span class="co">#&gt;  7 Population women              Share of women                         Frauenanteil          FALSE FALSE    TRUE    FALSE  </span></span>
-<span><span class="co">#&gt;  8 Population religion           Religion                               Religion              FALSE TRUE     FALSE   TRUE   </span></span>
-<span><span class="co">#&gt;  9 Population citizenship        Citizenship                            Staatsangehörigkeit   TRUE  TRUE     FALSE   TRUE   </span></span>
-<span><span class="co">#&gt; 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit … TRUE  TRUE     FALSE   TRUE   </span></span>
+<span><span class="co">#&gt;    theme      feature            english                                german               z22   z11_100m z11_1km has_cat</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;      &lt;chr&gt;              &lt;chr&gt;                                  &lt;chr&gt;                &lt;lgl&gt; &lt;lgl&gt;    &lt;lgl&gt;   &lt;lgl&gt;  </span></span>
+<span><span class="co">#&gt;  1 Population population         Population                             Bevölkerung          TRUE  TRUE     TRUE    FALSE  </span></span>
+<span><span class="co">#&gt;  2 Population citizens           Number of german citizens, 18 or older Deutsche Staatsange… TRUE  FALSE    FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  3 Population foreigners         Share of foreigners                    Ausländeranteil      TRUE  FALSE    TRUE    FALSE  </span></span>
+<span><span class="co">#&gt;  4 Population foreigners_from_18 Share of foreigners, 18 or older       Ausländeranteil ab … TRUE  FALSE    FALSE   FALSE  </span></span>
+<span><span class="co">#&gt;  5 Population birth_country      Country of birth (groups)              Geburtsland (Gruppe… TRUE  TRUE     FALSE   TRUE   </span></span>
+<span><span class="co">#&gt;  6 Population sex                Sex                                    Geschlecht           FALSE TRUE     FALSE   TRUE   </span></span>
+<span><span class="co">#&gt;  7 Population women              Share of women                         Frauenanteil         FALSE FALSE    TRUE    FALSE  </span></span>
+<span><span class="co">#&gt;  8 Population religion           Religion                               Religion             FALSE TRUE     FALSE   TRUE   </span></span>
+<span><span class="co">#&gt;  9 Population citizenship        Citizenship                            Staatsangehörigkeit  TRUE  TRUE     FALSE   TRUE   </span></span>
+<span><span class="co">#&gt; 10 Population citizenship_group  Citizenship (groups)                   Staatsangehörigkeit… TRUE  TRUE     FALSE   TRUE   </span></span>
 <span><span class="co">#&gt; # ℹ 45 more rows</span></span></code></pre></div>
 <p>Similarly, you can view a list of all categories for a feature.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -235,8 +235,7 @@ Code for the plot
 <span>  res <span class="op">=</span> <span class="st">"10km"</span>,</span>
 <span>  as <span class="op">=</span> <span class="st">"raster"</span>,</span>
 <span>  all_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in switch(as, raster = {: EXPR must be a length 1 vector</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <details><summary>
 Code for the plot
 </summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -255,13 +254,11 @@ really exciting when looking at 100x100 m grids. Let’s, for example,
 look at the average age distribution in the area of Berlin.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">grid_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/z22_data.html">z22_data</a></span><span class="op">(</span><span class="st">"age_avg"</span>, res <span class="op">=</span> <span class="st">"100m"</span>, as <span class="op">=</span> <span class="st">"raster"</span>, all_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in switch(as, raster = {: EXPR must be a length 1 vector</span></span>
 <span></span>
 <span><span class="va">ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4532432</span>, <span class="fl">4574087</span>, <span class="fl">3257338</span>, <span class="fl">3287499</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">berlin_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/crop.html" class="external-link">crop</a></span><span class="op">(</span><span class="va">grid_age</span><span class="op">$</span><span class="va">cat_0</span>, <span class="va">ext</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'crop': object 'grid_age' not found</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">berlin_age</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'berlin_age' not found</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">berlin_age</span><span class="op">)</span></span></code></pre></div>
+<p><img src="reference/figures/vignette/100m_plot-1.png" width="100%"></p>
   </main>
 </div>
 
