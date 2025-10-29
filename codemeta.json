@@ -2,25 +2,32 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "z22",
-  "description": "Quickly and efficiently retrieve gridded census data from Germany's 2011 and 2022 censuses.",
+  "description": "Provides fast and easy access to German census grid data from the 2011 and 2022 censuses <https://www.zensus2022.de/>, including a wide range of socio-economic indicators at multiple spatial resolutions (100m, 1km, 10km). Enables efficient download, processing, and analysis of large census datasets covering population, households, families, dwellings, and buildings. Harmonized data structures allow direct comparison with the 2011 census, supporting temporal and spatial analyses. Facilitates conversion of data into common formats for spatial analysis and mapping ('terra', 'sf', 'ggplot2').",
   "name": "z22: Official Gridded Data from the German Census 2022",
   "relatedLink": "https://jslth.github.io/z22/",
   "codeRepository": "https://github.com/jslth/z22/",
   "issueTracker": "https://github.com/jslth/z22/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.0 (2024-04-24 ucrt)",
+  "runtimePlatform": "R version 4.4.3 (2025-02-28 ucrt)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
       "givenName": "Jonas",
       "familyName": "Lieth",
-      "email": "jonas.lieth@gesis.org"
+      "email": "jonas.lieth@gesis.org",
+      "@id": "https://orcid.org/0000-0002-3451-3176"
     }
   ],
   "copyrightHolder": [
@@ -28,7 +35,8 @@
       "@type": "Person",
       "givenName": "Jonas",
       "familyName": "Lieth",
-      "email": "jonas.lieth@gesis.org"
+      "email": "jonas.lieth@gesis.org",
+      "@id": "https://orcid.org/0000-0002-3451-3176"
     }
   ],
   "maintainer": [
@@ -36,7 +44,8 @@
       "@type": "Person",
       "givenName": "Jonas",
       "familyName": "Lieth",
-      "email": "jonas.lieth@gesis.org"
+      "email": "jonas.lieth@gesis.org",
+      "@id": "https://orcid.org/0000-0002-3451-3176"
     }
   ],
   "softwareSuggestions": [
@@ -193,7 +202,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "26023.898KB",
+  "fileSize": "1035.572KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -211,9 +220,5 @@
       "@id": "https://doi.org/10.32614/CRAN.package.z22",
       "sameAs": "https://doi.org/10.32614/CRAN.package.z22"
     }
-  ],
-  "readme": "https://github.com/JsLth/z22/blob/main/README.md",
-  "contIntegration": ["https://github.com/JsLth/z22/actions/workflows/R-CMD-check.yaml", "https://app.codecov.io/gh/JsLth/z22?branch=main", "https://app.codecov.io/gh/JsLth/z22"],
-  "developmentStatus": ["https://lifecycle.r-lib.org/articles/stages.html#stable", "https://www.repostatus.org/#active"],
-  "keywords": ["r", "r-package", "rstats"]
+  ]
 }
