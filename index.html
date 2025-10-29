@@ -78,17 +78,17 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jslth/z22/" class="external-link">z22</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rspatial.org/" class="external-link">terra</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">grid_vac</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z22_data.html">z22_data</a></span><span class="op">(</span><span class="st">"vacancies"</span>, res <span class="op">=</span> <span class="st">"10km"</span>, rasterize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">grid_vac</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/z22_data.html">z22_data</a></span><span class="op">(</span><span class="st">"vacancies"</span>, res <span class="op">=</span> <span class="st">"10km"</span>, as <span class="op">=</span> <span class="st">"raster"</span><span class="op">)</span></span>
 <span><span class="va">grid_vac</span></span>
-<span><span class="co">#&gt; class       : SpatRasterDataset </span></span>
-<span><span class="co">#&gt; subdatasets : 1 </span></span>
-<span><span class="co">#&gt; dimensions  : 87, 65 (nrow, ncol)</span></span>
-<span><span class="co">#&gt; nlyr        : 1 </span></span>
+<span><span class="co">#&gt; class       : SpatRaster </span></span>
+<span><span class="co">#&gt; dimensions  : 87, 65, 1  (nrow, ncol, nlyr)</span></span>
 <span><span class="co">#&gt; resolution  : 10000, 10000  (x, y)</span></span>
 <span><span class="co">#&gt; extent      : 4035000, 4685000, 2685000, 3555000  (xmin, xmax, ymin, ymax)</span></span>
 <span><span class="co">#&gt; coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035) </span></span>
-<span><span class="co">#&gt; source(s)   : memory </span></span>
-<span><span class="co">#&gt; names       : cat_0</span></span></code></pre></div>
+<span><span class="co">#&gt; source(s)   : memory</span></span>
+<span><span class="co">#&gt; name        : cat_0 </span></span>
+<span><span class="co">#&gt; min value   :  1.34 </span></span>
+<span><span class="co">#&gt; max value   : 22.51</span></span></code></pre></div>
 <details><summary>
 Code for the plot
 </summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
