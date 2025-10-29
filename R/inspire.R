@@ -70,7 +70,7 @@ z22_inspire_generate <- function(coords,
     coords <- sf::st_coordinates(coords)
   }
 
-  if (is.matrix(coords)) {
+  if (is.matrix(coords) || is.list(coords)) {
     coords <- as.data.frame(coords)
   }
 
@@ -126,7 +126,7 @@ z22_inspire_generate <- function(coords,
 z22_inspire_extract <- function(inspire, as = c("df", "sf"), meta = FALSE) {
   as <- match.arg(as)
 
-  if (!is.character(inspire) && !length(inspire) > 0) {
+  if (!all(is.character(inspire)) || !length(inspire) > 0) {
     cli::cli_abort("Argument `inspire` must be a character vector with more than one value.")
   }
 

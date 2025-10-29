@@ -56,6 +56,15 @@ test_that("inspire can be converted", {
     "more than one CRS"
   )
   expect_equal(sf::st_crs(z22_inspire_extract(c("1kmN0E0", "1kmN1E1"), as = "sf"))$epsg, 3035)
+
+  # test errors
+  expect_error(z22_inspire_generate(list()), "cannot be empty")
+  expect_error(z22_inspire_generate(list(x = c(1, NA), y = c(2, 1))), "missing values")
+  expect_error(z22_inspire_generate(list(x = 1, y = 2)), "not enough unique")
+  expect_error(z22_inspire_generate(list(x = c(1, 3, 4), y = c(3, 2, 1))), "in the X dimension")
+  expect_error(z22_inspire_generate(list(x = c(1, 2, 3), y = c(4, 2, 1))), "in the Y dimension")
+  expect_error(z22_inspire_extract(NULL), "more than one value")
+  expect_error(z22_inspire_extract(1), "character vector")
 })
 
 
@@ -126,6 +135,7 @@ test_that("data can be pivoted", {
   names(piv2) <- tolower(names(piv2))
   expect_true(setequal(piv1$value, piv2$value))
   expect_true(setequal(piv1$value, piv3$value))
+  expect_error(z22_pivot_longer(list()), "must be a SpatRaster")
 })
 
 
