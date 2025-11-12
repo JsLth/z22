@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">z22</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,7 @@
       <h1>Get started with z22</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/jslth/z22/blob/v1.0.3/vignettes/z22.Rmd" class="external-link"><code>vignettes/z22.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jslth/z22/blob/main/vignettes/z22.Rmd" class="external-link"><code>vignettes/z22.Rmd</code></a></small>
       <div class="d-none name"><code>z22.Rmd</code></div>
     </div>
 
@@ -138,7 +138,7 @@ dataset using:</p>
 <code class="sourceCode R"><span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/z22_grid.html">z22_grid</a></span><span class="op">(</span><span class="st">"10km"</span>, as <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">grid</span>, pch <span class="op">=</span> <span class="fl">15</span>, cex <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/vignette/unnamed-chunk-5-1.png" width="100%"></p>
+<p><img src="../reference/figures/vignette/unnamed-chunk-5-1.png" width="100%"></p>
 <p>Although the data chunks are relatively small in size, downloading
 grids and features again and again can take a while and strain internet
 tariffs unnecessarily. That’s why data files are automatically cached,
@@ -167,7 +167,7 @@ facetable) table.</p>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="reference/figures/vignette/multiplot-1.png" width="100%"></p>
+<p><img src="../reference/figures/vignette/multiplot-1.png" width="100%"></p>
 <p>However, as you can see, we are dealing with absolute counts, which
 makes the meaningfulness of the data questionable on its own. The
 spatial patterns look very similar in each facet and mostly trace
@@ -190,11 +190,16 @@ Code for the plot
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_tile.html" class="external-link">geom_raster</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fill <span class="op">=</span> <span class="va">value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">category</span>, nrow <span class="op">=</span> <span class="fl">2</span>, labeller <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labellers.html" class="external-link">label_wrap_gen</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">35</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">coord_sf</a></span><span class="op">(</span>crs <span class="op">=</span> <span class="fl">3035</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span><span class="st">"Share"</span>, na.value <span class="op">=</span> <span class="st">"transparent"</span>, transform <span class="op">=</span> <span class="st">"log2"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html" class="external-link">scale_fill_viridis_c</a></span><span class="op">(</span></span>
+<span>    <span class="st">"Share"</span>,</span>
+<span>    na.value <span class="op">=</span> <span class="st">"transparent"</span>,</span>
+<span>    transform <span class="op">=</span> <span class="st">"log2"</span>,</span>
+<span>    labels <span class="op">=</span> \<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/math-generics.html" class="external-link">round</a></span><span class="op">(</span><span class="va">x</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"%"</span><span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span>base_size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</details><p><img src="reference/figures/vignette/normalize_plot-1.png" width="100%"></p>
+</details><p><img src="../reference/figures/vignette/normalize_plot-1.png" width="100%"></p>
 <p>By visualizing shares, we can observe that spatial differences are
 not nearly as pronounced as the total numbers had us believe.
 Particularly central heating is almost spatially homogeneous. Note that
@@ -225,7 +230,7 @@ Code for the plot
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</details><p><img src="reference/figures/vignette/patchwork_plot-1.png" width="100%"></p>
+</details><p><img src="../reference/figures/vignette/patchwork_plot-1.png" width="100%"></p>
 <p>To fill these gaps, you can request all cells using the
 <code>all_cells</code> argument.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -235,8 +240,7 @@ Code for the plot
 <span>  res <span class="op">=</span> <span class="st">"10km"</span>,</span>
 <span>  as <span class="op">=</span> <span class="st">"raster"</span>,</span>
 <span>  all_cells <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in switch(as, raster = {: EXPR must be a length 1 vector</span></span></code></pre></div>
+<span><span class="op">)</span></span></code></pre></div>
 <details><summary>
 Code for the plot
 </summary><div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -249,19 +253,17 @@ Code for the plot
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="cn">NULL</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>panel.grid <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-</details><p><img src="reference/figures/vignette/allcells_plot-1.png" width="100%"></p>
+</details><p><img src="../reference/figures/vignette/allcells_plot-1.png" width="100%"></p>
 <p>Working with 10x10 km grids is cool and all, but the census grids get
 really exciting when looking at 100x100 m grids. Let’s, for example,
 look at the average age distribution in the area of Berlin.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">grid_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/z22_data.html">z22_data</a></span><span class="op">(</span><span class="st">"age_avg"</span>, res <span class="op">=</span> <span class="st">"100m"</span>, as <span class="op">=</span> <span class="st">"raster"</span>, all_cells <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in switch(as, raster = {: EXPR must be a length 1 vector</span></span>
 <span></span>
 <span><span class="va">ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/ext.html" class="external-link">ext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4532432</span>, <span class="fl">4574087</span>, <span class="fl">3257338</span>, <span class="fl">3287499</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">berlin_age</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rspatial.github.io/terra/reference/crop.html" class="external-link">crop</a></span><span class="op">(</span><span class="va">grid_age</span><span class="op">$</span><span class="va">cat_0</span>, <span class="va">ext</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'crop': object 'grid_age' not found</span></span>
-<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">berlin_age</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in h(simpleError(msg, call)): error in evaluating the argument 'x' in selecting a method for function 'plot': object 'berlin_age' not found</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/plot.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">berlin_age</span><span class="op">)</span></span></code></pre></div>
+<p><img src="../reference/figures/vignette/100m_plot-1.png" width="100%"></p>
   </main>
 </div>
 
@@ -272,7 +274,7 @@ look at the average age distribution in the area of Berlin.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
