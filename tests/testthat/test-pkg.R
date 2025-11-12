@@ -17,6 +17,14 @@ test_that("categories are assigned correctly", {
   expect_equal(z22_categories("population")$code, 0)
   expect_equal(z22_categories("citizenship")$code, c(1, 2))
   expect_error(z22_categories("test"), "available")
+
+  # with year
+  expect_equal(z22_categories("sex"), z22_categories("sex", year = 2022))
+  expect_failure(expect_equal(
+    z22_categories("birth_country", year = 2011),
+    z22_categories("birth_country", year = 2022)
+  ))
+  expect_error(z22_categories("birth_country"), "specify a census year")
 })
 
 
@@ -114,6 +122,7 @@ test_that("grid can be downloaded", {
 
 
 test_that("data can be read offline", {
+  requireNamespace("arrow", quietly = TRUE)
   skip_if_not(arrow::codec_is_available("zstd"))
   old <- options(z22.data_repo = test_path("fixtures"))
   on.exit(options(old))

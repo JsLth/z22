@@ -10,6 +10,10 @@
 #' @param feature A grid feature. See \code{\link{z22_features}} for a list
 #' of available features. If a feature is provided that does not have
 #' categories, generates a table based on the feature description.
+#' @param year Census year. This is needed only for two features,
+#' \code{dwelling_constr_year} and \code{building_constr_year}. These features
+#' rely on microcensus classes that change between census years. For other
+#' features, this argument is ignored.
 #'
 #' @returns A tibble containing the category code (\code{code}) as well as
 #' German and English labels (\code{german} and \code{english}). Each row
@@ -25,29 +29,50 @@
 #'
 #' # Features without categories are given code 0
 #' z22_categories("families")
-z22_categories <- function(feature) {
+z22_categories <- function(feature, year = NULL) {
+  check_year(year, null = TRUE)
+
   if (!feature %in% names(categories) && !feature %in% features$name) {
     cli::cli_abort(c(
       "No feature {.val {feature}} available.",
       "i" = "See `z22_features()` for a list of available features."
     ))
   } else if (feature %in% names(categories)) {
-    categories[[feature]]
+    cats <- categories[[feature]]
+
+    if (inherits(cats, "list")) {
+      if (is.null(year)) {
+        cli::cli_abort(
+          "For feature {.val {feature}}, you also need to specify a census year."
+        )
+      }
+
+      cats <- cats[[as.character(year)]]
+    }
   } else {
     feat_df <- features[features$name %in% feature, ]
-    dplyr::tibble(
+    cats <- dplyr::tibble(
       code = 0,
       german = feat_df$german,
       english = feat_df$english
     )
   }
+
+  cats
 }
 
 categories <- list(
-  birth_country = tibble::tibble(
-    code = c(1, 20, 21, 22, 23, 24),
-    german = c("Deutschland", "Ausland", "EU27-Land", "Europa", "Welt", "Sonstige"),
-    english = c("Germany", "Foreign", "EU27 country", "Europe", "World", "Other"),
+  birth_country = list(
+    `2011` = tibble::tibble(
+      code = c(1, 21, 22, 23, 24),
+      german = c("Deutschland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
+      english = c("Germany", "EU27 Country", "Other Europe", "Other World", "Other"),
+    ),
+    `2022` = tibble::tibble(
+      code = c(1, 20, 21, 22, 23, 24),
+      german = c("Deutschland", "Ausland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
+      english = c("Germany", "Foreign", "EU27 Country", "Other Europe", "Other World", "Other"),
+    )
   ),
   sex = tibble::tibble(
     code = 1:2,
@@ -67,10 +92,17 @@ categories <- list(
     german = c("Deutschland", "Ausland"),
     english = c("Germany", "Foreign"),
   ),
-  citizenship_group = tibble::tibble(
-    code = c(1, 20, 21, 22, 23, 24),
-    german = c("Deutschland", "Ausland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
-    english = c("Germany", "Foreign", "EU27 Country", "Other Europe", "Other World", "Other"),
+  citizenship_group = list(
+    `2011` = tibble::tibble(
+      code = c(1, 21, 22, 23, 24),
+      german = c("Deutschland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
+      english = c("Germany", "EU27 Country", "Other Europe", "Other World", "Other"),
+    ),
+    `2022` = tibble::tibble(
+      code = c(1, 20, 21, 22, 23, 24),
+      german = c("Deutschland", "Ausland", "EU27-Land", "Sonstiges Europa", "Sonstige Welt", "Sonstige"),
+      english = c("Germany", "Foreign", "EU27 Country", "Other Europe", "Other World", "Other"),
+    )
   ),
   citizenship_origin = tibble::tibble(
     code = 1:14,
@@ -281,17 +313,31 @@ categories <- list(
       "7 and more Rooms", "n.a., commercial"
     ),
   ),
-  dwelling_constr_year = tibble::tibble(
-    code = seq(1, 10, by = 1),
-    german = c(
-      "Vor 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
-      "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008",
-      "2009 und sp\U{E4}ter"
+  dwelling_constr_year = list(
+    `2011` = tibble::tibble(
+      code = seq(1, 10, by = 1),
+      german = c(
+        "Vor 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
+        "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008",
+        "2009 und sp\U{E4}ter"
+      ),
+      english = c(
+        "Before 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
+        "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008", "2009 and later"
+      ),
     ),
-    english = c(
-      "Before 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
-      "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008", "2009 and later"
-    ),
+
+    `2022` = tibble::tibble(
+      code = seq(1, 8, by = 1),
+      german = c(
+        "Vor 1919", "1919 - 1948", "1949 - 1978", "1979 - 1990", "1991 - 2000",
+        "2001 - 2010", "2011 - 2019", "2020 und sp\U{E4}ter"
+      ),
+      english = c(
+        "Before 1919", "1919 - 1948", "1949 - 1978", "1979 - 1990", "1991 - 2000",
+        "2001 - 2010", "2011 - 2019", "2020 and later"
+      )
+    )
   ),
   dwelling_building_type = tibble::tibble(
     code = c(1, 11, 111, 112, 12),
@@ -374,17 +420,31 @@ categories <- list(
       "Non-profit organization (e.g. church)"
     ),
   ),
-  building_constr_year = tibble::tibble(
-    code = seq(1, 10, by = 1),
-    german = c(
-      "Vor 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
-      "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008",
-      "2009 und sp\U{E4}ter"
+  building_constr_year = list(
+    `2011` = tibble::tibble(
+      code = seq(1, 10, by = 1),
+      german = c(
+        "Vor 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
+        "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008",
+        "2009 und sp\U{E4}ter"
+      ),
+      english = c(
+        "Before 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
+        "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008", "2009 and later"
+      ),
     ),
-    english = c(
-      "Before 1919", "1919 - 1948", "1949 - 1978", "1979 - 1986", "1987 - 1990",
-      "1991 - 1995", "1996 - 2000", "2001 - 2004", "2005 - 2008", "2009 and later"
-    ),
+
+    `2022` = tibble::tibble(
+      code = seq(1, 8, by = 1),
+      german = c(
+        "Vor 1919", "1919 - 1948", "1949 - 1978", "1979 - 1990", "1991 - 2000",
+        "2001 - 2010", "2011 - 2019", "2020 und sp\U{E4}ter"
+      ),
+      english = c(
+        "Before 1919", "1919 - 1948", "1949 - 1978", "1979 - 1990", "1991 - 2000",
+        "2001 - 2010", "2011 - 2019", "2020 and later"
+      )
+    )
   ),
   building_dwellings = tibble::tibble(
     code = seq(1, 5, by = 1),
@@ -466,13 +526,36 @@ categories <- list(
 
 
 make_rd_categories <- function() { # nocov start
-  tb <- lapply(names(categories), function(x) {
-    ltx <- sinew::tabular(categories[[x]])
-    ltx <- gsub("#' ?", "\t\t", ltx)
-    header <- sprintf("\\code{%s}", x)
-    sprintf("  \\item{%s}{\n%s}\n\n", header, ltx)
+  tb <- lapply(names(categories), function(feat) {
+    cats <- categories[[feat]]
+
+    if (inherits(cats, "list")) {
+      years <- names(cats)
+      tb <- lapply(years, make_rd_cat_table, cats = cats, feature = feat)
+      paste(tb, collapse = "\\enc{}{}\n")
+    } else {
+      make_rd_cat_table(cats, feat)
+    }
   })
   tb <- paste(tb, collapse = "\\enc{}{}\n")
   tb <- gsub("\u2265", ">=", tb)
   sprintf("\\section{Categories}{\n\\describe{\n%s\n}}", tb)
+}
+
+
+make_rd_cat_table <- function(cats, feature, year = NULL) {
+  if (!is.null(year)) {
+    cats <- cats[[year]]
+  }
+
+  ltx <- sinew::tabular(cats)
+  ltx <- gsub("#' ?", "\t\t", ltx)
+
+  if (is.null(year)) {
+    header <- sprintf("\\code{%s}", feature)
+  } else {
+    header <- sprintf("\\code{%s} (%s)", feature, year)
+  }
+
+  sprintf("  \\item{%s}{\n%s}\n\n", header, ltx)
 } # nocov end

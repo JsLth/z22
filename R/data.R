@@ -93,15 +93,10 @@ z22_data <- function(feature,
   check_resolution(res, year)
   feature <- get_feature_any(feature)
   check_feature(feature, year, res)
-  categories <- categories %||% z22_categories(feature)$code
-  check_category(categories, feature)
+  categories <- categories %||% z22_categories(feature, year = year)$code
+  check_category(categories, feature, year)
   check_normalize(normalize, feature)
   as <- match.arg(as)
-
-  # another country group was added in 2022 which is not available in 2011
-  if (year == 2011 && feature %in% c("birth_country", "citizenship_group")) {
-    categories <- setdiff(categories, 20) # nocov
-  }
 
   short_year <- substr(year, 3, 4)
   dir <- sprintf("z%s_data_%s", short_year, res)
@@ -277,7 +272,7 @@ z22data_get <- function(dir, fid, overwrite) {
 
     parq_file <- list.files(data_dir, pattern = fid, full.names = TRUE)
   } else {
-    temp_path <- file.path(tempdir(), paste0(dir, fid, ".parquet"))
+    temp_path <- file.path(tempdir(), paste0(dir, "_", fid, ".parquet"))
     parq_file <- z22data_download(
       dir,
       fid,
@@ -305,6 +300,7 @@ z22data_download <- function(dir,
   if (getOption("z22.debug", FALSE)) {
     cli::cli_inform("GET {req$url}") # nocov
   }
+
   unclass(httr2::req_perform(req, path = path)$body)
 }
 

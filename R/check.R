@@ -124,9 +124,9 @@ check_feature <- function(feature, year, res, null = FALSE) {
 }
 
 
-check_category <- function(categories, feature, null = FALSE) {
+check_category <- function(categories, feature, year = NULL, null = FALSE) {
   if (null && is.null(feature)) return()
-  cat_df <- z22_categories(feature)
+  cat_df <- z22_categories(feature, year)
 
   for (cat in categories) {
     if (!cat %in% cat_df$code) {

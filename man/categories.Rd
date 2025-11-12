@@ -6,12 +6,17 @@
 \alias{z22_categories}
 \title{Feature categories}
 \usage{
-z22_categories(feature)
+z22_categories(feature, year = NULL)
 }
 \arguments{
 \item{feature}{A grid feature. See \code{\link{z22_features}} for a list
 of available features. If a feature is provided that does not have
 categories, generates a table based on the feature description.}
+
+\item{year}{Census year. This is needed only for two features,
+\code{dwelling_constr_year} and \code{building_constr_year}. These features
+rely on microcensus classes that change between census years. For other
+features, this argument is ignored.}
 }
 \value{
 A tibble containing the category code (\code{code}) as well as
@@ -34,15 +39,27 @@ z22_categories("families")
 }
 \section{Categories}{
 \describe{
-  \item{\code{birth_country}}{
+  \item{\code{birth_country} (2011)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Deutschland \tab Germany     \cr
-    		20 \tab Ausland     \tab Foreign     \cr
-    		21 \tab EU27-Land   \tab EU27 country\cr
-    		22 \tab Europa      \tab Europe      \cr
-    		23 \tab Welt        \tab World       \cr
-    		24 \tab Sonstige    \tab Other       
+    		 1 \tab Deutschland      \tab Germany     \cr
+    		21 \tab EU27-Land        \tab EU27 Country\cr
+    		22 \tab Sonstiges Europa \tab Other Europe\cr
+    		23 \tab Sonstige Welt    \tab Other World \cr
+    		24 \tab Sonstige         \tab Other       
+		}
+}
+
+\enc{}{}
+  \item{\code{birth_country} (2022)}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		 1 \tab Deutschland      \tab Germany     \cr
+    		20 \tab Ausland          \tab Foreign     \cr
+    		21 \tab EU27-Land        \tab EU27 Country\cr
+    		22 \tab Sonstiges Europa \tab Other Europe\cr
+    		23 \tab Sonstige Welt    \tab Other World \cr
+    		24 \tab Sonstige         \tab Other       
 		}
 }
 
@@ -75,7 +92,19 @@ z22_categories("families")
 }
 
 \enc{}{}
-  \item{\code{citizenship_group}}{
+  \item{\code{citizenship_group} (2011)}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		 1 \tab Deutschland      \tab Germany     \cr
+    		21 \tab EU27-Land        \tab EU27 Country\cr
+    		22 \tab Sonstiges Europa \tab Other Europe\cr
+    		23 \tab Sonstige Welt    \tab Other World \cr
+    		24 \tab Sonstige         \tab Other       
+		}
+}
+
+\enc{}{}
+  \item{\code{citizenship_group} (2022)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Deutschland      \tab Germany     \cr
@@ -328,7 +357,7 @@ z22_categories("families")
 }
 
 \enc{}{}
-  \item{\code{dwelling_constr_year}}{
+  \item{\code{dwelling_constr_year} (2011)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Vor 1919        \tab Before 1919   \cr
@@ -341,6 +370,21 @@ z22_categories("families")
     		 8 \tab 2001 - 2004     \tab 2001 - 2004   \cr
     		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
     		10 \tab 2009 und später \tab 2009 and later
+		}
+}
+
+\enc{}{}
+  \item{\code{dwelling_constr_year} (2022)}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab Vor 1919        \tab Before 1919   \cr
+    		2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		4 \tab 1979 - 1990     \tab 1979 - 1990   \cr
+    		5 \tab 1991 - 2000     \tab 1991 - 2000   \cr
+    		6 \tab 2001 - 2010     \tab 2001 - 2010   \cr
+    		7 \tab 2011 - 2019     \tab 2011 - 2019   \cr
+    		8 \tab 2020 und später \tab 2020 and later
 		}
 }
 
@@ -429,7 +473,7 @@ z22_categories("families")
 }
 
 \enc{}{}
-  \item{\code{building_constr_year}}{
+  \item{\code{building_constr_year} (2011)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
     		 1 \tab Vor 1919        \tab Before 1919   \cr
@@ -442,6 +486,21 @@ z22_categories("families")
     		 8 \tab 2001 - 2004     \tab 2001 - 2004   \cr
     		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
     		10 \tab 2009 und später \tab 2009 and later
+		}
+}
+
+\enc{}{}
+  \item{\code{building_constr_year} (2022)}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab Vor 1919        \tab Before 1919   \cr
+    		2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		4 \tab 1979 - 1990     \tab 1979 - 1990   \cr
+    		5 \tab 1991 - 2000     \tab 1991 - 2000   \cr
+    		6 \tab 2001 - 2010     \tab 2001 - 2010   \cr
+    		7 \tab 2011 - 2019     \tab 2011 - 2019   \cr
+    		8 \tab 2020 und später \tab 2020 and later
 		}
 }
 
