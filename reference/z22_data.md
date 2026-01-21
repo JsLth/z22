@@ -107,11 +107,6 @@ column. If a `SpatRaster` is returned, each category is a named layer.
 
 ## Details
 
-Half of the grids cell width is added to each coordinate in the dataset
-internally. According to the INSPIRE guidelines, coordinates always
-represent the South-west of the grid cells. Centroids represent the
-geographic location of grid cells better which is why they are used.
-
 By default, data are downloaded from the
 [z22data](https://github.com/jslth/z22data) data repository which stores
 all pre-processed data. You can download this repository and use it
@@ -130,16 +125,16 @@ terra::plot(pop$cat_0)
 z22_data("birth_country", categories = 21, res = "1km")
 #> # A tibble: 210,556 × 3
 #>    cat_21       x       y
-#>     <int>   <dbl>   <dbl>
-#>  1      3 4338000 2690000
-#>  2     NA 4342000 2690000
-#>  3     NA 4342000 2691000
-#>  4     NA 4341000 2692000
-#>  5      3 4342000 2692000
-#>  6     NA 4342000 2693000
-#>  7      3 4345000 2693000
-#>  8      3 4341000 2694000
-#>  9     NA 4342000 2694000
-#> 10     NA 4344000 2694000
+#>     <int>   <int>   <int>
+#>  1      3 4337500 2689500
+#>  2     NA 4341500 2689500
+#>  3     NA 4341500 2690500
+#>  4     NA 4340500 2691500
+#>  5      3 4341500 2691500
+#>  6     NA 4341500 2692500
+#>  7      3 4344500 2692500
+#>  8      3 4340500 2693500
+#>  9     NA 4341500 2693500
+#> 10     NA 4343500 2693500
 #> # ℹ 210,546 more rows
 ```
