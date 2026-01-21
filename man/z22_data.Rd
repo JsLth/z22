@@ -86,11 +86,6 @@ When we are talking about a
 }
 }
 \details{
-Half of the grids cell width is added to each coordinate in the
-dataset internally. According to the INSPIRE guidelines, coordinates
-always represent the South-west of the grid cells. Centroids represent
-the geographic location of grid cells better which is why they are used.
-
 By default, data are downloaded from the
 \href{https://github.com/jslth/z22data}{z22data} data repository which
 stores all pre-processed data. You can download this repository and use

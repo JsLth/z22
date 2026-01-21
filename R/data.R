@@ -61,11 +61,6 @@
 #' named layer.
 #'
 #' @details
-#' Half of the grids cell width is added to each coordinate in the
-#' dataset internally. According to the INSPIRE guidelines, coordinates
-#' always represent the South-west of the grid cells. Centroids represent
-#' the geographic location of grid cells better which is why they are used.
-#'
 #' By default, data are downloaded from the
 #' \href{https://github.com/jslth/z22data}{z22data} data repository which
 #' stores all pre-processed data. You can download this repository and use
@@ -110,9 +105,6 @@ z22_data <- function(feature,
     y <- y[!colnames(y) %in% "quality"]
     dplyr::left_join(x, y, by = c("x", "y"))
   })
-
-  # Exchange INSPIRE coordinates with geographic centroids
-  out <- shift_by_half(out, res)
 
   if (normalize) {
     # To normalize, the respective totals dataframe is downloaded and
@@ -214,7 +206,6 @@ z22_grid <- function(res,
   fid <- sprintf("grid_%s_%s", year, res)
   path <- z22data_get("grids", fid, overwrite = update_cache)
   grid <- arrow::read_parquet(path)
-  grid <- shift_by_half(grid, res)
   as_spatial_maybe(grid, as = as)
 }
 
@@ -308,12 +299,4 @@ z22data_download <- function(dir,
 is_cat_col <- function(.data) {
   names <- names(.data)
   startsWith(names, "cat_")
-}
-
-
-shift_by_half <- function(grid, res) {
-  half <- res_to_m(res) / 2
-  grid$x <- grid$x + half
-  grid$y <- grid$y + half
-  grid
 }

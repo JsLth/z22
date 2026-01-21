@@ -17,7 +17,7 @@ loadable <- function(x) {
 }
 
 
-regex_match <- function (text, pattern, i = NULL, ...) {
+regex_match <- function(text, pattern, i = NULL, ...) {
   match <- regmatches(text, regexec(pattern, text, ...))
   if (!is.null(i)) {
     match <- vapply(match, FUN.VALUE = character(1), function(x) {
