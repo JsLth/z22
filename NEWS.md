@@ -1,3 +1,10 @@
+# z22 1.1.3
+
+- Fix vignette image links
+- Add support for changes between census years (#3)
+- Remove shift-by-half coordinate transformation (#4)
+
+
 # z22 1.1.0
 
 * Replace `rasterize` and `as_sf` arguments with a single `as` argument that takes `"df"`, `"sf"`, or `"raster"`

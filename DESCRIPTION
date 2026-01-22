@@ -1,11 +1,11 @@
 Package: z22
 Type: Package
 Title: Official Gridded Data from the German Census 2022
-Version: 1.1.2
+Version: 1.1.3
 Authors@R: 
-    person("Jonas", "Lieth", , "jonas.lieth@gesis.org", role = c("cre", "aut", "cph"),
+    person("Jonas", "Lieth", , "jslth@outlook.com", role = c("cre", "aut", "cph"),
            comment = c(ORCID = "0000-0002-3451-3176"))
-Maintainer: Jonas Lieth <jonas.lieth@gesis.org>
+Maintainer: Jonas Lieth <jslth@outlook.com>
 Description: Provides fast and easy access to German census grid data
     from the 2011 and 2022 censuses <https://www.zensus2022.de/>, including a
     wide range of socio-economic indicators at multiple spatial resolutions
