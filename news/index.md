@@ -1,5 +1,13 @@
 # Changelog
 
+## z22 1.1.4
+
+- Add support for changes between census years
+  ([\#3](https://github.com/jslth/z22/issues/3))
+- Remove shift-by-half coordinate transformation
+  ([\#4](https://github.com/jslth/z22/issues/4))
+- Fix vignette image links
+
 ## z22 1.1.0
 
 CRAN release: 2025-10-29

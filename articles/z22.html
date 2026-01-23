@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">z22</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,9 +117,16 @@ a list of all available features using:</p>
 <span><span class="co">#&gt; # ℹ 45 more rows</span></span></code></pre></div>
 <p>Similarly, you can view a list of all categories for a feature.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/categories.html">z22_categories</a></span><span class="op">(</span><span class="st">"birth_country"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Error in `z22_categories()`:</span></span>
-<span><span class="co">#&gt; ! For feature "birth_country", you also need to specify a census year.</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/categories.html">z22_categories</a></span><span class="op">(</span><span class="st">"birth_country"</span>, year <span class="op">=</span> <span class="fl">2022</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span><span class="co">#&gt;    code german           english     </span></span>
+<span><span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;       </span></span>
+<span><span class="co">#&gt; 1     1 Deutschland      Germany     </span></span>
+<span><span class="co">#&gt; 2    20 Ausland          Foreign     </span></span>
+<span><span class="co">#&gt; 3    21 EU27-Land        EU27 Country</span></span>
+<span><span class="co">#&gt; 4    22 Sonstiges Europa Other Europe</span></span>
+<span><span class="co">#&gt; 5    23 Sonstige Welt    Other World </span></span>
+<span><span class="co">#&gt; 6    24 Sonstige         Other</span></span></code></pre></div>
 <p>When I talk about <strong>grids</strong>, I mean a geographical grid
 net according to the EU <a href="https://inspire.ec.europa.eu/theme/gg" class="external-link">INSPIRE</a> standard. Grids
 always have a fixed resolution (100x100 m, 1x1 km, 10x10 km). Such grids
