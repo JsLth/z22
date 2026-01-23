@@ -25,10 +25,10 @@ z22_categories(feature, year = NULL)
 
 - year:
 
-  Census year. This is needed only for two features,
-  `dwelling_constr_year` and `building_constr_year`. These features rely
-  on microcensus classes that change between census years. For other
-  features, this argument is ignored.
+  Census year. This is needed only for four features, `birth_country`,
+  `citizenship_group`, `dwelling_constr_year`, and
+  `building_constr_year`. These features rely on categories that changed
+  between census years. For other features, this argument is ignored.
 
 ## Value
 

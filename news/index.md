@@ -2,6 +2,8 @@
 
 ## z22 1.1.4
 
+CRAN release: 2026-01-23
+
 - Add support for changes between census years
   ([\#3](https://github.com/jslth/z22/issues/3))
 - Remove shift-by-half coordinate transformation
