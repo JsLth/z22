@@ -13,9 +13,10 @@ z22_categories(feature, year = NULL)
 of available features. If a feature is provided that does not have
 categories, generates a table based on the feature description.}
 
-\item{year}{Census year. This is needed only for two features,
-\code{dwelling_constr_year} and \code{building_constr_year}. These features
-rely on microcensus classes that change between census years. For other
+\item{year}{Census year. This is needed only for four features,
+\code{birth_country}, \code{citizenship_group},
+\code{dwelling_constr_year}, and \code{building_constr_year}. These features
+rely on categories that changed between census years. For other
 features, this argument is ignored.}
 }
 \value{
