@@ -176,7 +176,7 @@ z22_data <- function(feature,
 #' @returns A tibble, \code{\link[terra:rast]{SpatRaster}} or
 #' \code{\link[sf:st_as_sf]{sf}} tibble depending on the \code{as} argument.
 #'
-#' @examples
+#' @examplesIf arrow::codec_is_available("zstd")
 #' \donttest{# Get high-res grid as tibble
 #' z22_grid("100m")
 #'

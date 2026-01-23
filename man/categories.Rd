@@ -67,8 +67,8 @@ z22_categories("families")
   \item{\code{sex}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab M<U+00E4>nnlich \tab Male  \cr
-    		2 \tab Weiblich        \tab Female
+    		1 \tab Männlich \tab Male  \cr
+    		2 \tab Weiblich \tab Female
 		}
 }
 
@@ -76,9 +76,9 @@ z22_categories("families")
   \item{\code{religion}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab R<U+00F6>misch-katholische Kirche \tab Roman Catholic Church      \cr
-    		2 \tab Evangelische Kirche               \tab Evangelical Church         \cr
-    		3 \tab Sonstige, keine, ohne Angabe      \tab Other, none, no information
+    		1 \tab Römisch-katholische Kirche   \tab Roman Catholic Church      \cr
+    		2 \tab Evangelische Kirche          \tab Evangelical Church         \cr
+    		3 \tab Sonstige, keine, ohne Angabe \tab Other, none, no information
 		}
 }
 
@@ -120,20 +120,20 @@ z22_categories("families")
   \item{\code{citizenship_origin}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Deutschland                 \tab Germany               \cr
-    		 2 \tab Bosnien und Herzegowina     \tab Bosnia and Herzegovina\cr
-    		 3 \tab Griechenland                \tab Greece                \cr
-    		 4 \tab Italien                     \tab Italy                 \cr
-    		 5 \tab Kasachstan                  \tab Kazakhstan            \cr
-    		 6 \tab Kroatien                    \tab Croatia               \cr
-    		 7 \tab Niederlande                 \tab Netherlands           \cr
-    		 8 \tab <U+00D6>sterreich           \tab Austria               \cr
-    		 9 \tab Polen                       \tab Poland                \cr
-    		10 \tab Rum<U+00E4>nien             \tab Romania               \cr
-    		11 \tab Russische F<U+00F6>deration \tab Russian Federation    \cr
-    		12 \tab T<U+00FC>rkei               \tab Turkey                \cr
-    		13 \tab Ukraine                     \tab Ukraine               \cr
-    		14 \tab Sonstige                    \tab Other                 
+    		 1 \tab Deutschland             \tab Germany               \cr
+    		 2 \tab Bosnien und Herzegowina \tab Bosnia and Herzegovina\cr
+    		 3 \tab Griechenland            \tab Greece                \cr
+    		 4 \tab Italien                 \tab Italy                 \cr
+    		 5 \tab Kasachstan              \tab Kazakhstan            \cr
+    		 6 \tab Kroatien                \tab Croatia               \cr
+    		 7 \tab Niederlande             \tab Netherlands           \cr
+    		 8 \tab Österreich              \tab Austria               \cr
+    		 9 \tab Polen                   \tab Poland                \cr
+    		10 \tab Rumänien                \tab Romania               \cr
+    		11 \tab Russische Föderation    \tab Russian Federation    \cr
+    		12 \tab Türkei                  \tab Turkey                \cr
+    		13 \tab Ukraine                 \tab Ukraine               \cr
+    		14 \tab Sonstige                \tab Other                 
 		}
 }
 
@@ -141,10 +141,10 @@ z22_categories("families")
   \item{\code{citizenship_total}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Eine Staatsangeh<U+00F6>rigkeit  \tab One citizenship        \cr
-    		2 \tab Mehrere, deutsch und ...         \tab Several, German and ...\cr
-    		3 \tab Mehrere, nur ausl<U+00E4>ndische \tab Several, only foreign  \cr
-    		4 \tab Nicht bekannt                    \tab Unknown                
+    		1 \tab Eine Staatsangehörigkeit  \tab One citizenship        \cr
+    		2 \tab Mehrere, deutsch und ...  \tab Several, German and ...\cr
+    		3 \tab Mehrere, nur ausländische \tab Several, only foreign  \cr
+    		4 \tab Nicht bekannt             \tab Unknown                
 		}
 }
 
@@ -152,11 +152,11 @@ z22_categories("families")
   \item{\code{age_short}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Unter 18            \tab Under 18    \cr
-    		2 \tab 18 - 29             \tab 18 to 29    \cr
-    		3 \tab 30 - 49             \tab 30 to 49    \cr
-    		4 \tab 50 - 64             \tab 50 to 64    \cr
-    		5 \tab 65 und <U+00E4>lter \tab 65 and older
+    		1 \tab Unter 18     \tab Under 18    \cr
+    		2 \tab 18 - 29      \tab 18 to 29    \cr
+    		3 \tab 30 - 49      \tab 30 to 49    \cr
+    		4 \tab 50 - 64      \tab 50 to 64    \cr
+    		5 \tab 65 und älter \tab 65 and older
 		}
 }
 
@@ -164,15 +164,15 @@ z22_categories("families")
   \item{\code{age_long}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Unter 10            \tab Under 10    \cr
-    		2 \tab 10 - 19             \tab 10 to 19    \cr
-    		3 \tab 20 - 29             \tab 20 to 29    \cr
-    		4 \tab 30 - 39             \tab 30 to 39    \cr
-    		5 \tab 40 - 49             \tab 40 to 49    \cr
-    		6 \tab 50 - 59             \tab 50 to 59    \cr
-    		7 \tab 60 - 69             \tab 60 to 69    \cr
-    		8 \tab 70 - 79             \tab 70 to 79    \cr
-    		9 \tab 80 und <U+00E4>lter \tab 80 and older
+    		1 \tab Unter 10     \tab Under 10    \cr
+    		2 \tab 10 - 19      \tab 10 to 19    \cr
+    		3 \tab 20 - 29      \tab 20 to 29    \cr
+    		4 \tab 30 - 39      \tab 30 to 39    \cr
+    		5 \tab 40 - 49      \tab 40 to 49    \cr
+    		6 \tab 50 - 59      \tab 50 to 59    \cr
+    		7 \tab 60 - 69      \tab 60 to 69    \cr
+    		8 \tab 70 - 79      \tab 70 to 79    \cr
+    		9 \tab 80 und älter \tab 80 and older
 		}
 }
 
@@ -195,19 +195,19 @@ z22_categories("families")
   \item{\code{family_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Ehepaare ohne Kind                                     \tab Couples without child                                 \cr
-    		 2 \tab Ehepaare, mind. 1 Kind < 18                            \tab Couples, at least 1 child < 18                        \cr
-    		 3 \tab Ehepaare alle Kinder <U+2265> 18                       \tab Couples all children <U+2265> 18                      \cr
-    		 4 \tab Eingetr. Lebenspartnerschaften ohne Kind               \tab Registered civil partnerships without child           \cr
-    		 5 \tab Eingetr. Lebenspartnerschaften mind. 1 Kind < 18       \tab Registered civil partnerships, at least 1 child < 18  \cr
-    		 6 \tab Eingetr. Lebenspartnerschaften alle Kinder <U+2265> 18 \tab Registered civil partnerships all children <U+2265> 18\cr
-    		 7 \tab Nichteheliche Lebensgem. ohne Kind                     \tab Non-marital partnerships without child                \cr
-    		 8 \tab Nichteheliche Lebensgem. mind. 1 Kind < 18             \tab Non-marital partnerships, at least 1 child < 18       \cr
-    		 9 \tab Nichteheliche Lebensgem. alle Kinder <U+2265> 18       \tab Non-marital partnerships all children <U+2265> 18     \cr
-    		10 \tab Alleinerziehende V<U+00E4>ter mind. 1 Kind < 18        \tab Single fathers, at least 1 child < 18                 \cr
-    		11 \tab Alleinerziehende V<U+00E4>ter alle Kinder <U+2265> 18  \tab Single fathers all children <U+2265> 18               \cr
-    		12 \tab Alleinerziehende M<U+00FC>tter mind. 1 Kind < 18       \tab Single mothers, at least 1 child < 18                 \cr
-    		13 \tab Alleinerziehende M<U+00FC>tter alle Kinder <U+2265> 18 \tab Single mothers all children <U+2265> 18               
+    		 1 \tab Ehepaare ohne Kind                               \tab Couples without child                               \cr
+    		 2 \tab Ehepaare, mind. 1 Kind < 18                      \tab Couples, at least 1 child < 18                      \cr
+    		 3 \tab Ehepaare alle Kinder >= 18                        \tab Couples all children >= 18                           \cr
+    		 4 \tab Eingetr. Lebenspartnerschaften ohne Kind         \tab Registered civil partnerships without child         \cr
+    		 5 \tab Eingetr. Lebenspartnerschaften mind. 1 Kind < 18 \tab Registered civil partnerships, at least 1 child < 18\cr
+    		 6 \tab Eingetr. Lebenspartnerschaften alle Kinder >= 18  \tab Registered civil partnerships all children >= 18     \cr
+    		 7 \tab Nichteheliche Lebensgem. ohne Kind               \tab Non-marital partnerships without child              \cr
+    		 8 \tab Nichteheliche Lebensgem. mind. 1 Kind < 18       \tab Non-marital partnerships, at least 1 child < 18     \cr
+    		 9 \tab Nichteheliche Lebensgem. alle Kinder >= 18        \tab Non-marital partnerships all children >= 18          \cr
+    		10 \tab Alleinerziehende Väter mind. 1 Kind < 18         \tab Single fathers, at least 1 child < 18               \cr
+    		11 \tab Alleinerziehende Väter alle Kinder >= 18          \tab Single fathers all children >= 18                    \cr
+    		12 \tab Alleinerziehende Mütter mind. 1 Kind < 18        \tab Single mothers, at least 1 child < 18               \cr
+    		13 \tab Alleinerziehende Mütter alle Kinder >= 18         \tab Single mothers all children >= 18                    
 		}
 }
 
@@ -243,8 +243,8 @@ z22_categories("families")
     		2 \tab Ehepaare                               \tab Married couples                            \cr
     		3 \tab Eingetr. Lebenspartnerschaften         \tab Registered civil partnerships              \cr
     		4 \tab Nichteheliche Lebensgemeinschaften     \tab Non-marital partnerships                   \cr
-    		5 \tab Alleinerziehende M<U+00FC>tter         \tab Single mothers                             \cr
-    		6 \tab Alleinerziehende V<U+00E4>ter          \tab Single fathers                             \cr
+    		5 \tab Alleinerziehende Mütter                \tab Single mothers                             \cr
+    		6 \tab Alleinerziehende Väter                 \tab Single fathers                             \cr
     		7 \tab Mehrpersonenhaushalte ohne Kernfamilie \tab Multi-person households without core family
 		}
 }
@@ -253,9 +253,9 @@ z22_categories("families")
   \item{\code{household_senior}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Haushalte mit ausschlie<U+00DF>lich Senioren/-innen \tab Households with only seniors              \cr
-    		2 \tab Haushalte mit Senioren/-innen und J<U+00FC>ngeren   \tab Households with seniors and younger people\cr
-    		3 \tab Haushalte ohne Senioren/-innen                      \tab Households without seniors                
+    		1 \tab Haushalte mit ausschließlich Senioren/-innen \tab Households with only seniors              \cr
+    		2 \tab Haushalte mit Senioren/-innen und Jüngeren   \tab Households with seniors and younger people\cr
+    		3 \tab Haushalte ohne Senioren/-innen               \tab Households without seniors                
 		}
 }
 
@@ -276,16 +276,16 @@ z22_categories("families")
   \item{\code{dwelling_occupancy}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Von Eigent<U+00FC>mer/-in bewohnt                 \tab Occupied by owner                             \cr
-    		11 \tab Eigentum: mit aktuell gef<U+00FC>hrtem Haushalt   \tab Ownership: with currently managed household   \cr
-    		12 \tab Eigentum: ohne aktuell gef<U+00FC>hrtem Haushalt  \tab Ownership: without currently managed household\cr
-    		 2 \tab Zu Wohnzwecken vermietet                          \tab Rented for residential purposes               \cr
-    		21 \tab Vermietet: mit aktuell gef<U+00FC>hrtem Haushalt  \tab Rented: with currently managed household      \cr
-    		22 \tab Vermietet: ohne aktuell gef<U+00FC>hrtem Haushalt \tab Rented: without currently managed household   \cr
-    		 3 \tab Ferien- und Freizeitwohnung                       \tab Holiday and leisure home                      \cr
-    		 4 \tab Leer stehend                                      \tab Vacant                                        \cr
-    		 5 \tab Diplomaten-/Streitkr<U+00E4>ftewohnung            \tab Diplomatic/Military housing                   \cr
-    		99 \tab Gewerbl. Nutzung                                  \tab Commercial use                                
+    		 1 \tab Von Eigentümer/-in bewohnt                 \tab Occupied by owner                             \cr
+    		11 \tab Eigentum: mit aktuell geführtem Haushalt   \tab Ownership: with currently managed household   \cr
+    		12 \tab Eigentum: ohne aktuell geführtem Haushalt  \tab Ownership: without currently managed household\cr
+    		 2 \tab Zu Wohnzwecken vermietet                   \tab Rented for residential purposes               \cr
+    		21 \tab Vermietet: mit aktuell geführtem Haushalt  \tab Rented: with currently managed household      \cr
+    		22 \tab Vermietet: ohne aktuell geführtem Haushalt \tab Rented: without currently managed household   \cr
+    		 3 \tab Ferien- und Freizeitwohnung                \tab Holiday and leisure home                      \cr
+    		 4 \tab Leer stehend                               \tab Vacant                                        \cr
+    		 5 \tab Diplomaten-/Streitkräftewohnung            \tab Diplomatic/Military housing                   \cr
+    		99 \tab Gewerbl. Nutzung                           \tab Commercial use                                
 		}
 }
 
@@ -293,11 +293,11 @@ z22_categories("families")
   \item{\code{dwelling_ownership_home}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Privatperson/-en                                    \tab Private person(s)                       \cr
-    		 2 \tab Privatwirtschaftliche Unternehmen (jur. Personen)   \tab Private sector companies (legal persons)\cr
-    		 3 \tab <U+00D6>ffentliche Unternehmen, Kirchen o.<U+00E4>. \tab Public companies, churches or similar   \cr
-    		 4 \tab Wohnungsgenossenschaft                              \tab Housing cooperative                     \cr
-    		99 \tab Trifft nicht zu (da keine Eigentumswohnung)         \tab Does not apply (no condominium)         
+    		 1 \tab Privatperson/-en                                  \tab Private person(s)                       \cr
+    		 2 \tab Privatwirtschaftliche Unternehmen (jur. Personen) \tab Private sector companies (legal persons)\cr
+    		 3 \tab Öffentliche Unternehmen, Kirchen o.ä.             \tab Public companies, churches or similar   \cr
+    		 4 \tab Wohnungsgenossenschaft                            \tab Housing cooperative                     \cr
+    		99 \tab Trifft nicht zu (da keine Eigentumswohnung)       \tab Does not apply (no condominium)         
 		}
 }
 
@@ -305,14 +305,14 @@ z22_categories("families")
   \item{\code{dwelling_ownership_property}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Gemeinschaft von Wohnungseigent<U+00FC>mern/-innen \tab Homeowner association                    \cr
-    		2 \tab Privatperson/-en                                   \tab Private person(s)                        \cr
-    		3 \tab Wohnungsgenossenschaft                             \tab Housing cooperative                      \cr
-    		4 \tab Kommune oder Kommunales Wohnungsunternehmen        \tab Municipality or municipal housing company\cr
-    		5 \tab Privatwirtschaftliches Wohnungsunternehmen         \tab Private sector housing company           \cr
-    		6 \tab Anderes privatwirtschaftliches Unternehmen         \tab Other private sector company             \cr
-    		7 \tab Bund oder Land                                     \tab Federal or state government              \cr
-    		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche)       \tab Non-profit organization (e.g. church)    
+    		1 \tab Gemeinschaft von Wohnungseigentümern/-innen  \tab Homeowner association                    \cr
+    		2 \tab Privatperson/-en                             \tab Private person(s)                        \cr
+    		3 \tab Wohnungsgenossenschaft                       \tab Housing cooperative                      \cr
+    		4 \tab Kommune oder Kommunales Wohnungsunternehmen  \tab Municipality or municipal housing company\cr
+    		5 \tab Privatwirtschaftliches Wohnungsunternehmen   \tab Private sector housing company           \cr
+    		6 \tab Anderes privatwirtschaftliches Unternehmen   \tab Other private sector company             \cr
+    		7 \tab Bund oder Land                               \tab Federal or state government              \cr
+    		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche) \tab Non-profit organization (e.g. church)    
 		}
 }
 
@@ -345,14 +345,14 @@ z22_categories("families")
   \item{\code{dwelling_rooms}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab 1 Raum                  \tab 1 Room          \cr
-    		 2 \tab 2 R<U+00E4>ume          \tab 2 Rooms         \cr
-    		 3 \tab 3 R<U+00E4>ume          \tab 3 Rooms         \cr
-    		 4 \tab 4 R<U+00E4>ume          \tab 4 Rooms         \cr
-    		 5 \tab 5 R<U+00E4>ume          \tab 5 Rooms         \cr
-    		 6 \tab 6 R<U+00E4>ume          \tab 6 Rooms         \cr
-    		 7 \tab 7 und mehr R<U+00E4>ume \tab 7 and more Rooms\cr
-    		99 \tab t.n.z., gewerblich      \tab n.a., commercial
+    		 1 \tab 1 Raum             \tab 1 Room          \cr
+    		 2 \tab 2 Räume            \tab 2 Rooms         \cr
+    		 3 \tab 3 Räume            \tab 3 Rooms         \cr
+    		 4 \tab 4 Räume            \tab 4 Rooms         \cr
+    		 5 \tab 5 Räume            \tab 5 Rooms         \cr
+    		 6 \tab 6 Räume            \tab 6 Rooms         \cr
+    		 7 \tab 7 und mehr Räume   \tab 7 and more Rooms\cr
+    		99 \tab t.n.z., gewerblich \tab n.a., commercial
 		}
 }
 
@@ -360,16 +360,16 @@ z22_categories("families")
   \item{\code{dwelling_constr_year} (2011)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Vor 1919               \tab Before 1919   \cr
-    		 2 \tab 1919 - 1948            \tab 1919 - 1948   \cr
-    		 3 \tab 1949 - 1978            \tab 1949 - 1978   \cr
-    		 4 \tab 1979 - 1986            \tab 1979 - 1986   \cr
-    		 5 \tab 1987 - 1990            \tab 1987 - 1990   \cr
-    		 6 \tab 1991 - 1995            \tab 1991 - 1995   \cr
-    		 7 \tab 1996 - 2000            \tab 1996 - 2000   \cr
-    		 8 \tab 2001 - 2004            \tab 2001 - 2004   \cr
-    		 9 \tab 2005 - 2008            \tab 2005 - 2008   \cr
-    		10 \tab 2009 und sp<U+00E4>ter \tab 2009 and later
+    		 1 \tab Vor 1919        \tab Before 1919   \cr
+    		 2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		 3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		 4 \tab 1979 - 1986     \tab 1979 - 1986   \cr
+    		 5 \tab 1987 - 1990     \tab 1987 - 1990   \cr
+    		 6 \tab 1991 - 1995     \tab 1991 - 1995   \cr
+    		 7 \tab 1996 - 2000     \tab 1996 - 2000   \cr
+    		 8 \tab 2001 - 2004     \tab 2001 - 2004   \cr
+    		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
+    		10 \tab 2009 und später \tab 2009 and later
 		}
 }
 
@@ -377,14 +377,14 @@ z22_categories("families")
   \item{\code{dwelling_constr_year} (2022)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Vor 1919               \tab Before 1919   \cr
-    		2 \tab 1919 - 1948            \tab 1919 - 1948   \cr
-    		3 \tab 1949 - 1978            \tab 1949 - 1978   \cr
-    		4 \tab 1979 - 1990            \tab 1979 - 1990   \cr
-    		5 \tab 1991 - 2000            \tab 1991 - 2000   \cr
-    		6 \tab 2001 - 2010            \tab 2001 - 2010   \cr
-    		7 \tab 2011 - 2019            \tab 2011 - 2019   \cr
-    		8 \tab 2020 und sp<U+00E4>ter \tab 2020 and later
+    		1 \tab Vor 1919        \tab Before 1919   \cr
+    		2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		4 \tab 1979 - 1990     \tab 1979 - 1990   \cr
+    		5 \tab 1991 - 2000     \tab 1991 - 2000   \cr
+    		6 \tab 2001 - 2010     \tab 2001 - 2010   \cr
+    		7 \tab 2011 - 2019     \tab 2011 - 2019   \cr
+    		8 \tab 2020 und später \tab 2020 and later
 		}
 }
 
@@ -392,11 +392,11 @@ z22_categories("families")
   \item{\code{dwelling_building_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		  1 \tab Geb<U+00E4>ude mit Wohnraum           \tab Building with living space                  \cr
-    		 11 \tab Wohngeb<U+00E4>ude                    \tab Residential building                        \cr
-    		111 \tab Wohngeb<U+00E4>ude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
-    		112 \tab Wohnheim                              \tab Dormitory                                   \cr
-    		 12 \tab Sonstiges Geb<U+00E4>ude mit Wohnraum \tab Other building with living space            
+    		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
+    		 11 \tab Wohngebäude                    \tab Residential building                        \cr
+    		111 \tab Wohngebäude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
+    		112 \tab Wohnheim                       \tab Dormitory                                   \cr
+    		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            
 		}
 }
 
@@ -404,10 +404,10 @@ z22_categories("families")
   \item{\code{dwelling_building_design}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Freistehendes Haus        \tab Detached house     \cr
-    		2 \tab Doppelhaus H<U+00E4>lfte  \tab Semi-detached house\cr
-    		3 \tab Gereihtes Haus            \tab Terraced house     \cr
-    		4 \tab Anderer Geb<U+00E4>udetyp \tab Other building type
+    		1 \tab Freistehendes Haus \tab Detached house     \cr
+    		2 \tab Doppelhaus Hälfte  \tab Semi-detached house\cr
+    		3 \tab Gereihtes Haus     \tab Terraced house     \cr
+    		4 \tab Anderer Gebäudetyp \tab Other building type
 		}
 }
 
@@ -415,16 +415,16 @@ z22_categories("families")
   \item{\code{dwelling_building_size}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Freistehendes Einfamilienhaus             \tab Detached single-family house              \cr
-    		 2 \tab Einfamilienhaus: Doppelhaush<U+00E4>lfte  \tab Single-family house: semi-detached        \cr
-    		 3 \tab Einfamilienhaus: Reihenhaus               \tab Single-family house: terraced             \cr
-    		 4 \tab Freistehendes Zweifamilienhaus            \tab Detached two-family house                 \cr
-    		 5 \tab Zweifamilienhaus: Doppelhaush<U+00E4>lfte \tab Two-family house: semi-detached           \cr
-    		 6 \tab Zweifamilienhaus: Reihenhaus              \tab Two-family house: terraced                \cr
-    		 7 \tab Mehrfamilienhaus: 3-6 Wohnungen           \tab Multi-family house: 3-6 apartments        \cr
-    		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen          \tab Multi-family house: 7-12 apartments       \cr
-    		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen   \tab Multi-family house: 13 and more apartments\cr
-    		10 \tab Anderer Geb<U+00E4>udetyp                 \tab Other building type                       
+    		 1 \tab Freistehendes Einfamilienhaus           \tab Detached single-family house              \cr
+    		 2 \tab Einfamilienhaus: Doppelhaushälfte       \tab Single-family house: semi-detached        \cr
+    		 3 \tab Einfamilienhaus: Reihenhaus             \tab Single-family house: terraced             \cr
+    		 4 \tab Freistehendes Zweifamilienhaus          \tab Detached two-family house                 \cr
+    		 5 \tab Zweifamilienhaus: Doppelhaushälfte      \tab Two-family house: semi-detached           \cr
+    		 6 \tab Zweifamilienhaus: Reihenhaus            \tab Two-family house: terraced                \cr
+    		 7 \tab Mehrfamilienhaus: 3-6 Wohnungen         \tab Multi-family house: 3-6 apartments        \cr
+    		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen        \tab Multi-family house: 7-12 apartments       \cr
+    		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen \tab Multi-family house: 13 and more apartments\cr
+    		10 \tab Anderer Gebäudetyp                      \tab Other building type                       
 		}
 }
 
@@ -432,12 +432,12 @@ z22_categories("families")
   \item{\code{dwelling_heat_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Fernheizung (Fernw<U+00E4>rme)                          \tab District heating (long-distance heating)                      \cr
-    		2 \tab Etagenheizung                                           \tab Self-contained central heating                                \cr
-    		3 \tab Blockheizung                                            \tab Block heating                                                 \cr
-    		4 \tab Zentralheizung                                          \tab Central heating                                               \cr
-    		5 \tab Einzel-/Mehrraum<U+00F6>fen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
-    		6 \tab Keine Heizung im Geb<U+00E4>ude oder in den Wohnungen   \tab No heating in the building or in the apartments               
+    		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
+    		2 \tab Etagenheizung                                    \tab Self-contained central heating                                \cr
+    		3 \tab Blockheizung                                     \tab Block heating                                                 \cr
+    		4 \tab Zentralheizung                                   \tab Central heating                                               \cr
+    		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
+    		6 \tab Keine Heizung im Gebäude oder in den Wohnungen   \tab No heating in the building or in the apartments               
 		}
 }
 
@@ -445,15 +445,15 @@ z22_categories("families")
   \item{\code{dwelling_heat_src}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Gas                                   \tab Gas                             \cr
-    		2 \tab Heiz<U+00F6>l                         \tab Heating oil                     \cr
-    		3 \tab Holz(pellets)                         \tab Wood (pellets)                  \cr
-    		4 \tab Biomasse (ohne Holz), Biogas          \tab Biomass (no wood), biogas       \cr
-    		5 \tab Solar-/Geothermie, W<U+00E4>rmepumpen \tab Solar, geothermal, heat pumps   \cr
-    		6 \tab Strom (ohne W<U+00E4>rmepumpen)       \tab Electric heating (no heat pumps)\cr
-    		7 \tab Kohle                                 \tab Coal                            \cr
-    		8 \tab Fernw<U+00E4>rme                      \tab District heating                \cr
-    		9 \tab Kein Energietr<U+00E4>ger             \tab No heating                      
+    		1 \tab Gas                            \tab Gas                             \cr
+    		2 \tab Heizöl                         \tab Heating oil                     \cr
+    		3 \tab Holz(pellets)                  \tab Wood (pellets)                  \cr
+    		4 \tab Biomasse (ohne Holz), Biogas   \tab Biomass (no wood), biogas       \cr
+    		5 \tab Solar-/Geothermie, Wärmepumpen \tab Solar, geothermal, heat pumps   \cr
+    		6 \tab Strom (ohne Wärmepumpen)       \tab Electric heating (no heat pumps)\cr
+    		7 \tab Kohle                          \tab Coal                            \cr
+    		8 \tab Fernwärme                      \tab District heating                \cr
+    		9 \tab Kein Energieträger             \tab No heating                      
 		}
 }
 
@@ -461,14 +461,14 @@ z22_categories("families")
   \item{\code{building_ownership_property}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Gemeinschaft von Wohnungseigent<U+00FC>mern/-innen \tab Homeowner association                    \cr
-    		2 \tab Privatperson/-en                                   \tab Private person(s)                        \cr
-    		3 \tab Wohnungsgenossenschaft                             \tab Housing cooperative                      \cr
-    		4 \tab Kommune oder Kommunales Wohnungsunternehmen        \tab Municipality or municipal housing company\cr
-    		5 \tab Privatwirtschaftliches Wohnungsunternehmen         \tab Private sector housing company           \cr
-    		6 \tab Anderes privatwirtschaftliches Unternehmen         \tab Other private sector company             \cr
-    		7 \tab Bund oder Land                                     \tab Federal or state government              \cr
-    		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche)       \tab Non-profit organization (e.g. church)    
+    		1 \tab Gemeinschaft von Wohnungseigentümern/-innen  \tab Homeowner association                    \cr
+    		2 \tab Privatperson/-en                             \tab Private person(s)                        \cr
+    		3 \tab Wohnungsgenossenschaft                       \tab Housing cooperative                      \cr
+    		4 \tab Kommune oder Kommunales Wohnungsunternehmen  \tab Municipality or municipal housing company\cr
+    		5 \tab Privatwirtschaftliches Wohnungsunternehmen   \tab Private sector housing company           \cr
+    		6 \tab Anderes privatwirtschaftliches Unternehmen   \tab Other private sector company             \cr
+    		7 \tab Bund oder Land                               \tab Federal or state government              \cr
+    		8 \tab Organisation ohne Erwerbszweck (z.B. Kirche) \tab Non-profit organization (e.g. church)    
 		}
 }
 
@@ -476,16 +476,16 @@ z22_categories("families")
   \item{\code{building_constr_year} (2011)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Vor 1919               \tab Before 1919   \cr
-    		 2 \tab 1919 - 1948            \tab 1919 - 1948   \cr
-    		 3 \tab 1949 - 1978            \tab 1949 - 1978   \cr
-    		 4 \tab 1979 - 1986            \tab 1979 - 1986   \cr
-    		 5 \tab 1987 - 1990            \tab 1987 - 1990   \cr
-    		 6 \tab 1991 - 1995            \tab 1991 - 1995   \cr
-    		 7 \tab 1996 - 2000            \tab 1996 - 2000   \cr
-    		 8 \tab 2001 - 2004            \tab 2001 - 2004   \cr
-    		 9 \tab 2005 - 2008            \tab 2005 - 2008   \cr
-    		10 \tab 2009 und sp<U+00E4>ter \tab 2009 and later
+    		 1 \tab Vor 1919        \tab Before 1919   \cr
+    		 2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		 3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		 4 \tab 1979 - 1986     \tab 1979 - 1986   \cr
+    		 5 \tab 1987 - 1990     \tab 1987 - 1990   \cr
+    		 6 \tab 1991 - 1995     \tab 1991 - 1995   \cr
+    		 7 \tab 1996 - 2000     \tab 1996 - 2000   \cr
+    		 8 \tab 2001 - 2004     \tab 2001 - 2004   \cr
+    		 9 \tab 2005 - 2008     \tab 2005 - 2008   \cr
+    		10 \tab 2009 und später \tab 2009 and later
 		}
 }
 
@@ -493,14 +493,14 @@ z22_categories("families")
   \item{\code{building_constr_year} (2022)}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Vor 1919               \tab Before 1919   \cr
-    		2 \tab 1919 - 1948            \tab 1919 - 1948   \cr
-    		3 \tab 1949 - 1978            \tab 1949 - 1978   \cr
-    		4 \tab 1979 - 1990            \tab 1979 - 1990   \cr
-    		5 \tab 1991 - 2000            \tab 1991 - 2000   \cr
-    		6 \tab 2001 - 2010            \tab 2001 - 2010   \cr
-    		7 \tab 2011 - 2019            \tab 2011 - 2019   \cr
-    		8 \tab 2020 und sp<U+00E4>ter \tab 2020 and later
+    		1 \tab Vor 1919        \tab Before 1919   \cr
+    		2 \tab 1919 - 1948     \tab 1919 - 1948   \cr
+    		3 \tab 1949 - 1978     \tab 1949 - 1978   \cr
+    		4 \tab 1979 - 1990     \tab 1979 - 1990   \cr
+    		5 \tab 1991 - 2000     \tab 1991 - 2000   \cr
+    		6 \tab 2001 - 2010     \tab 2001 - 2010   \cr
+    		7 \tab 2011 - 2019     \tab 2011 - 2019   \cr
+    		8 \tab 2020 und später \tab 2020 and later
 		}
 }
 
@@ -520,16 +520,16 @@ z22_categories("families")
   \item{\code{building_size}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Freistehendes Einfamilienhaus             \tab Detached single-family house              \cr
-    		 2 \tab Einfamilienhaus: Doppelhaush<U+00E4>lfte  \tab Single-family house: semi-detached        \cr
-    		 3 \tab Einfamilienhaus: Reihenhaus               \tab Single-family house: terraced             \cr
-    		 4 \tab Freistehendes Zweifamilienhaus            \tab Detached two-family house                 \cr
-    		 5 \tab Zweifamilienhaus: Doppelhaush<U+00E4>lfte \tab Two-family house: semi-detached           \cr
-    		 6 \tab Zweifamilienhaus: Reihenhaus              \tab Two-family house: terraced                \cr
-    		 7 \tab Mehrfamilienhaus: 3-6 Wohnungen           \tab Multi-family house: 3-6 apartments        \cr
-    		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen          \tab Multi-family house: 7-12 apartments       \cr
-    		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen   \tab Multi-family house: 13 and more apartments\cr
-    		10 \tab Anderer Geb<U+00E4>udetyp                 \tab Other building type                       
+    		 1 \tab Freistehendes Einfamilienhaus           \tab Detached single-family house              \cr
+    		 2 \tab Einfamilienhaus: Doppelhaushälfte       \tab Single-family house: semi-detached        \cr
+    		 3 \tab Einfamilienhaus: Reihenhaus             \tab Single-family house: terraced             \cr
+    		 4 \tab Freistehendes Zweifamilienhaus          \tab Detached two-family house                 \cr
+    		 5 \tab Zweifamilienhaus: Doppelhaushälfte      \tab Two-family house: semi-detached           \cr
+    		 6 \tab Zweifamilienhaus: Reihenhaus            \tab Two-family house: terraced                \cr
+    		 7 \tab Mehrfamilienhaus: 3-6 Wohnungen         \tab Multi-family house: 3-6 apartments        \cr
+    		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen        \tab Multi-family house: 7-12 apartments       \cr
+    		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen \tab Multi-family house: 13 and more apartments\cr
+    		10 \tab Anderer Gebäudetyp                      \tab Other building type                       
 		}
 }
 
@@ -537,11 +537,11 @@ z22_categories("families")
   \item{\code{building_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		  1 \tab Geb<U+00E4>ude mit Wohnraum           \tab Building with living space                  \cr
-    		 11 \tab Wohngeb<U+00E4>ude                    \tab Residential building                        \cr
-    		111 \tab Wohngeb<U+00E4>ude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
-    		112 \tab Wohnheim                              \tab Dormitory                                   \cr
-    		 12 \tab Sonstiges Geb<U+00E4>ude mit Wohnraum \tab Other building with living space            
+    		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
+    		 11 \tab Wohngebäude                    \tab Residential building                        \cr
+    		111 \tab Wohngebäude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
+    		112 \tab Wohnheim                       \tab Dormitory                                   \cr
+    		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            
 		}
 }
 
@@ -549,10 +549,10 @@ z22_categories("families")
   \item{\code{building_design}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Freistehendes Haus        \tab Detached house     \cr
-    		2 \tab Doppelhaus H<U+00E4>lfte  \tab Semi-detached house\cr
-    		3 \tab Gereihtes Haus            \tab Terraced house     \cr
-    		4 \tab Anderer Geb<U+00E4>udetyp \tab Other building type
+    		1 \tab Freistehendes Haus \tab Detached house     \cr
+    		2 \tab Doppelhaus Hälfte  \tab Semi-detached house\cr
+    		3 \tab Gereihtes Haus     \tab Terraced house     \cr
+    		4 \tab Anderer Gebäudetyp \tab Other building type
 		}
 }
 
@@ -560,12 +560,12 @@ z22_categories("families")
   \item{\code{building_heat_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Fernheizung (Fernw<U+00E4>rme)                          \tab District heating (long-distance heating)                      \cr
-    		2 \tab Etagenheizung                                           \tab Self-contained central heating                                \cr
-    		3 \tab Blockheizung                                            \tab Block heating                                                 \cr
-    		4 \tab Zentralheizung                                          \tab Central heating                                               \cr
-    		5 \tab Einzel-/Mehrraum<U+00F6>fen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
-    		6 \tab Keine Heizung im Geb<U+00E4>ude oder in den Wohnungen   \tab No heating in the building or in the apartments               
+    		1 \tab Fernheizung (Fernwärme)                          \tab District heating (long-distance heating)                      \cr
+    		2 \tab Etagenheizung                                    \tab Self-contained central heating                                \cr
+    		3 \tab Blockheizung                                     \tab Block heating                                                 \cr
+    		4 \tab Zentralheizung                                   \tab Central heating                                               \cr
+    		5 \tab Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) \tab Individual/multi-room stoves (including night storage heating)\cr
+    		6 \tab Keine Heizung im Gebäude oder in den Wohnungen   \tab No heating in the building or in the apartments               
 		}
 }
 
@@ -573,15 +573,15 @@ z22_categories("families")
   \item{\code{building_heat_src}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		1 \tab Gas                                   \tab Gas                             \cr
-    		2 \tab Heiz<U+00F6>l                         \tab Heating oil                     \cr
-    		3 \tab Holz(pellets)                         \tab Wood (pellets)                  \cr
-    		4 \tab Biomasse (ohne Holz), Biogas          \tab Biomass (no wood), biogas       \cr
-    		5 \tab Solar-/Geothermie, W<U+00E4>rmepumpen \tab Solar, geothermal, heat pumps   \cr
-    		6 \tab Strom (ohne W<U+00E4>rmepumpen)       \tab Electric heating (no heat pumps)\cr
-    		7 \tab Kohle                                 \tab Coal                            \cr
-    		8 \tab Fernw<U+00E4>rme                      \tab District heating                \cr
-    		9 \tab Kein Energietr<U+00E4>ger             \tab No heating                      
+    		1 \tab Gas                            \tab Gas                             \cr
+    		2 \tab Heizöl                         \tab Heating oil                     \cr
+    		3 \tab Holz(pellets)                  \tab Wood (pellets)                  \cr
+    		4 \tab Biomasse (ohne Holz), Biogas   \tab Biomass (no wood), biogas       \cr
+    		5 \tab Solar-/Geothermie, Wärmepumpen \tab Solar, geothermal, heat pumps   \cr
+    		6 \tab Strom (ohne Wärmepumpen)       \tab Electric heating (no heat pumps)\cr
+    		7 \tab Kohle                          \tab Coal                            \cr
+    		8 \tab Fernwärme                      \tab District heating                \cr
+    		9 \tab Kein Energieträger             \tab No heating                      
 		}
 }
 
