@@ -9,6 +9,7 @@
 #' either \code{"english"} (default) or \code{"german"}. Note that the
 #' English descriptions are only ad-hoc translations based off the German
 #' originals.
+#' @inheritParams categories
 #' @returns \code{.data} with category codes decoded to labels.
 #'
 #' @export
@@ -25,9 +26,9 @@
 #'
 #' # special case: cat_* strings
 #' z22_decode("cat_2", feature = "sex")
-z22_decode <- function(codes, feature, lang = c("english", "german")) {
+z22_decode <- function(codes, feature, year = NULL, lang = c("english", "german")) {
   lang <- match.arg(lang)
-  cats <- z22_categories(feature)
+  cats <- z22_categories(feature, year = year)
 
   if (is.factor(codes)) {
     codes <- as.character(codes)
