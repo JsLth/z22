@@ -126,7 +126,7 @@ features <- dplyr::tribble(
   "Population", "age_short", "age_short", "ALTER_KURZ", NA, "Age (five classes of years)", "Alter in 5 Altersklassen", "count",
   "Population", "age_long", "age_long", "ALTER_10JG", NA, "Age (ten years age groups)", "Alter in 10er-Jahresgruppen", "count",
   "Population", "age_under_18", "age_under_18", NA, "unter18_A", "Share of people under 18", "Anteil er unter 18-J\u00e4hrigen", "share",
-  "Population", "age_from_65", "age_from_65", NA, "ab65_A", "Share of people 65 or older", "Anteil der ab 65-J\u00e4hrigen", "share,",
+  "Population", "age_from_65", "age_from_65", NA, "ab65_A", "Share of people 65 or older", "Anteil der ab 65-J\u00e4hrigen", "share",
   "Population", "marital_status", "marital_status", "FAMSTND_AUSF", NA, "Marital status", "Familienstand", "count",
   "Families", "families", "families", "INSGESAMT_families", NA, "Total number of families", "Gesamtzahl der Familien", "count",
   "Families", "family_type", "family_type", "FAMTYP_KIND", NA, "Type of core family (by children)", "Typ der Kernfamilie (nach Kindern)", "count",
