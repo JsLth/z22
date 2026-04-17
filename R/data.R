@@ -30,7 +30,8 @@
 #' complete grid from \code{\link{z22_grid}}. Otherwise, the attribute grid
 #' will contain only those grid cells with one or more recorded units. Defaults
 #' to \code{FALSE}, because loading the grid and joining with it is
-#' computationally expensive.
+#' computationally expensive. If the downloaded feature is a count or a share,
+#' all empty grid values will be replaced with 0.
 #' @param normalize If \code{TRUE} and \code{feature} is a counted feature,
 #' computes shares by dividing the counts by the total number of units in the
 #' grid cell. The type of unit depends on the theme of the feature, e.g., if
@@ -132,7 +133,7 @@ z22_data <- function(feature,
     # counts are always 0 if values are missing
     # for shares or averages, it's a bit more complicated so they stay NA
     type <- features[features$name %in% feature, ]$type
-    if (type %in% "count") {
+    if (type %in% c("count", "share")) {
       out <- dplyr::mutate(out, dplyr::across(
         dplyr::starts_with("cat_"),
         .fns = ~replace(.x, is.na(.x), 0)
