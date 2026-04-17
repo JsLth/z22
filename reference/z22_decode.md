@@ -5,7 +5,7 @@ Replace category codes with their labels.
 ## Usage
 
 ``` r
-z22_decode(codes, feature, lang = c("english", "german"))
+z22_decode(codes, feature, year = NULL, lang = c("english", "german"))
 ```
 
 ## Arguments
@@ -17,6 +17,13 @@ z22_decode(codes, feature, lang = c("english", "german"))
 - feature:
 
   A grid feature that the category `codes` belong to.
+
+- year:
+
+  Census year. This is needed only for four features, `birth_country`,
+  `citizenship_group`, `dwelling_constr_year`, and
+  `building_constr_year`. These features rely on categories that changed
+  between census years. For other features, this argument is ignored.
 
 - lang:
 

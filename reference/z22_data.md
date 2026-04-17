@@ -63,7 +63,9 @@ z22_data(
   [`z22_grid`](https://jslth.github.io/z22/reference/z22_grid.md).
   Otherwise, the attribute grid will contain only those grid cells with
   one or more recorded units. Defaults to `FALSE`, because loading the
-  grid and joining with it is computationally expensive.
+  grid and joining with it is computationally expensive. If the
+  downloaded feature is a count or a share, all empty grid values will
+  be replaced with 0.
 
 - normalize:
 
