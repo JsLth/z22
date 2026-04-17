@@ -31,7 +31,7 @@ Note that all columns starting with \code{"cat_*"} are automatically used
 for pivoting.
 }
 \examples{
-\dontshow{if (arrow::codec_is_available("zstd")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arrow::codec_is_available("zstd")) withAutoprint(\{ # examplesIf}
 \donttest{# get feature grid
 age <- z22_data("age_short", res = "10km")
 

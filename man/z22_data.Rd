@@ -36,7 +36,8 @@ not available and some features are only available at certain resolutions.}
 complete grid from \code{\link{z22_grid}}. Otherwise, the attribute grid
 will contain only those grid cells with one or more recorded units. Defaults
 to \code{FALSE}, because loading the grid and joining with it is
-computationally expensive.}
+computationally expensive. If the downloaded feature is a count or a share,
+all empty grid values will be replaced with 0.}
 
 \item{normalize}{If \code{TRUE} and \code{feature} is a counted feature,
 computes shares by dividing the counts by the total number of units in the
@@ -93,7 +94,7 @@ it offline or use an entirely different repository by setting
 \code{options(z22.data_repo = "path/to/z22data")}.
 }
 \examples{
-\dontshow{if (arrow::codec_is_available("zstd")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arrow::codec_is_available("zstd")) withAutoprint(\{ # examplesIf}
 \donttest{# Get gridded population
 pop <- z22_data("population", res = "10km", as = "raster")
 terra::plot(pop$cat_0)

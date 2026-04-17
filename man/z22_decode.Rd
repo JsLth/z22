@@ -4,13 +4,19 @@
 \alias{z22_decode}
 \title{Decode and translate features and categories}
 \usage{
-z22_decode(codes, feature, lang = c("english", "german"))
+z22_decode(codes, feature, year = NULL, lang = c("english", "german"))
 }
 \arguments{
 \item{codes}{A vector of character codes, possibly prefixed with
 \code{"cat_"}.}
 
 \item{feature}{A grid feature that the category \code{codes} belong to.}
+
+\item{year}{Census year. This is needed only for four features,
+\code{birth_country}, \code{citizenship_group},
+\code{dwelling_constr_year}, and \code{building_constr_year}. These features
+rely on categories that changed between census years. For other
+features, this argument is ignored.}
 
 \item{lang}{Specifies the language of the output description. Can be
 either \code{"english"} (default) or \code{"german"}. Note that the

@@ -52,7 +52,7 @@ Note the uncompressed object sizes of the output (2019 version):
 }
 }
 \examples{
-\dontshow{if (arrow::codec_is_available("zstd")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (arrow::codec_is_available("zstd")) withAutoprint(\{ # examplesIf}
 \donttest{# Get high-res grid as tibble
 z22_grid("100m")
 
