@@ -289,11 +289,25 @@ z22data_download <- function(dir,
     req, repo, "raw", "refs", "heads",
     "main", dir, paste0(fid, ".parquet")
   )
+  req <- httr2::req_error(req, body = function(resp) {
+    switch(
+      as.character(httr2::resp_status(resp)),
+      `404` = "This is an internal error. Please open an issue on GitHub."
+    )
+  })
   if (getOption("z22.debug", FALSE)) {
     cli::cli_inform("GET {req$url}") # nocov
   }
 
-  unclass(httr2::req_perform(req, path = path)$body)
+  tryCatch(
+    unclass(httr2::req_perform(req, path = path)$body),
+
+    # if download fails, clean up corrupted files
+    error = function(e) {
+      unlink(path, force = TRUE)
+      stop(e)
+    }
+  )
 }
 
 
