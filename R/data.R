@@ -104,7 +104,7 @@ z22_data <- function(feature,
   })
   out <- Reduce(out, f = function(x, y) {
     y <- y[!colnames(y) %in% "quality"]
-    dplyr::left_join(x, y, by = c("x", "y"))
+    dplyr::full_join(x, y, by = c("x", "y"))
   })
 
   if (normalize) {
