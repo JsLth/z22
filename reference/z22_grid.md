@@ -88,9 +88,9 @@ z22_grid("100m")
 
 # Get low-res grid as raster
 z22_grid("1km", as = "raster")
-#> class       : SpatRaster 
+#> class       : SpatRaster
 #> size        : 873, 642, 1  (nrow, ncol, nlyr)
 #> resolution  : 1000, 1000  (x, y)
 #> extent      : 4031000, 4673000, 2684000, 3557000  (xmin, xmax, ymin, ymax)
-#> coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035) 
+#> coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035)
 ```

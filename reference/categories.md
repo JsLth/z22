@@ -167,36 +167,36 @@ of a feature.
 
 - `marital_status`:
 
-  |          |                                         |                                 |
-  |----------|-----------------------------------------|---------------------------------|
-  | **code** | **german**                              | **english**                     |
-  | 1        | Ledig                                   | Single                          |
-  | 2        | Verheiratet                             | Married                         |
-  | 3        | Verwitwet                               | Widowed                         |
-  | 4        | Geschieden                              | Divorced                        |
-  | 5        | Eingetr. Lebenspartnerschaft            | Registered partnership          |
-  | 6        | Eingetr. Lebenspartner/-in verstorben   | Registered partner deceased     |
-  | 7        | Eingetr. Lebenspartnerschaft aufgehoben | Registered partnership annulled |
-  | 8        | Ohne Angabe                             | No information                  |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Ledig | Single |
+  | 2 | Verheiratet | Married |
+  | 3 | Verwitwet | Widowed |
+  | 4 | Geschieden | Divorced |
+  | 5 | Eingetr. Lebenspartnerschaft | Registered partnership |
+  | 6 | Eingetr. Lebenspartner/-in verstorben | Registered partner deceased |
+  | 7 | Eingetr. Lebenspartnerschaft aufgehoben | Registered partnership annulled |
+  | 8 | Ohne Angabe | No information |
 
 - `family_type`:
 
-  |          |                                                   |                                                       |
-  |----------|---------------------------------------------------|-------------------------------------------------------|
-  | **code** | **german**                                        | **english**                                           |
-  | 1        | Ehepaare ohne Kind                                | Couples without child                                 |
-  | 2        | Ehepaare, mind. 1 Kind \< 18                      | Couples, at least 1 child \< 18                       |
-  | 3        | Ehepaare alle Kinder \>= 18                       | Couples all children \>= 18                           |
-  | 4        | Eingetr. Lebenspartnerschaften ohne Kind          | Registered civil partnerships without child           |
-  | 5        | Eingetr. Lebenspartnerschaften mind. 1 Kind \< 18 | Registered civil partnerships, at least 1 child \< 18 |
-  | 6        | Eingetr. Lebenspartnerschaften alle Kinder \>= 18 | Registered civil partnerships all children \>= 18     |
-  | 7        | Nichteheliche Lebensgem. ohne Kind                | Non-marital partnerships without child                |
-  | 8        | Nichteheliche Lebensgem. mind. 1 Kind \< 18       | Non-marital partnerships, at least 1 child \< 18      |
-  | 9        | Nichteheliche Lebensgem. alle Kinder \>= 18       | Non-marital partnerships all children \>= 18          |
-  | 10       | Alleinerziehende Väter mind. 1 Kind \< 18         | Single fathers, at least 1 child \< 18                |
-  | 11       | Alleinerziehende Väter alle Kinder \>= 18         | Single fathers all children \>= 18                    |
-  | 12       | Alleinerziehende Mütter mind. 1 Kind \< 18        | Single mothers, at least 1 child \< 18                |
-  | 13       | Alleinerziehende Mütter alle Kinder \>= 18        | Single mothers all children \>= 18                    |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Ehepaare ohne Kind | Couples without child |
+  | 2 | Ehepaare, mind. 1 Kind \< 18 | Couples, at least 1 child \< 18 |
+  | 3 | Ehepaare alle Kinder \>= 18 | Couples all children \>= 18 |
+  | 4 | Eingetr. Lebenspartnerschaften ohne Kind | Registered civil partnerships without child |
+  | 5 | Eingetr. Lebenspartnerschaften mind. 1 Kind \< 18 | Registered civil partnerships, at least 1 child \< 18 |
+  | 6 | Eingetr. Lebenspartnerschaften alle Kinder \>= 18 | Registered civil partnerships all children \>= 18 |
+  | 7 | Nichteheliche Lebensgem. ohne Kind | Non-marital partnerships without child |
+  | 8 | Nichteheliche Lebensgem. mind. 1 Kind \< 18 | Non-marital partnerships, at least 1 child \< 18 |
+  | 9 | Nichteheliche Lebensgem. alle Kinder \>= 18 | Non-marital partnerships all children \>= 18 |
+  | 10 | Alleinerziehende Väter mind. 1 Kind \< 18 | Single fathers, at least 1 child \< 18 |
+  | 11 | Alleinerziehende Väter alle Kinder \>= 18 | Single fathers all children \>= 18 |
+  | 12 | Alleinerziehende Mütter mind. 1 Kind \< 18 | Single mothers, at least 1 child \< 18 |
+  | 13 | Alleinerziehende Mütter alle Kinder \>= 18 | Single mothers all children \>= 18 |
 
 - `family_size`:
 
@@ -211,36 +211,36 @@ of a feature.
 
 - `household_family`:
 
-  |          |                                        |                                             |
-  |----------|----------------------------------------|---------------------------------------------|
-  | **code** | **german**                             | **english**                                 |
-  | 1        | Einpersonenhaushalte (Singlehaushalte) | One-person households (Single households)   |
-  | 2        | Paare ohne Kind(er)                    | Couples without child(ren)                  |
-  | 3        | Paare mit Kind(ern)                    | Couples with child(ren)                     |
-  | 4        | Alleinerziehende Elternteile           | Single parents                              |
-  | 5        | Mehrpersonenhaushalte ohne Kernfamilie | Multi-person households without core family |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Einpersonenhaushalte (Singlehaushalte) | One-person households (Single households) |
+  | 2 | Paare ohne Kind(er) | Couples without child(ren) |
+  | 3 | Paare mit Kind(ern) | Couples with child(ren) |
+  | 4 | Alleinerziehende Elternteile | Single parents |
+  | 5 | Mehrpersonenhaushalte ohne Kernfamilie | Multi-person households without core family |
 
 - `household_lifestyle`:
 
-  |          |                                        |                                             |
-  |----------|----------------------------------------|---------------------------------------------|
-  | **code** | **german**                             | **english**                                 |
-  | 1        | Einpersonenhaushalte (Singlehaushalte) | One-person households (Single households)   |
-  | 2        | Ehepaare                               | Married couples                             |
-  | 3        | Eingetr. Lebenspartnerschaften         | Registered civil partnerships               |
-  | 4        | Nichteheliche Lebensgemeinschaften     | Non-marital partnerships                    |
-  | 5        | Alleinerziehende Mütter                | Single mothers                              |
-  | 6        | Alleinerziehende Väter                 | Single fathers                              |
-  | 7        | Mehrpersonenhaushalte ohne Kernfamilie | Multi-person households without core family |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Einpersonenhaushalte (Singlehaushalte) | One-person households (Single households) |
+  | 2 | Ehepaare | Married couples |
+  | 3 | Eingetr. Lebenspartnerschaften | Registered civil partnerships |
+  | 4 | Nichteheliche Lebensgemeinschaften | Non-marital partnerships |
+  | 5 | Alleinerziehende Mütter | Single mothers |
+  | 6 | Alleinerziehende Väter | Single fathers |
+  | 7 | Mehrpersonenhaushalte ohne Kernfamilie | Multi-person households without core family |
 
 - `household_senior`:
 
-  |          |                                              |                                            |
-  |----------|----------------------------------------------|--------------------------------------------|
-  | **code** | **german**                                   | **english**                                |
-  | 1        | Haushalte mit ausschließlich Senioren/-innen | Households with only seniors               |
-  | 2        | Haushalte mit Senioren/-innen und Jüngeren   | Households with seniors and younger people |
-  | 3        | Haushalte ohne Senioren/-innen               | Households without seniors                 |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Haushalte mit ausschließlich Senioren/-innen | Households with only seniors |
+  | 2 | Haushalte mit Senioren/-innen und Jüngeren | Households with seniors and younger people |
+  | 3 | Haushalte ohne Senioren/-innen | Households without seniors |
 
 - `household_size_group`:
 
@@ -256,44 +256,44 @@ of a feature.
 
 - `dwelling_occupancy`:
 
-  |          |                                            |                                                |
-  |----------|--------------------------------------------|------------------------------------------------|
-  | **code** | **german**                                 | **english**                                    |
-  | 1        | Von Eigentümer/-in bewohnt                 | Occupied by owner                              |
-  | 11       | Eigentum: mit aktuell geführtem Haushalt   | Ownership: with currently managed household    |
-  | 12       | Eigentum: ohne aktuell geführtem Haushalt  | Ownership: without currently managed household |
-  | 2        | Zu Wohnzwecken vermietet                   | Rented for residential purposes                |
-  | 21       | Vermietet: mit aktuell geführtem Haushalt  | Rented: with currently managed household       |
-  | 22       | Vermietet: ohne aktuell geführtem Haushalt | Rented: without currently managed household    |
-  | 3        | Ferien- und Freizeitwohnung                | Holiday and leisure home                       |
-  | 4        | Leer stehend                               | Vacant                                         |
-  | 5        | Diplomaten-/Streitkräftewohnung            | Diplomatic/Military housing                    |
-  | 99       | Gewerbl. Nutzung                           | Commercial use                                 |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Von Eigentümer/-in bewohnt | Occupied by owner |
+  | 11 | Eigentum: mit aktuell geführtem Haushalt | Ownership: with currently managed household |
+  | 12 | Eigentum: ohne aktuell geführtem Haushalt | Ownership: without currently managed household |
+  | 2 | Zu Wohnzwecken vermietet | Rented for residential purposes |
+  | 21 | Vermietet: mit aktuell geführtem Haushalt | Rented: with currently managed household |
+  | 22 | Vermietet: ohne aktuell geführtem Haushalt | Rented: without currently managed household |
+  | 3 | Ferien- und Freizeitwohnung | Holiday and leisure home |
+  | 4 | Leer stehend | Vacant |
+  | 5 | Diplomaten-/Streitkräftewohnung | Diplomatic/Military housing |
+  | 99 | Gewerbl. Nutzung | Commercial use |
 
 - `dwelling_ownership_home`:
 
-  |          |                                                   |                                          |
-  |----------|---------------------------------------------------|------------------------------------------|
-  | **code** | **german**                                        | **english**                              |
-  | 1        | Privatperson/-en                                  | Private person(s)                        |
-  | 2        | Privatwirtschaftliche Unternehmen (jur. Personen) | Private sector companies (legal persons) |
-  | 3        | Öffentliche Unternehmen, Kirchen o.ä.             | Public companies, churches or similar    |
-  | 4        | Wohnungsgenossenschaft                            | Housing cooperative                      |
-  | 99       | Trifft nicht zu (da keine Eigentumswohnung)       | Does not apply (no condominium)          |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Privatperson/-en | Private person(s) |
+  | 2 | Privatwirtschaftliche Unternehmen (jur. Personen) | Private sector companies (legal persons) |
+  | 3 | Öffentliche Unternehmen, Kirchen o.ä. | Public companies, churches or similar |
+  | 4 | Wohnungsgenossenschaft | Housing cooperative |
+  | 99 | Trifft nicht zu (da keine Eigentumswohnung) | Does not apply (no condominium) |
 
 - `dwelling_ownership_property`:
 
-  |          |                                              |                                           |
-  |----------|----------------------------------------------|-------------------------------------------|
-  | **code** | **german**                                   | **english**                               |
-  | 1        | Gemeinschaft von Wohnungseigentümern/-innen  | Homeowner association                     |
-  | 2        | Privatperson/-en                             | Private person(s)                         |
-  | 3        | Wohnungsgenossenschaft                       | Housing cooperative                       |
-  | 4        | Kommune oder Kommunales Wohnungsunternehmen  | Municipality or municipal housing company |
-  | 5        | Privatwirtschaftliches Wohnungsunternehmen   | Private sector housing company            |
-  | 6        | Anderes privatwirtschaftliches Unternehmen   | Other private sector company              |
-  | 7        | Bund oder Land                               | Federal or state government               |
-  | 8        | Organisation ohne Erwerbszweck (z.B. Kirche) | Non-profit organization (e.g. church)     |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Gemeinschaft von Wohnungseigentümern/-innen | Homeowner association |
+  | 2 | Privatperson/-en | Private person(s) |
+  | 3 | Wohnungsgenossenschaft | Housing cooperative |
+  | 4 | Kommune oder Kommunales Wohnungsunternehmen | Municipality or municipal housing company |
+  | 5 | Privatwirtschaftliches Wohnungsunternehmen | Private sector housing company |
+  | 6 | Anderes privatwirtschaftliches Unternehmen | Other private sector company |
+  | 7 | Bund oder Land | Federal or state government |
+  | 8 | Organisation ohne Erwerbszweck (z.B. Kirche) | Non-profit organization (e.g. church) |
 
 - `floor_space`:
 
@@ -365,14 +365,14 @@ of a feature.
 
 - `dwelling_building_type`:
 
-  |          |                                |                                              |
-  |----------|--------------------------------|----------------------------------------------|
-  | **code** | **german**                     | **english**                                  |
-  | 1        | Gebäude mit Wohnraum           | Building with living space                   |
-  | 11       | Wohngebäude                    | Residential building                         |
-  | 111      | Wohngebäude (ohne Wohnheime)   | Residential building (excluding dormitories) |
-  | 112      | Wohnheim                       | Dormitory                                    |
-  | 12       | Sonstiges Gebäude mit Wohnraum | Other building with living space             |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Gebäude mit Wohnraum | Building with living space |
+  | 11 | Wohngebäude | Residential building |
+  | 111 | Wohngebäude (ohne Wohnheime) | Residential building (excluding dormitories) |
+  | 112 | Wohnheim | Dormitory |
+  | 12 | Sonstiges Gebäude mit Wohnraum | Other building with living space |
 
 - `dwelling_building_design`:
 
@@ -386,31 +386,31 @@ of a feature.
 
 - `dwelling_building_size`:
 
-  |          |                                         |                                            |
-  |----------|-----------------------------------------|--------------------------------------------|
-  | **code** | **german**                              | **english**                                |
-  | 1        | Freistehendes Einfamilienhaus           | Detached single-family house               |
-  | 2        | Einfamilienhaus: Doppelhaushälfte       | Single-family house: semi-detached         |
-  | 3        | Einfamilienhaus: Reihenhaus             | Single-family house: terraced              |
-  | 4        | Freistehendes Zweifamilienhaus          | Detached two-family house                  |
-  | 5        | Zweifamilienhaus: Doppelhaushälfte      | Two-family house: semi-detached            |
-  | 6        | Zweifamilienhaus: Reihenhaus            | Two-family house: terraced                 |
-  | 7        | Mehrfamilienhaus: 3-6 Wohnungen         | Multi-family house: 3-6 apartments         |
-  | 8        | Mehrfamilienhaus: 7-12 Wohnungen        | Multi-family house: 7-12 apartments        |
-  | 9        | Mehrfamilienhaus: 13 und mehr Wohnungen | Multi-family house: 13 and more apartments |
-  | 10       | Anderer Gebäudetyp                      | Other building type                        |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Freistehendes Einfamilienhaus | Detached single-family house |
+  | 2 | Einfamilienhaus: Doppelhaushälfte | Single-family house: semi-detached |
+  | 3 | Einfamilienhaus: Reihenhaus | Single-family house: terraced |
+  | 4 | Freistehendes Zweifamilienhaus | Detached two-family house |
+  | 5 | Zweifamilienhaus: Doppelhaushälfte | Two-family house: semi-detached |
+  | 6 | Zweifamilienhaus: Reihenhaus | Two-family house: terraced |
+  | 7 | Mehrfamilienhaus: 3-6 Wohnungen | Multi-family house: 3-6 apartments |
+  | 8 | Mehrfamilienhaus: 7-12 Wohnungen | Multi-family house: 7-12 apartments |
+  | 9 | Mehrfamilienhaus: 13 und mehr Wohnungen | Multi-family house: 13 and more apartments |
+  | 10 | Anderer Gebäudetyp | Other building type |
 
 - `dwelling_heat_type`:
 
-  |          |                                                  |                                                                |
-  |----------|--------------------------------------------------|----------------------------------------------------------------|
-  | **code** | **german**                                       | **english**                                                    |
-  | 1        | Fernheizung (Fernwärme)                          | District heating (long-distance heating)                       |
-  | 2        | Etagenheizung                                    | Self-contained central heating                                 |
-  | 3        | Blockheizung                                     | Block heating                                                  |
-  | 4        | Zentralheizung                                   | Central heating                                                |
-  | 5        | Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) | Individual/multi-room stoves (including night storage heating) |
-  | 6        | Keine Heizung im Gebäude oder in den Wohnungen   | No heating in the building or in the apartments                |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Fernheizung (Fernwärme) | District heating (long-distance heating) |
+  | 2 | Etagenheizung | Self-contained central heating |
+  | 3 | Blockheizung | Block heating |
+  | 4 | Zentralheizung | Central heating |
+  | 5 | Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) | Individual/multi-room stoves (including night storage heating) |
+  | 6 | Keine Heizung im Gebäude oder in den Wohnungen | No heating in the building or in the apartments |
 
 - `dwelling_heat_src`:
 
@@ -429,17 +429,17 @@ of a feature.
 
 - `building_ownership_property`:
 
-  |          |                                              |                                           |
-  |----------|----------------------------------------------|-------------------------------------------|
-  | **code** | **german**                                   | **english**                               |
-  | 1        | Gemeinschaft von Wohnungseigentümern/-innen  | Homeowner association                     |
-  | 2        | Privatperson/-en                             | Private person(s)                         |
-  | 3        | Wohnungsgenossenschaft                       | Housing cooperative                       |
-  | 4        | Kommune oder Kommunales Wohnungsunternehmen  | Municipality or municipal housing company |
-  | 5        | Privatwirtschaftliches Wohnungsunternehmen   | Private sector housing company            |
-  | 6        | Anderes privatwirtschaftliches Unternehmen   | Other private sector company              |
-  | 7        | Bund oder Land                               | Federal or state government               |
-  | 8        | Organisation ohne Erwerbszweck (z.B. Kirche) | Non-profit organization (e.g. church)     |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Gemeinschaft von Wohnungseigentümern/-innen | Homeowner association |
+  | 2 | Privatperson/-en | Private person(s) |
+  | 3 | Wohnungsgenossenschaft | Housing cooperative |
+  | 4 | Kommune oder Kommunales Wohnungsunternehmen | Municipality or municipal housing company |
+  | 5 | Privatwirtschaftliches Wohnungsunternehmen | Private sector housing company |
+  | 6 | Anderes privatwirtschaftliches Unternehmen | Other private sector company |
+  | 7 | Bund oder Land | Federal or state government |
+  | 8 | Organisation ohne Erwerbszweck (z.B. Kirche) | Non-profit organization (e.g. church) |
 
 - `building_constr_year` (2011):
 
@@ -484,30 +484,30 @@ of a feature.
 
 - `building_size`:
 
-  |          |                                         |                                            |
-  |----------|-----------------------------------------|--------------------------------------------|
-  | **code** | **german**                              | **english**                                |
-  | 1        | Freistehendes Einfamilienhaus           | Detached single-family house               |
-  | 2        | Einfamilienhaus: Doppelhaushälfte       | Single-family house: semi-detached         |
-  | 3        | Einfamilienhaus: Reihenhaus             | Single-family house: terraced              |
-  | 4        | Freistehendes Zweifamilienhaus          | Detached two-family house                  |
-  | 5        | Zweifamilienhaus: Doppelhaushälfte      | Two-family house: semi-detached            |
-  | 6        | Zweifamilienhaus: Reihenhaus            | Two-family house: terraced                 |
-  | 7        | Mehrfamilienhaus: 3-6 Wohnungen         | Multi-family house: 3-6 apartments         |
-  | 8        | Mehrfamilienhaus: 7-12 Wohnungen        | Multi-family house: 7-12 apartments        |
-  | 9        | Mehrfamilienhaus: 13 und mehr Wohnungen | Multi-family house: 13 and more apartments |
-  | 10       | Anderer Gebäudetyp                      | Other building type                        |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Freistehendes Einfamilienhaus | Detached single-family house |
+  | 2 | Einfamilienhaus: Doppelhaushälfte | Single-family house: semi-detached |
+  | 3 | Einfamilienhaus: Reihenhaus | Single-family house: terraced |
+  | 4 | Freistehendes Zweifamilienhaus | Detached two-family house |
+  | 5 | Zweifamilienhaus: Doppelhaushälfte | Two-family house: semi-detached |
+  | 6 | Zweifamilienhaus: Reihenhaus | Two-family house: terraced |
+  | 7 | Mehrfamilienhaus: 3-6 Wohnungen | Multi-family house: 3-6 apartments |
+  | 8 | Mehrfamilienhaus: 7-12 Wohnungen | Multi-family house: 7-12 apartments |
+  | 9 | Mehrfamilienhaus: 13 und mehr Wohnungen | Multi-family house: 13 and more apartments |
+  | 10 | Anderer Gebäudetyp | Other building type |
 
 - `building_type`:
 
-  |          |                                |                                              |
-  |----------|--------------------------------|----------------------------------------------|
-  | **code** | **german**                     | **english**                                  |
-  | 1        | Gebäude mit Wohnraum           | Building with living space                   |
-  | 11       | Wohngebäude                    | Residential building                         |
-  | 111      | Wohngebäude (ohne Wohnheime)   | Residential building (excluding dormitories) |
-  | 112      | Wohnheim                       | Dormitory                                    |
-  | 12       | Sonstiges Gebäude mit Wohnraum | Other building with living space             |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Gebäude mit Wohnraum | Building with living space |
+  | 11 | Wohngebäude | Residential building |
+  | 111 | Wohngebäude (ohne Wohnheime) | Residential building (excluding dormitories) |
+  | 112 | Wohnheim | Dormitory |
+  | 12 | Sonstiges Gebäude mit Wohnraum | Other building with living space |
 
 - `building_design`:
 
@@ -521,15 +521,15 @@ of a feature.
 
 - `building_heat_type`:
 
-  |          |                                                  |                                                                |
-  |----------|--------------------------------------------------|----------------------------------------------------------------|
-  | **code** | **german**                                       | **english**                                                    |
-  | 1        | Fernheizung (Fernwärme)                          | District heating (long-distance heating)                       |
-  | 2        | Etagenheizung                                    | Self-contained central heating                                 |
-  | 3        | Blockheizung                                     | Block heating                                                  |
-  | 4        | Zentralheizung                                   | Central heating                                                |
-  | 5        | Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) | Individual/multi-room stoves (including night storage heating) |
-  | 6        | Keine Heizung im Gebäude oder in den Wohnungen   | No heating in the building or in the apartments                |
+  |  |  |  |
+  |----|----|----|
+  | **code** | **german** | **english** |
+  | 1 | Fernheizung (Fernwärme) | District heating (long-distance heating) |
+  | 2 | Etagenheizung | Self-contained central heating |
+  | 3 | Blockheizung | Block heating |
+  | 4 | Zentralheizung | Central heating |
+  | 5 | Einzel-/Mehrraumöfen (auch Nachtspeicherheizung) | Individual/multi-room stoves (including night storage heating) |
+  | 6 | Keine Heizung im Gebäude oder in den Wohnungen | No heating in the building or in the apartments |
 
 - `building_heat_src`:
 

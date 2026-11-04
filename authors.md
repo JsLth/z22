@@ -12,7 +12,7 @@ Source:
 
 Lieth J (2026). *z22: Official Gridded Data from the German Census
 2022*.
-[doi:10.32614/CRAN.package.z22](https://doi.org/10.32614/CRAN.package.z22),
+[doi:10.32614/CRAN.package.z22](https://doi.org/10.32614/CRAN.package.z22).
 <https://github.com/jslth/z22/>.
 
     @Manual{R-z22,
