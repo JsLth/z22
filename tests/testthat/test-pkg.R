@@ -109,9 +109,9 @@ test_that("data can be downloaded and prepared", {
 
 
 test_that("multiple features are full joined", {
-  c1 <- z22_data("floor_space", category = 1)
-  c2 <- z22_data("floor_space", category = 2)
-  c12 <- z22_data("floor_space", category = c(1, 2))
+  c1 <- z22_data("floor_space", categories = 1)
+  c2 <- z22_data("floor_space", categories = 2)
+  c12 <- z22_data("floor_space", categories = c(1, 2))
   expect_equal(nrow(c12), max(nrow(c1), nrow(c2)))
 })
 
