@@ -108,6 +108,22 @@ test_that("data can be downloaded and prepared", {
 })
 
 
+test_that("multiple features are full joined", {
+  c1 <- z22_data("floor_space", category = 1)
+  c2 <- z22_data("floor_space", category = 2)
+  c12 <- z22_data("floor_space", category = c(1, 2))
+  expect_equal(nrow(c12), max(nrow(c1), nrow(c2)))
+})
+
+
+test_that("http errors are handled", {
+  expect_error(
+    z22data_download("z22_data_10km", "notafeature"),
+    "internal error"
+  )
+})
+
+
 test_that("grid can be downloaded", {
   skip_if_not(arrow::codec_is_available("zstd"))
   expect_error(z22_grid(year = -999), "for year")

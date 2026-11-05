@@ -243,22 +243,20 @@ categories <- list(
     ),
   ),
   dwelling_occupancy = tibble::tibble(
-    code = c(1, 11, 12, 2, 21, 22, 3, 4, 5, 99),
+    code = c(11, 12, 21, 22, 3, 4),
     german = c(
-      "Von Eigent\U{FC}mer/-in bewohnt",
       "Eigentum: mit aktuell gef\U{FC}hrtem Haushalt",
-      "Eigentum: ohne aktuell gef\U{FC}hrtem Haushalt", "Zu Wohnzwecken vermietet",
+      "Eigentum: ohne aktuell gef\U{FC}hrtem Haushalt",
       "Vermietet: mit aktuell gef\U{FC}hrtem Haushalt",
       "Vermietet: ohne aktuell gef\U{FC}hrtem Haushalt",
-      "Ferien- und Freizeitwohnung", "Leer stehend",
-      "Diplomaten-/Streitkr\U{E4}ftewohnung", "Gewerbl. Nutzung"
+      "Ferien- und Freizeitwohnung", "Leer stehend"
     ),
     english = c(
-      "Occupied by owner", "Ownership: with currently managed household",
+      "Ownership: with currently managed household",
       "Ownership: without currently managed household",
-      "Rented for residential purposes", "Rented: with currently managed household",
+      "Rented: with currently managed household",
       "Rented: without currently managed household", "Holiday and leisure home",
-      "Vacant", "Diplomatic/Military housing", "Commercial use"
+      "Vacant"
     ),
   ),
   dwelling_ownership_home = tibble::tibble(
@@ -291,27 +289,27 @@ categories <- list(
     ),
   ),
   floor_space = tibble::tibble(
-    code = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 99),
+    code = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17),
     german = c(
       "Unter 30", "30 - 39", "40 - 49", "50 - 59", "60 - 69", "70 - 79", "80 - 89",
       "90 - 99", "100 - 109", "110 - 119", "120 - 129", "130 - 139", "140 - 149",
-      "150 - 159", "160 - 169", "170 - 179", "180 und mehr", "t.n.z., gewerblich"
+      "150 - 159", "160 - 169", "170 - 179", "180 und mehr"
     ),
     english = c(
       "Under 30", "30 - 39", "40 - 49", "50 - 59", "60 - 69", "70 - 79", "80 - 89",
       "90 - 99", "100 - 109", "110 - 119", "120 - 129", "130 - 139", "140 - 149",
-      "150 - 159", "160 - 169", "170 - 179", "180 and more", "n.a., commercial"
+      "150 - 159", "160 - 169", "170 - 179", "180 and more"
     ),
   ),
   dwelling_rooms = tibble::tibble(
-    code = c(1, 2, 3, 4, 5, 6, 7, 99),
+    code = c(1, 2, 3, 4, 5, 6, 7),
     german = c(
       "1 Raum", "2 R\U{E4}ume", "3 R\U{E4}ume", "4 R\U{E4}ume", "5 R\U{E4}ume",
-      "6 R\U{E4}ume", "7 und mehr R\U{E4}ume", "t.n.z., gewerblich"
+      "6 R\U{E4}ume", "7 und mehr R\U{E4}ume"
     ),
     english = c(
       "1 Room", "2 Rooms", "3 Rooms", "4 Rooms", "5 Rooms", "6 Rooms",
-      "7 and more Rooms", "n.a., commercial"
+      "7 and more Rooms"
     ),
   ),
   dwelling_constr_year = list(
@@ -341,14 +339,12 @@ categories <- list(
     )
   ),
   dwelling_building_type = tibble::tibble(
-    code = c(1, 11, 111, 112, 12),
+    code = c(111, 112, 12),
     german = c(
-      "Geb\U{E4}ude mit Wohnraum", "Wohngeb\U{E4}ude",
       "Wohngeb\U{E4}ude (ohne Wohnheime)", "Wohnheim",
       "Sonstiges Geb\U{E4}ude mit Wohnraum"
     ),
     english = c(
-      "Building with living space", "Residential building",
       "Residential building (excluding dormitories)", "Dormitory",
       "Other building with living space"
     ),
@@ -377,6 +373,17 @@ categories <- list(
       "Multi-family house: 3-6 apartments", "Multi-family house: 7-12 apartments",
       "Multi-family house: 13 and more apartments", "Other building type"
     ),
+  ),
+  dwelling_building_dwellings = tibble::tibble(
+    code = seq(1, 5, by = 1),
+    german = c(
+      "1 Wohnung", "2 Wohnungen", "3 - 6 Wohnungen",
+      "7 - 12 Wohnungen", "13 und mehr Wohunngen"
+    ),
+    english = c(
+      "1 dwelling", "2 dwellings", "3 - 6 dwellings",
+      "7 - 12 dwellings", "13 and more dwellings"
+    )
   ),
   dwelling_heat_type = tibble::tibble(
     code = seq(1, 6, by = 1),
@@ -476,14 +483,12 @@ categories <- list(
     ),
   ),
   building_type = tibble::tibble(
-    code = c(1, 11, 111, 112, 12),
+    code = c(111, 112, 12),
     german = c(
-      "Geb\U{E4}ude mit Wohnraum", "Wohngeb\U{E4}ude",
       "Wohngeb\U{E4}ude (ohne Wohnheime)", "Wohnheim",
       "Sonstiges Geb\U{E4}ude mit Wohnraum"
     ),
     english = c(
-      "Building with living space", "Residential building",
       "Residential building (excluding dormitories)", "Dormitory",
       "Other building with living space"
     ),
