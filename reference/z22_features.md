@@ -79,7 +79,7 @@ z22_features("dwellings")
 #> 11 Dwellings floor_space           Floor … Fläch… TRUE  TRUE     FALSE   TRUE   
 #> 12 Dwellings dwelling_rooms        Dwelli… Wohnu… TRUE  TRUE     FALSE   TRUE   
 #> 13 Dwellings dwelling_constr_year  Dwelli… Wohnu… FALSE TRUE     FALSE   TRUE   
-#> 14 Dwellings dwelling_building_dw… Dwelli… Wohnu… FALSE TRUE     FALSE   FALSE  
+#> 14 Dwellings dwelling_building_dw… Dwelli… Wohnu… FALSE TRUE     FALSE   TRUE   
 #> 15 Dwellings dwelling_building_si… Dwelli… Wohnu… TRUE  TRUE     FALSE   TRUE   
 #> 16 Dwellings dwelling_building_ty… Dwelli… Wohnu… FALSE TRUE     FALSE   TRUE   
 #> 17 Dwellings dwelling_building_de… Dwelli… Wohnu… FALSE TRUE     FALSE   TRUE   
