@@ -259,16 +259,12 @@ of a feature.
   |  |  |  |
   |----|----|----|
   | **code** | **german** | **english** |
-  | 1 | Von Eigentümer/-in bewohnt | Occupied by owner |
   | 11 | Eigentum: mit aktuell geführtem Haushalt | Ownership: with currently managed household |
   | 12 | Eigentum: ohne aktuell geführtem Haushalt | Ownership: without currently managed household |
-  | 2 | Zu Wohnzwecken vermietet | Rented for residential purposes |
   | 21 | Vermietet: mit aktuell geführtem Haushalt | Rented: with currently managed household |
   | 22 | Vermietet: ohne aktuell geführtem Haushalt | Rented: without currently managed household |
   | 3 | Ferien- und Freizeitwohnung | Holiday and leisure home |
   | 4 | Leer stehend | Vacant |
-  | 5 | Diplomaten-/Streitkräftewohnung | Diplomatic/Military housing |
-  | 99 | Gewerbl. Nutzung | Commercial use |
 
 - `dwelling_ownership_home`:
 
@@ -297,41 +293,39 @@ of a feature.
 
 - `floor_space`:
 
-  |          |                    |                  |
-  |----------|--------------------|------------------|
-  | **code** | **german**         | **english**      |
-  | 1        | Unter 30           | Under 30         |
-  | 2        | 30 - 39            | 30 - 39          |
-  | 3        | 40 - 49            | 40 - 49          |
-  | 4        | 50 - 59            | 50 - 59          |
-  | 5        | 60 - 69            | 60 - 69          |
-  | 6        | 70 - 79            | 70 - 79          |
-  | 7        | 80 - 89            | 80 - 89          |
-  | 8        | 90 - 99            | 90 - 99          |
-  | 9        | 100 - 109          | 100 - 109        |
-  | 10       | 110 - 119          | 110 - 119        |
-  | 11       | 120 - 129          | 120 - 129        |
-  | 12       | 130 - 139          | 130 - 139        |
-  | 13       | 140 - 149          | 140 - 149        |
-  | 14       | 150 - 159          | 150 - 159        |
-  | 15       | 160 - 169          | 160 - 169        |
-  | 16       | 170 - 179          | 170 - 179        |
-  | 17       | 180 und mehr       | 180 and more     |
-  | 99       | t.n.z., gewerblich | n.a., commercial |
+  |          |              |              |
+  |----------|--------------|--------------|
+  | **code** | **german**   | **english**  |
+  | 1        | Unter 30     | Under 30     |
+  | 2        | 30 - 39      | 30 - 39      |
+  | 3        | 40 - 49      | 40 - 49      |
+  | 4        | 50 - 59      | 50 - 59      |
+  | 5        | 60 - 69      | 60 - 69      |
+  | 6        | 70 - 79      | 70 - 79      |
+  | 7        | 80 - 89      | 80 - 89      |
+  | 8        | 90 - 99      | 90 - 99      |
+  | 9        | 100 - 109    | 100 - 109    |
+  | 10       | 110 - 119    | 110 - 119    |
+  | 11       | 120 - 129    | 120 - 129    |
+  | 12       | 130 - 139    | 130 - 139    |
+  | 13       | 140 - 149    | 140 - 149    |
+  | 14       | 150 - 159    | 150 - 159    |
+  | 15       | 160 - 169    | 160 - 169    |
+  | 16       | 170 - 179    | 170 - 179    |
+  | 17       | 180 und mehr | 180 and more |
 
 - `dwelling_rooms`:
 
-  |          |                    |                  |
-  |----------|--------------------|------------------|
-  | **code** | **german**         | **english**      |
-  | 1        | 1 Raum             | 1 Room           |
-  | 2        | 2 Räume            | 2 Rooms          |
-  | 3        | 3 Räume            | 3 Rooms          |
-  | 4        | 4 Räume            | 4 Rooms          |
-  | 5        | 5 Räume            | 5 Rooms          |
-  | 6        | 6 Räume            | 6 Rooms          |
-  | 7        | 7 und mehr Räume   | 7 and more Rooms |
-  | 99       | t.n.z., gewerblich | n.a., commercial |
+  |          |                  |                  |
+  |----------|------------------|------------------|
+  | **code** | **german**       | **english**      |
+  | 1        | 1 Raum           | 1 Room           |
+  | 2        | 2 Räume          | 2 Rooms          |
+  | 3        | 3 Räume          | 3 Rooms          |
+  | 4        | 4 Räume          | 4 Rooms          |
+  | 5        | 5 Räume          | 5 Rooms          |
+  | 6        | 6 Räume          | 6 Rooms          |
+  | 7        | 7 und mehr Räume | 7 and more Rooms |
 
 - `dwelling_constr_year` (2011):
 
@@ -368,8 +362,6 @@ of a feature.
   |  |  |  |
   |----|----|----|
   | **code** | **german** | **english** |
-  | 1 | Gebäude mit Wohnraum | Building with living space |
-  | 11 | Wohngebäude | Residential building |
   | 111 | Wohngebäude (ohne Wohnheime) | Residential building (excluding dormitories) |
   | 112 | Wohnheim | Dormitory |
   | 12 | Sonstiges Gebäude mit Wohnraum | Other building with living space |
@@ -399,6 +391,17 @@ of a feature.
   | 8 | Mehrfamilienhaus: 7-12 Wohnungen | Multi-family house: 7-12 apartments |
   | 9 | Mehrfamilienhaus: 13 und mehr Wohnungen | Multi-family house: 13 and more apartments |
   | 10 | Anderer Gebäudetyp | Other building type |
+
+- `dwelling_building_dwellings`:
+
+  |          |                       |                       |
+  |----------|-----------------------|-----------------------|
+  | **code** | **german**            | **english**           |
+  | 1        | 1 Wohnung             | 1 dwelling            |
+  | 2        | 2 Wohnungen           | 2 dwellings           |
+  | 3        | 3 - 6 Wohnungen       | 3 - 6 dwellings       |
+  | 4        | 7 - 12 Wohnungen      | 7 - 12 dwellings      |
+  | 5        | 13 und mehr Wohunngen | 13 and more dwellings |
 
 - `dwelling_heat_type`:
 
@@ -503,8 +506,6 @@ of a feature.
   |  |  |  |
   |----|----|----|
   | **code** | **german** | **english** |
-  | 1 | Gebäude mit Wohnraum | Building with living space |
-  | 11 | Wohngebäude | Residential building |
   | 111 | Wohngebäude (ohne Wohnheime) | Residential building (excluding dormitories) |
   | 112 | Wohnheim | Dormitory |
   | 12 | Sonstiges Gebäude mit Wohnraum | Other building with living space |

@@ -66,6 +66,11 @@ Note the uncompressed object sizes of the output (2019 version):
 
 - 10 km: 4 thousand cells, 0.03 MB
 
+## References
+
+Enderle, T., Kleber, B., 2024. Geheimhaltung mit der Cell-Key-Methode im
+Zensus 2022. WISTA Wirtschaft und Statistik 6/2024, 83-91.
+
 ## Examples
 
 ``` r

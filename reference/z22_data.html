@@ -128,12 +128,10 @@ all empty grid values will be replaced with 0.</p></dd>
 <dt id="arg-normalize">normalize<a class="anchor" aria-label="anchor" href="#arg-normalize"></a></dt>
 <dd><p>If <code>TRUE</code> and <code>feature</code> is a counted feature,
 computes shares by dividing the counts by the total number of units in the
-grid cell. The type of unit depends on the theme of the feature, e.g., if
-the feature is in theme "Buildings", the feature counts are divided by the
-total number of buildings. Note that this operation requires an additional
-download (the total number of units). Also note that sometimes (possibly due
-to the key-cell method), shares of over 1 are computed. Defaults to
-<code>FALSE</code>.</p></dd>
+grid cell. Note that this operation downloads all remaining categories of
+a feature, which can take some time for low resolutions. The total is
+based on the sum of subtotals so that shares are capped at 100 <!-- %. See -->
+details. Defaults to <code>FALSE</code>.</p></dd>
 
 
 <dt id="arg-as">as<a class="anchor" aria-label="anchor" href="#arg-as"></a></dt>
@@ -170,6 +168,23 @@ named layer.</p>
 stores all pre-processed data. You can download this repository and use
 it offline or use an entirely different repository by setting
 <code>options(z22.data_repo = "path/to/z22data")</code>.</p>
+<p>Census data are protected using the cell-key method. As a consequence,
+cell values are confidentialized by perturbation and often do not
+represent true values. The mean absolute deviation for counts is
+below 1. 65 % of counts have a maximum perturbation of 1, 20 %
+of 3 or more and 10 % of 4 or more (Enderle and Kleber 2024).
+Population totals (such as <code>"population"</code>, or <code>"dwellings"</code>)
+add perturbation after adding up subtotals to preserve accuracy.
+Hence, the sum of subtotals can deviate from the totals, e.g., the
+sum of each category in <code>"household_size_group"</code> and the value
+of <code>"households"</code> can be different. The <code>normalize</code> argument
+takes this into account and computes shares based on the sum of
+subtotals instead as suggested by Enderle and Kleber (2024).</p>
+    </div>
+    <div class="section level2">
+    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
+    <p>Enderle, T., Kleber, B., 2024. Geheimhaltung mit der Cell-Key-Methode
+im Zensus 2022. WISTA Wirtschaft und Statistik 6/2024, 83-91.</p>
     </div>
 
     <div class="section level2">
