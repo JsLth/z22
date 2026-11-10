@@ -1,6 +1,6 @@
 # Changelog
 
-## z22 1.2.0
+## z22 1.2.1
 
 **Major changes**:
 
