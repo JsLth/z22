@@ -277,16 +277,12 @@ z22_categories("families")
   \item{\code{dwelling_occupancy}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Von Eigentümer/-in bewohnt                 \tab Occupied by owner                             \cr
     		11 \tab Eigentum: mit aktuell geführtem Haushalt   \tab Ownership: with currently managed household   \cr
     		12 \tab Eigentum: ohne aktuell geführtem Haushalt  \tab Ownership: without currently managed household\cr
-    		 2 \tab Zu Wohnzwecken vermietet                   \tab Rented for residential purposes               \cr
     		21 \tab Vermietet: mit aktuell geführtem Haushalt  \tab Rented: with currently managed household      \cr
     		22 \tab Vermietet: ohne aktuell geführtem Haushalt \tab Rented: without currently managed household   \cr
     		 3 \tab Ferien- und Freizeitwohnung                \tab Holiday and leisure home                      \cr
-    		 4 \tab Leer stehend                               \tab Vacant                                        \cr
-    		 5 \tab Diplomaten-/Streitkräftewohnung            \tab Diplomatic/Military housing                   \cr
-    		99 \tab Gewerbl. Nutzung                           \tab Commercial use                                
+    		 4 \tab Leer stehend                               \tab Vacant                                        
 		}
 }
 
@@ -321,24 +317,23 @@ z22_categories("families")
   \item{\code{floor_space}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab Unter 30           \tab Under 30        \cr
-    		 2 \tab 30 - 39            \tab 30 - 39         \cr
-    		 3 \tab 40 - 49            \tab 40 - 49         \cr
-    		 4 \tab 50 - 59            \tab 50 - 59         \cr
-    		 5 \tab 60 - 69            \tab 60 - 69         \cr
-    		 6 \tab 70 - 79            \tab 70 - 79         \cr
-    		 7 \tab 80 - 89            \tab 80 - 89         \cr
-    		 8 \tab 90 - 99            \tab 90 - 99         \cr
-    		 9 \tab 100 - 109          \tab 100 - 109       \cr
-    		10 \tab 110 - 119          \tab 110 - 119       \cr
-    		11 \tab 120 - 129          \tab 120 - 129       \cr
-    		12 \tab 130 - 139          \tab 130 - 139       \cr
-    		13 \tab 140 - 149          \tab 140 - 149       \cr
-    		14 \tab 150 - 159          \tab 150 - 159       \cr
-    		15 \tab 160 - 169          \tab 160 - 169       \cr
-    		16 \tab 170 - 179          \tab 170 - 179       \cr
-    		17 \tab 180 und mehr       \tab 180 and more    \cr
-    		99 \tab t.n.z., gewerblich \tab n.a., commercial
+    		 1 \tab Unter 30     \tab Under 30    \cr
+    		 2 \tab 30 - 39      \tab 30 - 39     \cr
+    		 3 \tab 40 - 49      \tab 40 - 49     \cr
+    		 4 \tab 50 - 59      \tab 50 - 59     \cr
+    		 5 \tab 60 - 69      \tab 60 - 69     \cr
+    		 6 \tab 70 - 79      \tab 70 - 79     \cr
+    		 7 \tab 80 - 89      \tab 80 - 89     \cr
+    		 8 \tab 90 - 99      \tab 90 - 99     \cr
+    		 9 \tab 100 - 109    \tab 100 - 109   \cr
+    		10 \tab 110 - 119    \tab 110 - 119   \cr
+    		11 \tab 120 - 129    \tab 120 - 129   \cr
+    		12 \tab 130 - 139    \tab 130 - 139   \cr
+    		13 \tab 140 - 149    \tab 140 - 149   \cr
+    		14 \tab 150 - 159    \tab 150 - 159   \cr
+    		15 \tab 160 - 169    \tab 160 - 169   \cr
+    		16 \tab 170 - 179    \tab 170 - 179   \cr
+    		17 \tab 180 und mehr \tab 180 and more
 		}
 }
 
@@ -346,14 +341,13 @@ z22_categories("families")
   \item{\code{dwelling_rooms}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		 1 \tab 1 Raum             \tab 1 Room          \cr
-    		 2 \tab 2 Räume            \tab 2 Rooms         \cr
-    		 3 \tab 3 Räume            \tab 3 Rooms         \cr
-    		 4 \tab 4 Räume            \tab 4 Rooms         \cr
-    		 5 \tab 5 Räume            \tab 5 Rooms         \cr
-    		 6 \tab 6 Räume            \tab 6 Rooms         \cr
-    		 7 \tab 7 und mehr Räume   \tab 7 and more Rooms\cr
-    		99 \tab t.n.z., gewerblich \tab n.a., commercial
+    		1 \tab 1 Raum           \tab 1 Room          \cr
+    		2 \tab 2 Räume          \tab 2 Rooms         \cr
+    		3 \tab 3 Räume          \tab 3 Rooms         \cr
+    		4 \tab 4 Räume          \tab 4 Rooms         \cr
+    		5 \tab 5 Räume          \tab 5 Rooms         \cr
+    		6 \tab 6 Räume          \tab 6 Rooms         \cr
+    		7 \tab 7 und mehr Räume \tab 7 and more Rooms
 		}
 }
 
@@ -393,8 +387,6 @@ z22_categories("families")
   \item{\code{dwelling_building_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
-    		 11 \tab Wohngebäude                    \tab Residential building                        \cr
     		111 \tab Wohngebäude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
     		112 \tab Wohnheim                       \tab Dormitory                                   \cr
     		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            
@@ -426,6 +418,18 @@ z22_categories("families")
     		 8 \tab Mehrfamilienhaus: 7-12 Wohnungen        \tab Multi-family house: 7-12 apartments       \cr
     		 9 \tab Mehrfamilienhaus: 13 und mehr Wohnungen \tab Multi-family house: 13 and more apartments\cr
     		10 \tab Anderer Gebäudetyp                      \tab Other building type                       
+		}
+}
+
+\enc{}{}
+  \item{\code{dwelling_building_dwellings}}{
+		\tabular{rll}{
+    		\strong{code} \tab \strong{german} \tab \strong{english}\cr
+    		1 \tab 1 Wohnung             \tab 1 dwelling           \cr
+    		2 \tab 2 Wohnungen           \tab 2 dwellings          \cr
+    		3 \tab 3 - 6 Wohnungen       \tab 3 - 6 dwellings      \cr
+    		4 \tab 7 - 12 Wohnungen      \tab 7 - 12 dwellings     \cr
+    		5 \tab 13 und mehr Wohunngen \tab 13 and more dwellings
 		}
 }
 
@@ -538,8 +542,6 @@ z22_categories("families")
   \item{\code{building_type}}{
 		\tabular{rll}{
     		\strong{code} \tab \strong{german} \tab \strong{english}\cr
-    		  1 \tab Gebäude mit Wohnraum           \tab Building with living space                  \cr
-    		 11 \tab Wohngebäude                    \tab Residential building                        \cr
     		111 \tab Wohngebäude (ohne Wohnheime)   \tab Residential building (excluding dormitories)\cr
     		112 \tab Wohnheim                       \tab Dormitory                                   \cr
     		 12 \tab Sonstiges Gebäude mit Wohnraum \tab Other building with living space            

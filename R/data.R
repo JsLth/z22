@@ -34,12 +34,10 @@
 #' all empty grid values will be replaced with 0.
 #' @param normalize If \code{TRUE} and \code{feature} is a counted feature,
 #' computes shares by dividing the counts by the total number of units in the
-#' grid cell. The type of unit depends on the theme of the feature, e.g., if
-#' the feature is in theme "Buildings", the feature counts are divided by the
-#' total number of buildings. Note that this operation requires an additional
-#' download (the total number of units). Also note that sometimes (possibly due
-#' to the key-cell method), shares of over 1 are computed. Defaults to
-#' \code{FALSE}.
+#' grid cell. Note that this operation downloads all remaining categories of
+#' a feature, which can take some time for low resolutions. The total is
+#' based on the sum of subtotals so that shares are capped at 100 %. See
+#' details. Defaults to \code{FALSE}.
 #' @param as Specifies the output class. Must be one of \code{"df"},
 #' \code{"sf"}, or \code{"raster"}. If \code{"df"} (default), returns flat
 #' coordinates in a dataframe. If \code{"sf"} (and the \code{sf} package is
@@ -67,7 +65,24 @@
 #' stores all pre-processed data. You can download this repository and use
 #' it offline or use an entirely different repository by setting
 #' \code{options(z22.data_repo = "path/to/z22data")}.
+#' 
+#' Census data are protected using the cell-key method. As a consequence,
+#' cell values are confidentialized by perturbation and often do not
+#' represent true values. The mean absolute deviation for counts is
+#' below 1. 65 \% of counts have a maximum perturbation of 1, 20 \%
+#' of 3 or more and 10 \% of 4 or more (Enderle and Kleber 2024).
+#' Population totals (such as \code{"population"}, or \code{"dwellings"})
+#' add perturbation after adding up subtotals to preserve accuracy.
+#' Hence, the sum of subtotals can deviate from the totals, e.g., the
+#' sum of each category in \code{"household_size_group"} and the value
+#' of \code{"households"} can be different. The \code{normalize} argument
+#' takes this into account and computes shares based on the sum of
+#' subtotals instead as suggested by Enderle and Kleber (2024).
 #'
+#' @references
+#' Enderle, T., Kleber, B., 2024. Geheimhaltung mit der Cell-Key-Methode
+#' im Zensus 2022. WISTA Wirtschaft und Statistik 6/2024, 83-91.
+#' 
 #' @export
 #'
 #' @examplesIf arrow::codec_is_available("zstd")
@@ -107,17 +122,20 @@ z22_data <- function(feature,
     dplyr::full_join(x, y, by = c("x", "y"))
   })
 
-  if (normalize) {
-    # To normalize, the respective totals dataframe is downloaded and
-    # used to divide the counts of the feature grid
-    theme <- tolower(features[features$name %in% feature, ]$theme)
+  if (normalize) {   
     total <- z22_data(
-      theme,
+      feature,
+      categories = NULL,
       year = year,
       res = res,
       update_cache = update_cache
     )
-    names(total)[1] <- "value"
+    total <- dplyr::mutate(
+      total,
+      value = rowSums(dplyr::across(dplyr::starts_with("cat_")), na.rm = TRUE),
+      x = x, y = y,
+      .keep = "unused"
+    )
 
     out <- dplyr::left_join(out, total, by = c("x", "y"))
     out <- dplyr::mutate(out, dplyr::across(

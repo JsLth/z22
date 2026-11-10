@@ -116,6 +116,23 @@ test_that("multiple features are full joined", {
 })
 
 
+test_that("normalization is capped at 100%", {
+  total <- z22_data(
+    "household_size_group",
+    res = "1km",
+    year = 2022,
+    normalize = TRUE
+  )
+
+  total <- dplyr::rowwise(total)
+  total <- dplyr::mutate(
+    total,
+    sum = sum(dplyr::c_across(dplyr::starts_with("cat_")), na.rm = TRUE)
+  )
+  expect_true(all(dplyr::near(total$sum, 1) | total$sum == 0))
+})
+
+
 test_that("http errors are handled", {
   expect_error(
     z22data_download("z22_data_10km", "notafeature"),

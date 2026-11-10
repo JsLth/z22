@@ -41,12 +41,10 @@ all empty grid values will be replaced with 0.}
 
 \item{normalize}{If \code{TRUE} and \code{feature} is a counted feature,
 computes shares by dividing the counts by the total number of units in the
-grid cell. The type of unit depends on the theme of the feature, e.g., if
-the feature is in theme "Buildings", the feature counts are divided by the
-total number of buildings. Note that this operation requires an additional
-download (the total number of units). Also note that sometimes (possibly due
-to the key-cell method), shares of over 1 are computed. Defaults to
-\code{FALSE}.}
+grid cell. Note that this operation downloads all remaining categories of
+a feature, which can take some time for low resolutions. The total is
+based on the sum of subtotals so that shares are capped at 100 %. See
+details. Defaults to \code{FALSE}.}
 
 \item{as}{Specifies the output class. Must be one of \code{"df"},
 \code{"sf"}, or \code{"raster"}. If \code{"df"} (default), returns flat
@@ -92,6 +90,19 @@ By default, data are downloaded from the
 stores all pre-processed data. You can download this repository and use
 it offline or use an entirely different repository by setting
 \code{options(z22.data_repo = "path/to/z22data")}.
+
+Census data are protected using the cell-key method. As a consequence,
+cell values are confidentialized by perturbation and often do not
+represent true values. The mean absolute deviation for counts is
+below 1. 65 \% of counts have a maximum perturbation of 1, 20 \%
+of 3 or more and 10 \% of 4 or more (Enderle and Kleber 2024).
+Population totals (such as \code{"population"}, or \code{"dwellings"})
+add perturbation after adding up subtotals to preserve accuracy.
+Hence, the sum of subtotals can deviate from the totals, e.g., the
+sum of each category in \code{"household_size_group"} and the value
+of \code{"households"} can be different. The \code{normalize} argument
+takes this into account and computes shares based on the sum of
+subtotals instead as suggested by Enderle and Kleber (2024).
 }
 \examples{
 \dontshow{if (arrow::codec_is_available("zstd")) withAutoprint(\{ # examplesIf}
@@ -102,4 +113,8 @@ terra::plot(pop$cat_0)
 # Get data about the number of people born in a EU27 country
 z22_data("birth_country", categories = 21, res = "1km")}
 \dontshow{\}) # examplesIf}
+}
+\references{
+Enderle, T., Kleber, B., 2024. Geheimhaltung mit der Cell-Key-Methode
+im Zensus 2022. WISTA Wirtschaft und Statistik 6/2024, 83-91.
 }

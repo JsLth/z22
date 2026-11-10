@@ -60,3 +60,7 @@ z22_grid("100m")
 z22_grid("1km", as = "raster")}
 \dontshow{\}) # examplesIf}
 }
+\references{
+Enderle, T., Kleber, B., 2024. Geheimhaltung mit der Cell-Key-Methode
+im Zensus 2022. WISTA Wirtschaft und Statistik 6/2024, 83-91.
+}
