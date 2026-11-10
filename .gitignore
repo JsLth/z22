@@ -6,3 +6,6 @@
 inst/doc
 *.rds
 /*.png
+
+/.quarto/
+**/*.quarto_ipynb

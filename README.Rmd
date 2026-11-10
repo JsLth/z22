@@ -63,7 +63,8 @@ grid_vac <- z22_data("vacancies", res = "10km", as = "raster")
 grid_vac
 ```
 
-<details><summary>Code for the plot</summary>
+<details>
+<summary>Code for the plot</summary>
 ```{r eval=FALSE}
 library(ggplot2)
 

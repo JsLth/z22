@@ -52,9 +52,9 @@ library(terra)
 grid_vac <- z22_data("vacancies", res = "10km", as = "raster")
 grid_vac
 #> class       : SpatRaster 
-#> dimensions  : 87, 65, 1  (nrow, ncol, nlyr)
+#> size        : 87, 65, 1  (nrow, ncol, nlyr)
 #> resolution  : 10000, 10000  (x, y)
-#> extent      : 4035000, 4685000, 2685000, 3555000  (xmin, xmax, ymin, ymax)
+#> extent      : 4030000, 4680000, 2680000, 3550000  (xmin, xmax, ymin, ymax)
 #> coord. ref. : ETRS89-extended / LAEA Europe (EPSG:3035) 
 #> source(s)   : memory
 #> name        : cat_0 
@@ -85,7 +85,7 @@ ggplot(df_vac) +
 
 </details>
 
-<img src="man/figures/README-unnamed-chunk-5-1.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-5-1.png" alt="" width="100%" />
 
 ## Available data
 
