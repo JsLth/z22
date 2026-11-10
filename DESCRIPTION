@@ -1,6 +1,6 @@
 Package: z22
 Type: Package
-Title: Official Gridded Data from the German Census 2022
+Title: Official Gridded Data from the German Census
 Version: 1.2.0
 Authors@R: 
     person("Jonas", "Lieth", , "jslth@outlook.com", role = c("cre", "aut", "cph"),

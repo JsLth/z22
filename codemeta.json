@@ -3,7 +3,7 @@
   "@type": "SoftwareSourceCode",
   "identifier": "z22",
   "description": "Provides fast and easy access to German census grid data from the 2011 and 2022 censuses <https://www.zensus2022.de/>, including a wide range of socio-economic indicators at multiple spatial resolutions (100m, 1km, 10km). Enables efficient download, processing, and analysis of large census datasets covering population, households, families, dwellings, and buildings. Harmonized data structures allow direct comparison with the 2011 census, supporting temporal and spatial analyses. Facilitates conversion of data into common formats for spatial analysis and mapping ('terra', 'sf', 'ggplot2').",
-  "name": "z22: Official Gridded Data from the German Census 2022",
+  "name": "z22: Official Gridded Data from the German Census",
   "relatedLink": "https://jslth.github.io/z22/",
   "codeRepository": "https://github.com/jslth/z22/",
   "issueTracker": "https://github.com/jslth/z22/issues",
@@ -202,7 +202,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "1073.886KB",
+  "fileSize": "1073.881KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -214,7 +214,7 @@
           "familyName": "Lieth"
         }
       ],
-      "name": "{z22: Official Gridded Data from the German Census 2022}",
+      "name": "{z22: Official Gridded Data from the German Census}",
       "identifier": "10.32614/CRAN.package.z22",
       "url": "https://github.com/jslth/z22/",
       "@id": "https://doi.org/10.32614/CRAN.package.z22",

@@ -7,7 +7,7 @@ cff-version: 1.2.0
 message: 'To cite package "z22" in publications use:'
 type: software
 license: MIT
-title: 'z22: Official Gridded Data from the German Census 2022'
+title: 'z22: Official Gridded Data from the German Census'
 version: 1.2.0
 doi: 10.32614/CRAN.package.z22
 identifiers:
@@ -30,7 +30,7 @@ authors:
   orcid: https://orcid.org/0000-0002-3451-3176
 preferred-citation:
   type: manual
-  title: 'z22: Official Gridded Data from the German Census 2022'
+  title: 'z22: Official Gridded Data from the German Census'
   authors:
   - family-names: Lieth
     given-names: Jonas
