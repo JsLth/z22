@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">z22</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,29 @@
       <small>Source: <a href="https://github.com/jslth/z22/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.2.0" id="z22-120">z22 1.2.0<a class="anchor" aria-label="anchor" href="#z22-120"></a></h2>
+<p><strong>Major changes</strong>:</p>
+<ul><li>Perform full joins rather than left joins when multiple categories are provided.
+<ul><li>Earlier versions can severely underreport cell occurrences when downloading multiple categories so it is recommended to depend on version 1.2.0.</li>
+</ul></li>
+<li>
+<code>normalize = TRUE</code> now computes shares based on the sum of subtotals instead of population totals as suggested by the census methods paper.</li>
+<li>Several corrupt category codes that were not used by the census data were removed. This includes:
+<ul><li>
+<code>floor_space</code>: code 99</li>
+<li>
+<code>dwelling_rooms</code>: code 99</li>
+<li>
+<code>dwelling_occupancy</code>: codes 99, 1, 2, and 5</li>
+</ul></li>
+<li>Added a category specification for <code>dwelling_building_dwellings</code>.</li>
+</ul><p><strong>Minor changes</strong>:</p>
+<ul><li>Cache files are cleaned up when a download fails.</li>
+<li>
+<code><a href="../reference/z22_decode.html">z22_decode()</a></code> now supports a <code>year</code> argument to account for category changes between censuses.</li>
+<li>NAs are replaced with zeroes for shares when <code>all_cells = TRUE</code>.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.4" id="z22-114">z22 1.1.4<a class="anchor" aria-label="anchor" href="#z22-114"></a></h2><p class="text-muted">CRAN release: 2026-01-23</p>
 <ul><li>Add support for changes between census years (<a href="https://github.com/jslth/z22/issues/3" class="external-link">#3</a>)</li>

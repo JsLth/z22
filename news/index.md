@@ -1,5 +1,31 @@
 # Changelog
 
+## z22 1.2.0
+
+**Major changes**:
+
+- Perform full joins rather than left joins when multiple categories are
+  provided.
+  - Earlier versions can severely underreport cell occurrences when
+    downloading multiple categories so it is recommended to depend on
+    version 1.2.0.
+- `normalize = TRUE` now computes shares based on the sum of subtotals
+  instead of population totals as suggested by the census methods paper.
+- Several corrupt category codes that were not used by the census data
+  were removed. This includes:
+  - `floor_space`: code 99
+  - `dwelling_rooms`: code 99
+  - `dwelling_occupancy`: codes 99, 1, 2, and 5
+- Added a category specification for `dwelling_building_dwellings`.
+
+**Minor changes**:
+
+- Cache files are cleaned up when a download fails.
+- [`z22_decode()`](https://jslth.github.io/z22/reference/z22_decode.md)
+  now supports a `year` argument to account for category changes between
+  censuses.
+- NAs are replaced with zeroes for shares when `all_cells = TRUE`.
+
 ## z22 1.1.4
 
 CRAN release: 2026-01-23

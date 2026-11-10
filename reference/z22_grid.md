@@ -76,20 +76,7 @@ Zensus 2022. WISTA Wirtschaft und Statistik 6/2024, 83-91.
 ``` r
 # Get high-res grid as tibble
 z22_grid("100m")
-#> # A tibble: 38,171,748 × 2
-#>          x       y
-#>      <int>   <int>
-#>  1 4334150 2684050
-#>  2 4334250 2684050
-#>  3 4334350 2684050
-#>  4 4334450 2684050
-#>  5 4334550 2684050
-#>  6 4334150 2684150
-#>  7 4334250 2684150
-#>  8 4334350 2684150
-#>  9 4334450 2684150
-#> 10 4334550 2684150
-#> # ℹ 38,171,738 more rows
+#> Error in httr2::req_perform(req, path = path): HTTP 504 Gateway Timeout.
 
 # Get low-res grid as raster
 z22_grid("1km", as = "raster")
