@@ -46,21 +46,9 @@ pivoting.
 ``` r
 # get feature grid
 age <- z22_data("age_short", res = "10km")
+#> Error in httr2::req_perform(req, path = path): HTTP 504 Gateway Timeout.
 
 # pivot to a long table
 z22_pivot_longer(age, feature = "age_short")
-#> # A tibble: 19,110 × 4
-#>    category value       x       y
-#>    <fct>    <int>   <int>   <int>
-#>  1 Under 18    NA 4335000 2685000
-#>  2 Under 18    NA 4345000 2685000
-#>  3 Under 18    53 4335000 2695000
-#>  4 Under 18   810 4345000 2695000
-#>  5 Under 18     3 4415000 2695000
-#>  6 Under 18     5 4325000 2705000
-#>  7 Under 18   486 4335000 2705000
-#>  8 Under 18  1431 4345000 2705000
-#>  9 Under 18   133 4355000 2705000
-#> 10 Under 18   431 4395000 2705000
-#> # ℹ 19,100 more rows
+#> Error: object 'age' not found
 ```
