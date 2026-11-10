@@ -132,10 +132,9 @@ z22_data <- function(feature,
     )
     total <- dplyr::mutate(
       total,
-      value = rowSums(dplyr::across(dplyr::starts_with("cat_")), na.rm = TRUE),
-      x = x, y = y,
-      .keep = "unused"
+      value = rowSums(dplyr::across(dplyr::starts_with("cat_")), na.rm = TRUE)
     )
+    total <- total[c("value", "x", "y")]
 
     out <- dplyr::left_join(out, total, by = c("x", "y"))
     out <- dplyr::mutate(out, dplyr::across(
