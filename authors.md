@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/jslth/z22/blob/main/inst/CITATION)
+[`inst/CITATION`](https://github.com/jslth/z22/blob/v1.2.1/inst/CITATION)
 
 Lieth J (2026). *z22: Official Gridded Data from the German Census*.
 [doi:10.32614/CRAN.package.z22](https://doi.org/10.32614/CRAN.package.z22).
