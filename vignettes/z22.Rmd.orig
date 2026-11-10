@@ -51,7 +51,7 @@ Similarly, you can view a list of all categories for a feature.
 z22_categories("birth_country", year = 2022)
 ```
 
-When I talk about **grids**, I mean a geographical grid net according to the EU [INSPIRE](https://inspire.ec.europa.eu/theme/gg) standard. Grids always have a fixed resolution (100x100 m, 1x1 km, 10x10 km). Such grids are useful to aggregate sensitive spatial data to a relatively detailed level that is not as arbitrary as, e.g., municipality boundaries. You can get a raw grid dataset based on the [GeoGitter](https://gdz.bkg.bund.de/index.php/default/inspire/sonstige-inspire-themen/geographische-gitter-fur-deutschland-in-lambert-projektion-geogitter-inspire.html) dataset using:
+When I talk about **grids**, I mean a geographical grid net according to the EU [INSPIRE](https://op.europa.eu/en/web/eu-vocabularies/concept/-/resource?uri=http%3A%2F%2Finspire.ec.europa.eu%2Ftheme%2Fgg) standard. Grids always have a fixed resolution (100x100 m, 1x1 km, 10x10 km). Such grids are useful to aggregate sensitive spatial data to a relatively detailed level that is not as arbitrary as, e.g., municipality boundaries. You can get a raw grid dataset based on the [GeoGitter](https://gdz.bkg.bund.de/index.php/default/inspire/sonstige-inspire-themen/geographische-gitter-fur-deutschland-in-lambert-projektion-geogitter-inspire.html) dataset using:
 
 ```{r}
 grid <- z22_grid("10km", as = "sf")

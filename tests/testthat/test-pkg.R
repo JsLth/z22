@@ -109,6 +109,9 @@ test_that("data can be downloaded and prepared", {
 
 
 test_that("multiple features are full joined", {
+  skip_on_cran()
+  skip_if_offline("github.com")
+  skip_if_not(arrow::codec_is_available("zstd"))
   c1 <- z22_data("floor_space", categories = 1)
   c2 <- z22_data("floor_space", categories = 2)
   c12 <- z22_data("floor_space", categories = c(1, 2))
@@ -117,6 +120,9 @@ test_that("multiple features are full joined", {
 
 
 test_that("normalization is capped at 100%", {
+  skip_on_cran()
+  skip_if_offline("github.com")
+  skip_if_not(arrow::codec_is_available("zstd"))
   total <- z22_data(
     "household_size_group",
     res = "1km",
@@ -134,6 +140,8 @@ test_that("normalization is capped at 100%", {
 
 
 test_that("http errors are handled", {
+  skip_on_cran()
+  skip_if_offline("github.com")
   expect_error(
     z22data_download("z22_data_10km", "notafeature"),
     "internal error"
@@ -142,6 +150,8 @@ test_that("http errors are handled", {
 
 
 test_that("grid can be downloaded", {
+  skip_on_cran()
+  skip_if_offline("github.com")
   skip_if_not(arrow::codec_is_available("zstd"))
   expect_error(z22_grid(year = -999), "for year")
   expect_error(z22_grid(res = "test"), "resolution of")
